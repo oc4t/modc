@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Mod Selector</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div class="mod-list">
+        <div class="mod-flex">
+            <p class="mod-txt">Performance mods</p>
+            <img src="images/arrow.png" class="arrow" id="arrow1" onclick="dropPerformance()" class="drop-button">
+        </div>
+        <div id="performance-dropdown" class="mod-drop">
+            <div class="mod-container">
+                <input class="mod-item" type="checkbox" data-mod="mods/1.20.2/alternate-current-mc1.20-1.7.0.jar">
+                <p>Alternate Current 1.7.0</p>
+                <a class="link" href="https://modrinth.com/mod/alternate-current/">Modrinth</a>
+                <p class="mod-info">-NOTE only has effect in singleplayer</p>
+            </div>
+            <div class="mod-container">
+                <input class="mod-item" type="checkbox" data-mod="mods/1.20.2/c2me-fabric-mc1.20.2-0.2.0+alpha.10.126.jar">
+                <p>C2ME 0.2.0</p>
+                <a class="link" href="https://modrinth.com/mod/c2me-fabric/">Modrinth</a>
+            </div>
+            <div class="mod-container">
+                <input class="mod-item" type="checkbox" data-mod="mods/1.20.2/Chunky-1.3.92.jar">
+                <p>Chunky 1.3.92</p>
+                <a class="link" href="https://modrinth.com/mod/chunky/">Modrinth</a>
+            </div>
+            <div class="mod-container">
+                <input class="mod-item" type="checkbox" data-mod="mods/1.20.2/Debugify-1.20.2+1.0.jar">
+                <p>Debugify 1.0</p>
+                <a class="link" href="https://modrinth.com/mod/debugify/">Modrinth</a>
+            </div>
+            <div class="mod-container">
+                <input class="mod-item" type="checkbox" data-mod="mods/1.20.2/dynamic-fps-3.2.1+minecraft-1.20.0.jar">
+                <p>Dynamic FPS 3.2.1</p>
+                <a class="link" href="https://modrinth.com/mod/dynamic-fps/">Modrinth</a>
+            </div>
+            <div class="mod-container">
+                <input class="mod-item" type="checkbox" data-mod="mods/1.20.2/entityculling-fabric-1.6.2-mc1.20.1.jar">
+                <p>Entity Culling 1.6.2</p>
+                <a class="link" href="https://modrinth.com/mod/entityculling/">Modrinth</a>
+            </div>
+            <div class="mod-container">
+                <input class="mod-item" type="checkbox" data-mod="mods/1.20.2/entity-view-distance-1.1.3+1.20.2.jar">
+                <p>Entity View Distance 1.1.3</p>
+                <a class="link" href="https://modrinth.com/mod/entity-view-distance/">Modrinth</a>
+            </div>
+            <div class="mod-container">
+                <input class="mod-item" type="checkbox" data-mod="mods/1.20.2/exordium-fabric-1.2.1-mc1.20.2.jar">
+                <p>Exordium 1.2.1</p>
+                <a class="link" href="https://modrinth.com/mod/exordium/">Modrinth</a>
+            </div>
+            <div class="mod-container">
+                <input class="mod-item" type="checkbox" data-mod="mods/1.20.2/ferritecore-6.0.1-fabric.jar">
+                <p>FerriteCore 6.0.1</p>
+                <a class="link" href="https://modrinth.com/mod/ferrite-core/">Modrinth</a>
+            </div>
+            <div class="mod-container">
+                <input class="mod-item" type="checkbox" data-mod="mods/1.20.2/krypton-0.2.4.jar">
+                <p>Krypton 0.2.4</p>
+                <a class="link" href="https://modrinth.com/mod/krypton/">Modrinth</a>
+            </div>
+            <div class="mod-container">
+                <input class="mod-item" type="checkbox" data-mod="mods/1.20.2/Ksyxis-1.1.jar">
+                <p>Ksyxis 1.1</p>
+                <a class="link" href="https://modrinth.com/mod/ksyxis/">Modrinth</a>
+            </div>
+            <div class="mod-container">
+                <input class="mod-item" type="checkbox" data-mod="mods/1.20.2/lazydfu-0.1.3.jar">
+                <p>Lazy DFU 0.1.3</p>
+                <a class="link" href="https://modrinth.com/mod/lazydfu/">Modrinth</a>
+            </div>
+            <div class="mod-container">
+                <input class="mod-item" type="checkbox" data-mod="mods/1.20.2/lithium-fabric-mc1.20.2-0.12.0.jar">
+                <p>Lithium 0.12.0</p>
+                <a class="link" href="https://modrinth.com/mod/lithium">Modrinth</a>
+            </div>
+            <div class="mod-container">
+                <input class="mod-item" type="checkbox" data-mod="mods/1.20.2/methane-3.0.0-BETA.jar">
+                <p>Methane 3.0.0</p>
+                <a class="link" href="https://modrinth.com/mod/methane/">Modrinth</a>
+            </div>
+            <div class="mod-container">
+                <input class="mod-item" type="checkbox" data-mod="mods/1.20.2/noxesium-1.0.5.jar">
+                <p>Noxesium 1.0.5</p>
+                <a class="link" href="https://modrinth.com/mod/noxesium">Modrinth</a>
+            </div>
+            <div class="mod-container">
+                <input class="mod-item" type="checkbox" data-mod="mods/1.20.2/servercore-fabric-1.3.9+1.20.2.jar">
+                <p>ServerCore 1.3.9</p>
+                <a class="link" href="https://modrinth.com/mod/servercore">Modrinth</a>
+            </div>
+            <div class="mod-container">
+                <input class="mod-item" type="checkbox" data-mod="mods/1.20.2/sodium-fabric-mc1.20.2-0.5.3.jar">
+                <p>Sodium 0.5.3</p>
+                <a class="link" href="https://modrinth.com/mod/sodium">Modrinth</a>
+            </div>
+            <div class="mod-container">
+                <input class="mod-item" type="checkbox" data-mod="mods/1.20.2/sodium-extra-0.5.3+mc1.20.2-build.114.jar">
+                <p>Sodium Extra 0.5.3</p>
+                <a class="link" href="https://modrinth.com/mod/sodium-extra">Modrinth</a>
+            </div>
+            <div class="mod-container">
+                <input class="mod-item" type="checkbox" data-mod="mods/1.20.2/vmp-fabric-mc1.20.2-0.2.0+beta.7.121-all.jar">
+                <p>VMP 0.2.0</p>
+                <a class="link" href="https://modrinth.com/mod/vmp-fabric">Modrinth</a>
+            </div>
+        </div>
+        <div class="mod-flex">
+            <p class="mod-txt">Quality of life mods</p>
+            <img src="images/arrow.png" class="arrow" id="arrow2" onclick="dropQOL()" class="drop-button">
+        </div>
+        <div id="qol-dropdown" class="mod-drop">
+            <div class="mod-container">
+                <input class="mod-item" type="checkbox" data-mod="mods/1.20.2/alternate-current-mc1.20-1.7.0.jar">
+                <p>Alternate Current 1.7.0</p>
+                <a class="link" href="https://modrinth.com/mod/alternate-current/">Modrinth</a>
+            </div>
+        </div>
+        <div class="mod-flex">
+            <p class="mod-txt">Utility mods</p>
+            <img src="images/arrow.png" class="arrow" id="arrow3" onclick="dropUtility()" class="drop-button">
+        </div>
+        <div id="utility-dropdown" class="mod-drop">
+            <div class="mod-container">
+                <input class="mod-item" type="checkbox" data-mod="mods/1.20.2/alternate-current-mc1.20-1.7.0.jar">
+                <p>Alternate Current 1.7.0</p>
+                <a class="link" href="https://modrinth.com/mod/alternate-current/">Modrinth</a>
+            </div>
+        </div>
+        <button class="download-button" onclick="downloadMods()">Download Mods</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.5/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script>
+        function dropPerformance() {
+            document.getElementById("performance-dropdown").classList.toggle("show");
+            const arrow1 = document.getElementById('arrow1');
+            rotated1 = !rotated1;
+            arrow1.style.transform = rotated1 ? 'rotate(90deg)' : 'rotate(0deg)';
+        }
+        function dropQOL() {
+            document.getElementById("qol-dropdown").classList.toggle("show");
+            const arrow2 = document.getElementById('arrow2');
+            rotated2 = !rotated2;
+            arrow2.style.transform = rotated2 ? 'rotate(90deg)' : 'rotate(0deg)';
+        }
+        function dropUtility() {
+            document.getElementById("utility-dropdown").classList.toggle("show");
+            const arrow3 = document.getElementById('arrow3');
+            rotated3 = !rotated3;
+            arrow3.style.transform = rotated3 ? 'rotate(90deg)' : 'rotate(0deg)';
+        }
+        let rotated1 = false;
+        let rotated2 = false;
+        let rotated3 = false;
+    </script>
+    <script>
+        function downloadMods() {
+            const selectedMods = Array.from(document.querySelectorAll('.mod-item:checked'))
+                .map(checkbox => checkbox.getAttribute('data-mod'));
+            if (selectedMods.length === 0) {
+                alert('Select at least 1 mod.');
+                return;
+            }
+
+            const zip = new JSZip();
+            const promises = selectedMods.map(modPath => {
+                const modName = modPath.split('/').pop();
+                const modFilePath = `mods/1.20.2/${modName}`;
+                return fetch(modFilePath)
+                    .then(response => response.blob())
+                    .then(blob => zip.file(modName, blob));
+            });
+
+            Promise.all(promises)
+                .then(() => zip.generateAsync({ type: 'blob' }))
+                .then(content => saveAs(content, 'selected_mods.zip'))
+                .catch(error => console.error(error));
+        }
+    </script>
+</body>
+</html>
