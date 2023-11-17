@@ -1,0 +1,253 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.blue {
+    background: linear-gradient(to right, rgb(78, 216, 223), rgb(17, 169, 198));
+    -webkit-background-clip: text;
+    background-clip: tex;
+    color: transparent;
+    transform: rotate(0deg);
+    transition: transform 0.3s;
+}
+.blue:hover {
+    transform: rotate(-360deg);
+    transition: transform 36s;
+}
+.white {
+    color: rgb(246, 242, 234);
+}
+.greenb {
+    background-color: rgb(120, 200, 12) !important;
+}
+.greenb:hover {
+    background-color: rgb(80, 150, 8) !important;
+}
+.purpleb {
+    background-color: rgb(160, 90, 200) !important;
+}
+.purpleb:hover {
+    background-color: rgb(120, 60, 150) !important;
+}
+.orangeb {
+    background-color: rgb(200, 150, 50) !important;
+}
+.orangeb:hover {
+    background-color: rgb(150, 120, 30) !important;
+}
+.redb {
+    background-color: rgb(200, 50, 50) !important;
+}
+.redb:hover {
+    background-color: rgb(150, 30, 30) !important;
+}
+
+/* main page */
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    background-color: rgb(25, 27, 27);
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 70%;
+    height: 100px;
+}
+.logo {
+  display: flex;
+  width: 120px;
+}
+.logo-txt {
+    font-size: 42px;
+}
+.menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+}
+.menu-item {
+    color: white;
+    transition: color 0.3s;
+    text-decoration-color: rgb(0, 0, 0, 0);
+    margin: 20px;
+}
+.menu-item:hover {
+    color: rgb(175, 180, 180);
+    transition: color 0.3s;
+}
+.temp {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 113px;
+}
+.temp-txt {
+    color: white;
+    font-size: 20px;
+    text-decoration-color: rgb(0, 0, 0, 0);
+}
+.purpose {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 150px;
+    margin-bottom: 150px;
+    font-size: 24px;
+    width: 40%;
+    padding: 50px;
+    background-color: rgb(28, 31, 31);
+    border: 1px solid rgb(25, 27, 27);
+    border-radius: 15px;
+}
+.purpose-txt {
+    font-size: 16px;
+    width: 100%;
+    color: rgb(150, 160, 160);
+}
+.footer {
+    margin-top: auto;
+    width: 60%;
+    height: 100px;
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    font-size: 12px;
+}
+.footer-item {
+    width: 40px;
+    height: 40px;
+}
+/* mods */
+.mod-head {
+    margin-top: 100px;
+    color: white;
+    font-size: 36px;
+    width: 62%;
+}
+.versions {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    background-color: rgb(27, 30, 30);
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 100px;
+}
+.mod-flex {
+    display: flex;
+    flex-direction: row;
+}
+.mod-info-txt {
+    width: 61.5%;
+    font-size: 16px;
+    color: rgb(150, 160, 160);
+    margin-bottom: 30px;
+}
+.mod-txt {
+    font-size: 25px;
+    color: white;
+}
+.arrow {
+    width: 20px;
+    height: 20px;
+    margin-top: 10px;
+    margin-left: 6px;
+    margin-bottom: 10px;
+    rotate: 270deg;
+    transition: transform 0.1s;
+}
+.mod-list {
+    display: none;
+    flex-direction: column;
+    min-width: 30.0%;
+    width: auto;
+    background-color: rgb(28, 31, 31);
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.mod-drop {
+    display: none;
+    overflow: auto;
+    z-index: 1;
+    flex-direction: column;
+    min-width: 30.0%;
+    width: auto;
+    background-color: rgb(29, 32, 32);
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.show {
+    display: block;
+}
+.mod-container {
+    display: flex;
+    flex-direction: row;
+    height: 20px;
+    min-width: 30.0%;
+    width: auto;
+    margin-bottom: 5px;
+    align-items: flex-start;
+}
+.mod-item {
+    width: 20px;
+    margin-top: 5px;
+}
+.link {
+    color: white;
+    transition: color 0.3s;
+    margin-left: 20px;
+    margin-right: 15px;
+}
+.link:hover {
+    color: rgb(175, 180, 180);
+    transition: color 0.3s;
+}
+.mod-info {
+    color: rgb(150, 160, 160);
+    margin-left: 5px;
+}
+.select {
+    color: white;
+    padding: 8px 12px;
+    margin-right: 20px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: rgb(76, 175, 175);
+    transition: background-color 0.3s;
+}
+.select:hover {
+    background-color: rgb(50, 125, 125);
+    transition: background-color 0.3s;
+}
+.download-button {
+    background-color: rgb(76, 175, 175);
+    transition: background-color 0.3s;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    margin-top: 25px;
+    cursor: pointer;
+}
+.download-button:hover {
+    background-color: rgb(50, 125, 125);
+    transition: background-color 0.3s;
+}
