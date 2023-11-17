@@ -12,16 +12,17 @@
     <script src="download.js"></script>
     <script src="social.js"></script>
     <script src="modSelect.js"></script>
+    <script src="load.js"></script>
 </head>
-<body>
+<body id="load" onload="load()">
     <div class="header">
         <div class="logo">
             <h1 class="logo-txt white">Mod</h1><h1 class="logo-txt blue">C</h1>
         </div>
         <div class="menu">
-            <a class="menu-item" href="index.html">Home</a>
+            <a class="menu-item" onclick="loadHome()">Home</a>
             <a class="menu-item">Mods</a>
-            <a class="menu-item" href="mymods.html">My mods</a>
+            <a class="menu-item" onclick="loadMyMods()">My mods</a>
         </div>
         <div class="temp">
         </div>
