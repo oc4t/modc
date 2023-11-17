@@ -46,6 +46,9 @@
 
 /* main page */
 body {
+    transition: margin-top 0.5s;
+    margin-top: 1500px;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
