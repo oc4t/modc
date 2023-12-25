@@ -1,4 +1,4 @@
-var modCheckbox = new Array(16);
+var modCheckbox = new Array(20);
 // 1202
 
 // performance
@@ -133,10 +133,12 @@ function allUtilityMods1202() {
     modCheckbox[2] = document.querySelector('input[data-mod="mods/1.20.2/litematica-fabric-1.20.2-0.16.0.jar"]');
     modCheckbox[3] = document.querySelector('input[data-mod="mods/1.20.2/minihud-fabric-1.20.2-0.28.0.jar"]');
     modCheckbox[4] = document.querySelector('input[data-mod="mods/1.20.2/modmenu-8.0.0.jar"]');
-    modCheckbox[5] = document.querySelector('input[data-mod="mods/1.20.2/tweakeroo-fabric-1.20.2-0.18.0.jar"]');
-    modCheckbox[6] = document.querySelector('input[data-mod="mods/1.20.2/Xaeros_Minimap_23.8.4_Fabric_1.20.2.jar"]');
-    modCheckbox[7] = document.querySelector('input[data-mod="mods/1.20.2/XaerosWorldMap_1.36.0_Fabric_1.20.2.jar"]');
-    for (let i = 0; i < 8; i++) {
+    modCheckbox[5] = document.querySelector('input[data-mod="mods/1.20.2/replaymod-1.20.2-2.6.14.jar"]');
+    modCheckbox[6] = document.querySelector('input[data-mod="mods/1.20.2/voicechat-fabric-1.20.2-2.4.32.jar"]');
+    modCheckbox[7] = document.querySelector('input[data-mod="mods/1.20.2/tweakeroo-fabric-1.20.2-0.18.0.jar"]');
+    modCheckbox[8] = document.querySelector('input[data-mod="mods/1.20.2/Xaeros_Minimap_23.8.4_Fabric_1.20.2.jar"]');
+    modCheckbox[9] = document.querySelector('input[data-mod="mods/1.20.2/XaerosWorldMap_1.36.0_Fabric_1.20.2.jar"]');
+    for (let i = 0; i < 10; i++) {
         if (modCheckbox[i]) modCheckbox[i].checked = true;
     }
 }
@@ -146,10 +148,12 @@ function deselectUtilityMods1202() {
     modCheckbox[2] = document.querySelector('input[data-mod="mods/1.20.2/litematica-fabric-1.20.2-0.16.0.jar"]');
     modCheckbox[3] = document.querySelector('input[data-mod="mods/1.20.2/minihud-fabric-1.20.2-0.28.0.jar"]');
     modCheckbox[4] = document.querySelector('input[data-mod="mods/1.20.2/modmenu-8.0.0.jar"]');
-    modCheckbox[5] = document.querySelector('input[data-mod="mods/1.20.2/tweakeroo-fabric-1.20.2-0.18.0.jar"]');
-    modCheckbox[6] = document.querySelector('input[data-mod="mods/1.20.2/Xaeros_Minimap_23.8.4_Fabric_1.20.2.jar"]');
-    modCheckbox[7] = document.querySelector('input[data-mod="mods/1.20.2/XaerosWorldMap_1.36.0_Fabric_1.20.2.jar"]');
-    for (let i = 0; i < 8; i++) {
+    modCheckbox[5] = document.querySelector('input[data-mod="mods/1.20.2/replaymod-1.20.2-2.6.14.jar"]');
+    modCheckbox[6] = document.querySelector('input[data-mod="mods/1.20.2/voicechat-fabric-1.20.2-2.4.32.jar"]');
+    modCheckbox[7] = document.querySelector('input[data-mod="mods/1.20.2/tweakeroo-fabric-1.20.2-0.18.0.jar"]');
+    modCheckbox[8] = document.querySelector('input[data-mod="mods/1.20.2/Xaeros_Minimap_23.8.4_Fabric_1.20.2.jar"]');
+    modCheckbox[9] = document.querySelector('input[data-mod="mods/1.20.2/XaerosWorldMap_1.36.0_Fabric_1.20.2.jar"]');
+    for (let i = 0; i < 10; i++) {
         if (modCheckbox[i]) modCheckbox[i].checked = false;
     }
 }
@@ -158,7 +162,8 @@ function recommendedUtilityMods1202() {
     modCheckbox[1] = document.querySelector('input[data-mod="mods/1.20.2/litematica-fabric-1.20.2-0.16.0.jar"]');
     modCheckbox[2] = document.querySelector('input[data-mod="mods/1.20.2/minihud-fabric-1.20.2-0.28.0.jar"]');
     modCheckbox[3] = document.querySelector('input[data-mod="mods/1.20.2/modmenu-8.0.0.jar"]');
-    for (let i = 0; i < 4; i++) {
+    modCheckbox[4] = document.querySelector('input[data-mod="mods/1.20.2/replaymod-1.20.2-2.6.14.jar"]');
+    for (let i = 0; i < 5; i++) {
         if (modCheckbox[i]) modCheckbox[i].checked = true;
     }
 }
@@ -177,12 +182,13 @@ function allAestheticMods1202() {
     modCheckbox[9] = document.querySelector('input[data-mod="mods/1.20.2/iris-mc1.20.2-1.6.10.jar"]');
     modCheckbox[10] = document.querySelector('input[data-mod="mods/1.20.2/lambdynamiclights-2.3.2+1.20.1.jar"]');
     modCheckbox[11] = document.querySelector('input[data-mod="mods/1.20.2/notenoughanimations-fabric-1.6.4-mc1.20.2.jar"]');
-    modCheckbox[12] = document.querySelector('input[data-mod="mods/1.20.2/PresenceFootsteps-1.10.0.jar"]');
-    modCheckbox[13] = document.querySelector('input[data-mod="mods/1.20.2/spawnanimations-v1.9.2-mc1.17x-1.20x-mod.jar"]');
-    modCheckbox[14] = document.querySelector('input[data-mod="mods/1.20.2/visuality-0.7.1+1.20.jar"]');
-    modCheckbox[15] = document.querySelector('input[data-mod="mods/1.20.2/waveycapes-fabric-1.4.1-mc1.20.2.jar"]');
-    modCheckbox[16] = document.querySelector('input[data-mod="mods/1.20.2/weaponmaster-multi-fabric-1.20.2-3.0.5.jar"]');
-    for (let i = 0; i < 17; i++) {
+    modCheckbox[12] = document.querySelector('input[data-mod="mods/1.20.2/physics-mod-3.0.11-mc-1.20.2-fabric.jar"]');
+    modCheckbox[13] = document.querySelector('input[data-mod="mods/1.20.2/PresenceFootsteps-1.10.0.jar"]');
+    modCheckbox[14] = document.querySelector('input[data-mod="mods/1.20.2/spawnanimations-v1.9.2-mc1.17x-1.20x-mod.jar"]');
+    modCheckbox[15] = document.querySelector('input[data-mod="mods/1.20.2/visuality-0.7.1+1.20.jar"]');
+    modCheckbox[16] = document.querySelector('input[data-mod="mods/1.20.2/waveycapes-fabric-1.4.1-mc1.20.2.jar"]');
+    modCheckbox[17] = document.querySelector('input[data-mod="mods/1.20.2/weaponmaster-multi-fabric-1.20.2-3.0.5.jar"]');
+    for (let i = 0; i < 18; i++) {
         if (modCheckbox[i]) modCheckbox[i].checked = true;
     }
 }
@@ -199,12 +205,13 @@ function deselectAestheticMods1202() {
     modCheckbox[9] = document.querySelector('input[data-mod="mods/1.20.2/iris-mc1.20.2-1.6.10.jar"]');
     modCheckbox[10] = document.querySelector('input[data-mod="mods/1.20.2/lambdynamiclights-2.3.2+1.20.1.jar"]');
     modCheckbox[11] = document.querySelector('input[data-mod="mods/1.20.2/notenoughanimations-fabric-1.6.4-mc1.20.2.jar"]');
-    modCheckbox[12] = document.querySelector('input[data-mod="mods/1.20.2/PresenceFootsteps-1.10.0.jar"]');
-    modCheckbox[13] = document.querySelector('input[data-mod="mods/1.20.2/spawnanimations-v1.9.2-mc1.17x-1.20x-mod.jar"]');
-    modCheckbox[14] = document.querySelector('input[data-mod="mods/1.20.2/visuality-0.7.1+1.20.jar"]');
-    modCheckbox[15] = document.querySelector('input[data-mod="mods/1.20.2/waveycapes-fabric-1.4.1-mc1.20.2.jar"]');
-    modCheckbox[16] = document.querySelector('input[data-mod="mods/1.20.2/weaponmaster-multi-fabric-1.20.2-3.0.5.jar"]');
-    for (let i = 0; i < 17; i++) {
+    modCheckbox[12] = document.querySelector('input[data-mod="mods/1.20.2/physics-mod-3.0.11-mc-1.20.2-fabric.jar"]');
+    modCheckbox[13] = document.querySelector('input[data-mod="mods/1.20.2/PresenceFootsteps-1.10.0.jar"]');
+    modCheckbox[14] = document.querySelector('input[data-mod="mods/1.20.2/spawnanimations-v1.9.2-mc1.17x-1.20x-mod.jar"]');
+    modCheckbox[15] = document.querySelector('input[data-mod="mods/1.20.2/visuality-0.7.1+1.20.jar"]');
+    modCheckbox[16] = document.querySelector('input[data-mod="mods/1.20.2/waveycapes-fabric-1.4.1-mc1.20.2.jar"]');
+    modCheckbox[17] = document.querySelector('input[data-mod="mods/1.20.2/weaponmaster-multi-fabric-1.20.2-3.0.5.jar"]');
+    for (let i = 0; i < 18; i++) {
         if (modCheckbox[i]) modCheckbox[i].checked = false;
     }
 }
@@ -217,10 +224,11 @@ function recommendedAestheticMods1202() {
     modCheckbox[5] = document.querySelector('input[data-mod="mods/1.20.2/entity_texture_features_fabric_1.20.2-4.6.1.jar"]');
     modCheckbox[6] = document.querySelector('input[data-mod="mods/1.20.2/iris-mc1.20.2-1.6.10.jar"]');
     modCheckbox[7] = document.querySelector('input[data-mod="mods/1.20.2/lambdynamiclights-2.3.2+1.20.1.jar"]');
-    modCheckbox[8] = document.querySelector('input[data-mod="mods/1.20.2/spawnanimations-v1.9.2-mc1.17x-1.20x-mod.jar"]');
-    modCheckbox[9] = document.querySelector('input[data-mod="mods/1.20.2/visuality-0.7.1+1.20.jar"]');
-    modCheckbox[10] = document.querySelector('input[data-mod="mods/1.20.2/weaponmaster-multi-fabric-1.20.2-3.0.5.jar"]');
-    for (let i = 0; i < 11; i++) {
+    modCheckbox[8] = document.querySelector('input[data-mod="mods/1.20.2/physics-mod-3.0.11-mc-1.20.2-fabric.jar"]');
+    modCheckbox[9] = document.querySelector('input[data-mod="mods/1.20.2/spawnanimations-v1.9.2-mc1.17x-1.20x-mod.jar"]');
+    modCheckbox[10] = document.querySelector('input[data-mod="mods/1.20.2/visuality-0.7.1+1.20.jar"]');
+    modCheckbox[11] = document.querySelector('input[data-mod="mods/1.20.2/weaponmaster-multi-fabric-1.20.2-3.0.5.jar"]');
+    for (let i = 0; i < 12; i++) {
         if (modCheckbox[i]) modCheckbox[i].checked = true;
     }
 }
@@ -228,12 +236,14 @@ function recommendedAestheticMods1202() {
 // Wynncraft
 function allWynncraftMods1202() {
     modCheckbox[0] = document.querySelector('input[data-mod="mods/1.20.2/wynntils-0.0.4-beta.68-fabric+MC-1.20.2.jar"]');
+    modCheckbox[1] = document.querySelector('input[data-mod="mods/1.20.2/VoicesOfWynn-MC1.20.2-v1.6.jar"]');
     for (let i = 0; i < 2; i++) {
         if (modCheckbox[i]) modCheckbox[i].checked = true;
     }
 }
 function deselectWynncraftMods1202() {
     modCheckbox[0] = document.querySelector('input[data-mod="mods/1.20.2/wynntils-0.0.4-beta.68-fabric+MC-1.20.2.jar"]');
+    modCheckbox[1] = document.querySelector('input[data-mod="mods/1.20.2/VoicesOfWynn-MC1.20.2-v1.6.jar"]');
     for (let i = 0; i < 2; i++) {
         if (modCheckbox[i]) modCheckbox[i].checked = false;
     }
