@@ -16,9 +16,9 @@ function loadMods() {
         window.location.replace("mods.html");
     }, 250);
 }
-function loadMyMods() {
+function loadModpacks() {
     document.getElementById('load').style.marginTop = '-1500px';
     setTimeout(function(){
-        window.location.replace("mymods.html");
+        window.location.replace("modpacks.html");
     }, 250);
 }
