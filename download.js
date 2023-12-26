@@ -1,6 +1,6 @@
 function downloadMods1202() {
     const selectedMods1202 = Array.from(document.querySelectorAll('.mod1202:checked'))
-        .map(checkbox => checkbox.getAttribute('data-mod'));
+        .map(checkbox => checkbox.getAttribute('mod-data'));
     if (selectedMods1202.length === 0) {
         alert('Select at least 1 mod.');
         return;
