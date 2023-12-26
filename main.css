@@ -43,14 +43,6 @@
 .redb:hover {
     background-color: rgb(150, 30, 30) !important;
 }
-@keyframes drop {
-    from {height: 0;}
-    to {height: 260px;}
-}
-@keyframes font {
-    from {font-size: 0px;}
-    to {font-size: 25px;}
-}
 
 /* main page */
 body {
@@ -171,8 +163,6 @@ body {
 .mod-txt {
     font-size: 25px;
     color: white;
-    animation-name: font;
-    animation-duration: 0.2;
 }
 .arrow {
     width: 20px;
@@ -192,8 +182,6 @@ body {
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    animation-name: drop;
-    animation-duration: 0.15s;
     font-size: 16px;
 }
 .mod-drop {

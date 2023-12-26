@@ -14,7 +14,6 @@ function downloadMods1202() {
             .then(response => response.blob())
             .then(blob => zip.file(modName, blob));
     });
-
     Promise.all(promises)
         .then(() => zip.generateAsync({ type: 'blob' }))
         .then(content => saveAs(content, 'mods.zip'))
