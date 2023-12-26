@@ -1,286 +1,69 @@
 var modCheckbox = new Array(20);
-// 1202
+
+// select
+function modSelect(modNames, action) {
+    for (let i = 0; i < modNames.length; i++) {
+        const modCheckbox = document.querySelector(`input[mod-data="${modNames[i]}"]`);
+        if (modCheckbox) {
+            if (action === 'select') {
+                modCheckbox.checked = true;
+            } else if (action === 'deselect') {
+                modCheckbox.checked = false;
+            }
+        }
+    }
+}
 
 // performance
-function allPerfMods1202() {
-    modCheckbox[0] = document.querySelector('input[data-mod="alternate-current-mc1.20-1.7.0.jar"]');
-    modCheckbox[1] = document.querySelector('input[data-mod="c2me-fabric-mc1.20.2-0.2.0+alpha.10.126.jar"]');
-    modCheckbox[2] = document.querySelector('input[data-mod="Debugify-1.20.2+1.0.jar"]');
-    modCheckbox[3] = document.querySelector('input[data-mod="enhancedblockentities-0.9.1+1.20.2.jar"]');
-    modCheckbox[4] = document.querySelector('input[data-mod="dynamic-fps-3.3.1+minecraft-1.20.0.jar"]');
-    modCheckbox[5] = document.querySelector('input[data-mod="entityculling-fabric-1.6.3-mc1.20.2.jar"]');
-    modCheckbox[6] = document.querySelector('input[data-mod="entity-view-distance-1.1.3+1.20.2.jar"]');
-    modCheckbox[7] = document.querySelector('input[data-mod="exordium-fabric-1.2.1-mc1.20.2.jar"]');
-    modCheckbox[8] = document.querySelector('input[data-mod="ferritecore-6.0.1-fabric.jar"]');
-    modCheckbox[9] = document.querySelector('input[data-mod="ImmediatelyFast-Fabric-1.2.8+1.20.4.jar"]');
-    modCheckbox[10] = document.querySelector('input[data-mod="indium-1.0.28+mc1.20.4.jar"]');
-    modCheckbox[11] = document.querySelector('input[data-mod="krypton-0.2.4.jar"]');
-    modCheckbox[12] = document.querySelector('input[data-mod="Ksyxis-1.2.2.jar"]');
-    modCheckbox[13] = document.querySelector('input[data-mod="lazydfu-0.1.3.jar"]');
-    modCheckbox[14] = document.querySelector('input[data-mod="lithium-fabric-mc1.20.2-0.12.0.jar"]');
-    modCheckbox[15] = document.querySelector('input[data-mod="methane-3.2.0.jar"]');
-    modCheckbox[16] = document.querySelector('input[data-mod="noxesium-1.1.1.jar"]');
-    modCheckbox[17] = document.querySelector('input[data-mod="sodium-fabric-mc1.20.2-0.5.5.jar"]');
-    modCheckbox[18] = document.querySelector('input[data-mod="sodium-extra-0.5.3+mc1.20.2-build.114.jar"]');
-    for (let i = 0; i < 19; i++) {
-        if (modCheckbox[i]) modCheckbox[i].checked = true;
-    }
-}
-function deselectPerfMods1202() {
-    modCheckbox[0] = document.querySelector('input[data-mod="alternate-current-mc1.20-1.7.0.jar"]');
-    modCheckbox[1] = document.querySelector('input[data-mod="c2me-fabric-mc1.20.2-0.2.0+alpha.10.126.jar"]');
-    modCheckbox[2] = document.querySelector('input[data-mod="Debugify-1.20.2+1.0.jar"]');
-    modCheckbox[4] = document.querySelector('input[data-mod="dynamic-fps-3.3.1+minecraft-1.20.0.jar"]');
-    modCheckbox[3] = document.querySelector('input[data-mod="enhancedblockentities-0.9.1+1.20.2.jar"]');
-    modCheckbox[5] = document.querySelector('input[data-mod="entityculling-fabric-1.6.3-mc1.20.2.jar"]');
-    modCheckbox[6] = document.querySelector('input[data-mod="entity-view-distance-1.1.3+1.20.2.jar"]');
-    modCheckbox[7] = document.querySelector('input[data-mod="exordium-fabric-1.2.1-mc1.20.2.jar"]');
-    modCheckbox[8] = document.querySelector('input[data-mod="ferritecore-6.0.1-fabric.jar"]');
-    modCheckbox[9] = document.querySelector('input[data-mod="ImmediatelyFast-Fabric-1.2.8+1.20.4.jar"]');
-    modCheckbox[10] = document.querySelector('input[data-mod="indium-1.0.28+mc1.20.4.jar"]');
-    modCheckbox[11] = document.querySelector('input[data-mod="krypton-0.2.4.jar"]');
-    modCheckbox[12] = document.querySelector('input[data-mod="Ksyxis-1.2.2.jar"]');
-    modCheckbox[13] = document.querySelector('input[data-mod="lazydfu-0.1.3.jar"]');
-    modCheckbox[14] = document.querySelector('input[data-mod="lithium-fabric-mc1.20.2-0.12.0.jar"]');
-    modCheckbox[15] = document.querySelector('input[data-mod="methane-3.2.0.jar"]');
-    modCheckbox[16] = document.querySelector('input[data-mod="noxesium-1.1.1.jar"]');
-    modCheckbox[17] = document.querySelector('input[data-mod="sodium-fabric-mc1.20.2-0.5.5.jar"]');
-    modCheckbox[18] = document.querySelector('input[data-mod="sodium-extra-0.5.3+mc1.20.2-build.114.jar"]');
-    for (let i = 0; i < 19; i++) {
-        if (modCheckbox[i]) modCheckbox[i].checked = false;
-    }
-}
-function optimalPerfMods1202() {
-    modCheckbox[0] = document.querySelector('input[data-mod="c2me-fabric-mc1.20.2-0.2.0+alpha.10.126.jar"]');
-    modCheckbox[1] = document.querySelector('input[data-mod="Debugify-1.20.2+1.0.jar"]');
-    modCheckbox[2] = document.querySelector('input[data-mod="dynamic-fps-3.3.1+minecraft-1.20.0.jar"]');
-    modCheckbox[3] = document.querySelector('input[data-mod="enhancedblockentities-0.9.1+1.20.2.jar"]');
-    modCheckbox[4] = document.querySelector('input[data-mod="entityculling-fabric-1.6.3-mc1.20.2.jar"]');
-    modCheckbox[5] = document.querySelector('input[data-mod="entity-view-distance-1.1.3+1.20.2.jar"]');
-    modCheckbox[6] = document.querySelector('input[data-mod="ferritecore-6.0.1-fabric.jar"]');
-    modCheckbox[7] = document.querySelector('input[data-mod="ImmediatelyFast-Fabric-1.2.8+1.20.4.jar"]');
-    modCheckbox[8] = document.querySelector('input[data-mod="krypton-0.2.4.jar"]');
-    modCheckbox[9] = document.querySelector('input[data-mod="Ksyxis-1.2.2.jar"]');
-    modCheckbox[10] = document.querySelector('input[data-mod="lithium-fabric-mc1.20.2-0.12.0.jar"]');
-    modCheckbox[11] = document.querySelector('input[data-mod="noxesium-1.1.1.jar"]');
-    modCheckbox[12] = document.querySelector('input[data-mod="sodium-fabric-mc1.20.2-0.5.5.jar"]');
-    modCheckbox[13] = document.querySelector('input[data-mod="sodium-extra-0.5.3+mc1.20.2-build.114.jar"]');
-    for (let i = 0; i < 14; i++) {
-        if (modCheckbox[i]) modCheckbox[i].checked = true;
-    }
-}
-function recommendedPerfMods1202() {
-    modCheckbox[0] = document.querySelector('input[data-mod="c2me-fabric-mc1.20.2-0.2.0+alpha.10.126.jar"]');
-    modCheckbox[1] = document.querySelector('input[data-mod="dynamic-fps-3.3.1+minecraft-1.20.0.jar"]');
-    modCheckbox[2] = document.querySelector('input[data-mod="entityculling-fabric-1.6.3-mc1.20.2.jar"]');
-    modCheckbox[3] = document.querySelector('input[data-mod="ferritecore-6.0.1-fabric.jar"]');
-    modCheckbox[4] = document.querySelector('input[data-mod="krypton-0.2.4.jar"]');
-    modCheckbox[5] = document.querySelector('input[data-mod="lithium-fabric-mc1.20.2-0.12.0.jar"]');
-    modCheckbox[6] = document.querySelector('input[data-mod="sodium-fabric-mc1.20.2-0.5.5.jar"]');
-    modCheckbox[7] = document.querySelector('input[data-mod="sodium-extra-0.5.3+mc1.20.2-build.114.jar"]');
-    for (let i = 0; i < 8; i++) {
-        if (modCheckbox[i]) modCheckbox[i].checked = true;
-    }
-}
-function minPerfMods1202() {
-    modCheckbox[0] = document.querySelector('input[data-mod="dynamic-fps-3.3.1+minecraft-1.20.0.jar"]');
-    modCheckbox[1] = document.querySelector('input[data-mod="ferritecore-6.0.1-fabric.jar"]');
-    modCheckbox[2] = document.querySelector('input[data-mod="lithium-fabric-mc1.20.2-0.12.0.jar"]');
-    modCheckbox[3] = document.querySelector('input[data-mod="sodium-fabric-mc1.20.2-0.5.5.jar"]');
-    for (let i = 0; i < 4; i++) {
-        if (modCheckbox[i]) modCheckbox[i].checked = true;
+function perfMods1202(selectType) {
+    modSelect(["alternate-current-mc1.20-1.7.0.jar", "c2me-fabric-mc1.20.2-0.2.0+alpha.10.126.jar", "Debugify-1.20.2+1.0.jar", "enhancedblockentities-0.9.1+1.20.2.jar", "dynamic-fps-3.3.1+minecraft-1.20.0.jar", "entityculling-fabric-1.6.3-mc1.20.2.jar", "entity-view-distance-1.1.3+1.20.2.jar", "exordium-fabric-1.2.1-mc1.20.2.jar", "ferritecore-6.0.1-fabric.jar", "ImmediatelyFast-Fabric-1.2.8+1.20.4.jar", "indium-1.0.28+mc1.20.4.jar", "krypton-0.2.4.jar", "Ksyxis-1.2.2.jar", "lazydfu-0.1.3.jar", "lithium-fabric-mc1.20.2-0.12.0.jar", "methane-3.2.0.jar", "noxesium-1.1.1.jar", "sodium-fabric-mc1.20.2-0.5.5.jar", "sodium-extra-0.5.3+mc1.20.2-build.114.jar"], 'deselect');
+    if (selectType == 'optimal') {
+        modSelect(["c2me-fabric-mc1.20.2-0.2.0+alpha.10.126.jar", "Debugify-1.20.2+1.0.jar", "dynamic-fps-3.3.1+minecraft-1.20.0.jar", "enhancedblockentities-0.9.1+1.20.2.jar", "entityculling-fabric-1.6.3-mc1.20.2.jar", "entity-view-distance-1.1.3+1.20.2.jar", "ferritecore-6.0.1-fabric.jar", "ImmediatelyFast-Fabric-1.2.8+1.20.4.jar", "krypton-0.2.4.jar", "Ksyxis-1.2.2.jar", "lithium-fabric-mc1.20.2-0.12.0.jar", "noxesium-1.1.1.jar", "sodium-fabric-mc1.20.2-0.5.5.jar", "sodium-extra-0.5.3+mc1.20.2-build.114.jar"], 'select');
+    } else if (selectType == 'recommend') {
+        modSelect(["c2me-fabric-mc1.20.2-0.2.0+alpha.10.126.jar", "dynamic-fps-3.3.1+minecraft-1.20.0.jar", "entityculling-fabric-1.6.3-mc1.20.2.jar", "ferritecore-6.0.1-fabric.jar", "krypton-0.2.4.jar", "lithium-fabric-mc1.20.2-0.12.0.jar", "sodium-fabric-mc1.20.2-0.5.5.jar", "sodium-extra-0.5.3+mc1.20.2-build.114.jar"], 'select');
+    } else if (selectType == 'min') {
+        modSelect(["dynamic-fps-3.3.1+minecraft-1.20.0.jar", "ferritecore-6.0.1-fabric.jar", "lithium-fabric-mc1.20.2-0.12.0.jar", "sodium-fabric-mc1.20.2-0.5.5.jar"], 'select');
+    } else {
+        modSelect(["alternate-current-mc1.20-1.7.0.jar", "c2me-fabric-mc1.20.2-0.2.0+alpha.10.126.jar", "Debugify-1.20.2+1.0.jar", "enhancedblockentities-0.9.1+1.20.2.jar", "dynamic-fps-3.3.1+minecraft-1.20.0.jar", "entityculling-fabric-1.6.3-mc1.20.2.jar", "entity-view-distance-1.1.3+1.20.2.jar", "exordium-fabric-1.2.1-mc1.20.2.jar", "ferritecore-6.0.1-fabric.jar", "ImmediatelyFast-Fabric-1.2.8+1.20.4.jar", "indium-1.0.28+mc1.20.4.jar", "krypton-0.2.4.jar", "Ksyxis-1.2.2.jar", "lazydfu-0.1.3.jar", "lithium-fabric-mc1.20.2-0.12.0.jar", "methane-3.2.0.jar", "noxesium-1.1.1.jar", "sodium-fabric-mc1.20.2-0.5.5.jar", "sodium-extra-0.5.3+mc1.20.2-build.114.jar"], selectType);
     }
 }
 
 // QOL
-function allQOLMods1202() {
-    modCheckbox[0] = document.querySelector('input[data-mod="appleskin-fabric-mc1.20.2-2.5.1.jar"]');
-    modCheckbox[1] = document.querySelector('input[data-mod="BetterF3-8.0.2-Fabric-1.20.2.jar"]');
-    modCheckbox[2] = document.querySelector('input[data-mod="ClearDespawn-fabric-1.20.2-1.1.15.jar"]');
-    modCheckbox[3] = document.querySelector('input[data-mod="Essential-fabric_1-20-2.jar"]');
-    modCheckbox[4] = document.querySelector('input[data-mod="forcecloseloadingscreen-2.2.0.jar"]');
-    modCheckbox[5] = document.querySelector('input[data-mod="reeses_sodium_options-1.7.0+mc1.20.2-build.97.jar"]');
-    modCheckbox[6] = document.querySelector('input[data-mod="shulkerboxtooltip-fabric-4.0.7+1.20.2.jar"]');
-    modCheckbox[7] = document.querySelector('input[data-mod="simple-armor-hud-1.20.2-1.4.0.jar"]');
-    modCheckbox[8] = document.querySelector('input[data-mod="slyde-1.7.2.jar"]');
-    modCheckbox[9] = document.querySelector('input[data-mod="yosbr-0.1.2.jar"]');
-    for (let i = 0; i < 10; i++) {
-        if (modCheckbox[i]) modCheckbox[i].checked = true;
-    }
-}
-function deselectQOLMods1202() {
-    modCheckbox[0] = document.querySelector('input[data-mod="appleskin-fabric-mc1.20.2-2.5.1.jar"]');
-    modCheckbox[1] = document.querySelector('input[data-mod="BetterF3-8.0.2-Fabric-1.20.2.jar"]');
-    modCheckbox[2] = document.querySelector('input[data-mod="ClearDespawn-fabric-1.20.2-1.1.15.jar"]');
-    modCheckbox[3] = document.querySelector('input[data-mod="Essential-fabric_1-20-2.jar"]');
-    modCheckbox[4] = document.querySelector('input[data-mod="forcecloseloadingscreen-2.2.0.jar"]');
-    modCheckbox[5] = document.querySelector('input[data-mod="reeses_sodium_options-1.7.0+mc1.20.2-build.97.jar"]');
-    modCheckbox[6] = document.querySelector('input[data-mod="shulkerboxtooltip-fabric-4.0.7+1.20.2.jar"]');
-    modCheckbox[7] = document.querySelector('input[data-mod="simple-armor-hud-1.20.2-1.4.0.jar"]');
-    modCheckbox[8] = document.querySelector('input[data-mod="slyde-1.7.2.jar"]');
-    modCheckbox[9] = document.querySelector('input[data-mod="yosbr-0.1.2.jar"]');
-    for (let i = 0; i < 10; i++) {
-        if (modCheckbox[i]) modCheckbox[i].checked = false;
-    }
-}
-function recommendedQOLMods1202() {
-    modCheckbox[0] = document.querySelector('input[data-mod="BetterF3-8.0.1-Fabric-1.20.2.jar"]');
-    modCheckbox[1] = document.querySelector('input[data-mod="Essential-fabric_1-20-2.jar"]');
-    modCheckbox[2] = document.querySelector('input[data-mod="reeses_sodium_options-1.7.0+mc1.20.2-build.97.jar"]');
-    modCheckbox[3] = document.querySelector('input[data-mod="simple-armor-hud-1.20.2-1.4.0.jar"]');
-    modCheckbox[4] = document.querySelector('input[data-mod="yosbr-0.1.2.jar"]');
-    for (let i = 0; i < 5; i++) {
-        if (modCheckbox[i]) modCheckbox[i].checked = true;
+function QOLMods1202(selectType) {
+    if (selectType == 'recommend') {
+        modSelect(["appleskin-fabric-mc1.20.2-2.5.1.jar", "ClearDespawn-fabric-1.20.2-1.1.15.jar", "forcecloseloadingscreen-2.2.0.jar", "shulkerboxtooltip-fabric-4.0.7+1.20.2.jar", "slyde-1.7.2.jar"], 'deselect');
+        modSelect(["BetterF3-8.0.2-Fabric-1.20.2.jar", "Essential-fabric_1-20-2.jar", "reeses_sodium_options-1.7.0+mc1.20.2-build.97.jar", "simple-armor-hud-1.20.2-1.4.0.jar", "yosbr-0.1.2.jar"], 'select');
+    } else {
+        modSelect(["appleskin-fabric-mc1.20.2-2.5.1.jar", "BetterF3-8.0.2-Fabric-1.20.2.jar", "ClearDespawn-fabric-1.20.2-1.1.15.jar", "Essential-fabric_1-20-2.jar", "forcecloseloadingscreen-2.2.0.jar", "reeses_sodium_options-1.7.0+mc1.20.2-build.97.jar", "shulkerboxtooltip-fabric-4.0.7+1.20.2.jar", "simple-armor-hud-1.20.2-1.4.0.jar", "slyde-1.7.2.jar", "yosbr-0.1.2.jar"], selectType);
     }
 }
 
 // Utility
-function allUtilityMods1202() {
-    modCheckbox[0] = document.querySelector('input[data-mod="fabric-carpet-1.20.2-1.4.121+v231011.jar"]');
-    modCheckbox[1] = document.querySelector('input[data-mod="itemswapper-fabric-0.5.4-mc1.20.2.jar"]');
-    modCheckbox[2] = document.querySelector('input[data-mod="litematica-fabric-1.20.2-0.16.0.jar"]');
-    modCheckbox[3] = document.querySelector('input[data-mod="minihud-fabric-1.20.2-0.28.0.jar"]');
-    modCheckbox[4] = document.querySelector('input[data-mod="modmenu-8.0.1.jar"]');
-    modCheckbox[5] = document.querySelector('input[data-mod="replaymod-1.20.2-2.6.14.jar"]');
-    modCheckbox[6] = document.querySelector('input[data-mod="voicechat-fabric-1.20.2-2.4.32.jar"]');
-    modCheckbox[7] = document.querySelector('input[data-mod="tweakeroo-fabric-1.20.2-0.18.0.jar"]');
-    modCheckbox[8] = document.querySelector('input[data-mod="Xaeros_Minimap_23.9.3_Fabric_1.20.2.jar"]');
-    modCheckbox[9] = document.querySelector('input[data-mod="XaerosWorldMap_1.37.2_Fabric_1.20.2.jar"]');
-    for (let i = 0; i < 10; i++) {
-        if (modCheckbox[i]) modCheckbox[i].checked = true;
-    }
-}
-function deselectUtilityMods1202() {
-    modCheckbox[0] = document.querySelector('input[data-mod="fabric-carpet-1.20.2-1.4.121+v231011.jar"]');
-    modCheckbox[1] = document.querySelector('input[data-mod="itemswapper-fabric-0.5.4-mc1.20.2.jar"]');
-    modCheckbox[2] = document.querySelector('input[data-mod="litematica-fabric-1.20.2-0.16.0.jar"]');
-    modCheckbox[3] = document.querySelector('input[data-mod="minihud-fabric-1.20.2-0.28.0.jar"]');
-    modCheckbox[4] = document.querySelector('input[data-mod="modmenu-8.0.1.jar"]');
-    modCheckbox[5] = document.querySelector('input[data-mod="replaymod-1.20.2-2.6.14.jar"]');
-    modCheckbox[6] = document.querySelector('input[data-mod="voicechat-fabric-1.20.2-2.4.32.jar"]');
-    modCheckbox[7] = document.querySelector('input[data-mod="tweakeroo-fabric-1.20.2-0.18.0.jar"]');
-    modCheckbox[8] = document.querySelector('input[data-mod="Xaeros_Minimap_23.9.3_Fabric_1.20.2.jar"]');
-    modCheckbox[9] = document.querySelector('input[data-mod="XaerosWorldMap_1.37.2_Fabric_1.20.2.jar"]');
-    for (let i = 0; i < 10; i++) {
-        if (modCheckbox[i]) modCheckbox[i].checked = false;
-    }
-}
-function recommendedUtilityMods1202() {
-    modCheckbox[0] = document.querySelector('input[data-mod="fabric-carpet-1.20.2-1.4.121+v231011.jar"]');
-    modCheckbox[1] = document.querySelector('input[data-mod="litematica-fabric-1.20.2-0.16.0.jar"]');
-    modCheckbox[2] = document.querySelector('input[data-mod="minihud-fabric-1.20.2-0.28.0.jar"]');
-    modCheckbox[3] = document.querySelector('input[data-mod="modmenu-8.0.1.jar"]');
-    modCheckbox[4] = document.querySelector('input[data-mod="replaymod-1.20.2-2.6.14.jar"]');
-    for (let i = 0; i < 5; i++) {
-        if (modCheckbox[i]) modCheckbox[i].checked = true;
+function utilityMods1202(selectType) {
+    if (selectType == 'recommend') {
+        modSelect(["itemswapper-fabric-0.5.4-mc1.20.2.jar", "voicechat-fabric-1.20.2-2.4.32.jar", "tweakeroo-fabric-1.20.2-0.18.0.jar", "Xaeros_Minimap_23.9.3_Fabric_1.20.2.jar", "XaerosWorldMap_1.37.2_Fabric_1.20.2.jar"], 'deselect');
+        modSelect(["fabric-carpet-1.20.2-1.4.121+v231011.jar", "litematica-fabric-1.20.2-0.16.0.jar", "minihud-fabric-1.20.2-0.28.0.jar", "modmenu-8.0.1.jar", "replaymod-1.20.2-2.6.14.jar"], 'select');
+    } else {
+        modSelect(["fabric-carpet-1.20.2-1.4.121+v231011.jar", "itemswapper-fabric-0.5.4-mc1.20.2.jar", "litematica-fabric-1.20.2-0.16.0.jar", "minihud-fabric-1.20.2-0.28.0.jar", "modmenu-8.0.1.jar", "replaymod-1.20.2-2.6.14.jar", "voicechat-fabric-1.20.2-2.4.32.jar", "tweakeroo-fabric-1.20.2-0.18.0.jar", "Xaeros_Minimap_23.9.3_Fabric_1.20.2.jar", "XaerosWorldMap_1.37.2_Fabric_1.20.2.jar"], selectType);
     }
 }
 
 // Aesthetic
-function allAestheticMods1202() {
-    modCheckbox[0] = document.querySelector('input[data-mod="bobby-5.0.2.jar"]');
-    modCheckbox[1] = document.querySelector('input[data-mod="capes-1.5.3+1.20.2-fabric.jar"]');
-    modCheckbox[2] = document.querySelector('input[data-mod="chunksfadein-v1.0.0-1.20.2.jar"]');
-    modCheckbox[3] = document.querySelector('input[data-mod="continuity-3.0.0-beta.4+1.20.2.jar"]');
-    modCheckbox[4] = document.querySelector('input[data-mod="DistantHorizons-2.0.1-a-1.20.2.jar"]');
-    modCheckbox[5] = document.querySelector('input[data-mod="DynamicSoundFilters-1.4.0+1.20.2.jar"]');
-    modCheckbox[6] = document.querySelector('input[data-mod="eating-animation-1.20+1.9.5.jar"]');
-    modCheckbox[7] = document.querySelector('input[data-mod="entity_model_features_fabric_1.20.2-1.2.jar"]');
-    modCheckbox[8] = document.querySelector('input[data-mod="entity_texture_features_fabric_1.20.2-5.0.jar"]');
-    modCheckbox[9] = document.querySelector('input[data-mod="fallingleaves-1.15.4+1.20.1.jar"]');
-    modCheckbox[10] = document.querySelector('input[data-mod="iris-mc1.20.2-1.6.14.jar"]');
-    modCheckbox[11] = document.querySelector('input[data-mod="lambdynamiclights-2.3.3+1.20.2.jar"]');
-    modCheckbox[12] = document.querySelector('input[data-mod="Mambience-5.3.1+1.20.2.jar"]');
-    modCheckbox[13] = document.querySelector('input[data-mod="notenoughanimations-fabric-1.6.4-mc1.20.2.jar"]');
-    modCheckbox[14] = document.querySelector('input[data-mod="physics-mod-3.0.11-mc-1.20.2-fabric.jar"]');
-    modCheckbox[15] = document.querySelector('input[data-mod="PresenceFootsteps-1.10.1.jar"]');
-    modCheckbox[16] = document.querySelector('input[data-mod="spawnanimations-v1.9.2-mc1.17x-1.20x-mod.jar"]');
-    modCheckbox[17] = document.querySelector('input[data-mod="visuality-0.7.1+1.20.jar"]');
-    modCheckbox[18] = document.querySelector('input[data-mod="waveycapes-fabric-1.4.2-mc1.20.2.jar"]');
-    modCheckbox[19] = document.querySelector('input[data-mod="weaponmaster-client-only-fabric-1.20.2-3.0.5.jar"]');
-    for (let i = 0; i < 20; i++) {
-        if (modCheckbox[i]) modCheckbox[i].checked = true;
-    }
-}
-function deselectAestheticMods1202() {
-    modCheckbox[0] = document.querySelector('input[data-mod="bobby-5.0.2.jar"]');
-    modCheckbox[1] = document.querySelector('input[data-mod="capes-1.5.3+1.20.2-fabric.jar"]');
-    modCheckbox[2] = document.querySelector('input[data-mod="chunksfadein-v1.0.0-1.20.2.jar"]');
-    modCheckbox[3] = document.querySelector('input[data-mod="continuity-3.0.0-beta.4+1.20.2.jar"]');
-    modCheckbox[4] = document.querySelector('input[data-mod="DistantHorizons-2.0.1-a-1.20.2.jar"]');
-    modCheckbox[5] = document.querySelector('input[data-mod="DynamicSoundFilters-1.4.0+1.20.2.jar"]');
-    modCheckbox[6] = document.querySelector('input[data-mod="eating-animation-1.20+1.9.5.jar"]');
-    modCheckbox[7] = document.querySelector('input[data-mod="entity_model_features_fabric_1.20.2-1.2.jar"]');
-    modCheckbox[8] = document.querySelector('input[data-mod="entity_texture_features_fabric_1.20.2-5.0.jar"]');
-    modCheckbox[9] = document.querySelector('input[data-mod="fallingleaves-1.15.4+1.20.1.jar"]');
-    modCheckbox[10] = document.querySelector('input[data-mod="iris-mc1.20.2-1.6.14.jar"]');
-    modCheckbox[11] = document.querySelector('input[data-mod="lambdynamiclights-2.3.3+1.20.2.jar"]');
-    modCheckbox[12] = document.querySelector('input[data-mod="Mambience-5.3.1+1.20.2.jar"]');
-    modCheckbox[13] = document.querySelector('input[data-mod="notenoughanimations-fabric-1.6.4-mc1.20.2.jar"]');
-    modCheckbox[14] = document.querySelector('input[data-mod="physics-mod-3.0.11-mc-1.20.2-fabric.jar"]');
-    modCheckbox[15] = document.querySelector('input[data-mod="PresenceFootsteps-1.10.1.jar"]');
-    modCheckbox[16] = document.querySelector('input[data-mod="spawnanimations-v1.9.2-mc1.17x-1.20x-mod.jar"]');
-    modCheckbox[17] = document.querySelector('input[data-mod="visuality-0.7.1+1.20.jar"]');
-    modCheckbox[18] = document.querySelector('input[data-mod="waveycapes-fabric-1.4.2-mc1.20.2.jar"]');
-    modCheckbox[19] = document.querySelector('input[data-mod="weaponmaster-client-only-fabric-1.20.2-3.0.5.jar"]');
-    for (let i = 0; i < 20; i++) {
-        if (modCheckbox[i]) modCheckbox[i].checked = false;
-    }
-}
-function recommendedAestheticMods1202() {
-    modCheckbox[0] = document.querySelector('input[data-mod="bobby-5.0.2.jar"]');
-    modCheckbox[1] = document.querySelector('input[data-mod="capes-1.5.3+1.20.2-fabric.jar"]');
-    modCheckbox[2] = document.querySelector('input[data-mod="chunksfadein-v1.0.0-1.20.2.jar"]');
-    modCheckbox[3] = document.querySelector('input[data-mod="continuity-3.0.0-beta.4+1.20.2.jar"]');
-    modCheckbox[4] = document.querySelector('input[data-mod="DynamicSoundFilters-1.4.0+1.20.2.jar"]');
-    modCheckbox[5] = document.querySelector('input[data-mod="entity_model_features_fabric_1.20.2-1.2.jar"]');
-    modCheckbox[6] = document.querySelector('input[data-mod="entity_texture_features_fabric_1.20.2-5.0.jar"]');
-    modCheckbox[7] = document.querySelector('input[data-mod="iris-mc1.20.2-1.6.14.jar"]');
-    modCheckbox[8] = document.querySelector('input[data-mod="lambdynamiclights-2.3.3+1.20.2.jar"]');
-    modCheckbox[9] = document.querySelector('input[data-mod="physics-mod-3.0.11-mc-1.20.2-fabric.jar"]');
-    modCheckbox[10] = document.querySelector('input[data-mod="spawnanimations-v1.9.2-mc1.17x-1.20x-mod.jar"]');
-    modCheckbox[11] = document.querySelector('input[data-mod="visuality-0.7.1+1.20.jar"]');
-    modCheckbox[12] = document.querySelector('input[data-mod="weaponmaster-client-only-fabric-1.20.2-3.0.5.jar"]');
-    for (let i = 0; i < 13; i++) {
-        if (modCheckbox[i]) modCheckbox[i].checked = true;
+function aestheticMods1202(selectType) {
+    if (selectType == 'recommend') {
+        modSelect(["DistantHorizons-2.0.1-a-1.20.2.jar", "DynamicSoundFilters-1.4.0+1.20.2.jar", "eating-animation-1.20+1.9.5.jar", "fallingleaves-1.15.4+1.20.1.jar", "Mambience-5.3.1+1.20.2.jar", "notenoughanimations-fabric-1.6.4-mc1.20.2.jar", "PresenceFootsteps-1.10.1.jar", "waveycapes-fabric-1.4.2-mc1.20.2.jar"], 'deselect');
+        modSelect(["bobby-5.0.2.jar", "capes-1.5.3+1.20.2-fabric.jar", "chunksfadein-v1.0.0-1.20.2.jar", "continuity-3.0.0-beta.4+1.20.2.jar", "DynamicSoundFilters-1.4.0+1.20.2.jar", "entity_model_features_fabric_1.20.2-1.2.jar", "entity_texture_features_fabric_1.20.2-5.0.jar", "iris-mc1.20.2-1.6.14.jar", "lambdynamiclights-2.3.3+1.20.2.jar", "physics-mod-3.0.11-mc-1.20.2-fabric.jar", "spawnanimations-v1.9.2-mc1.17x-1.20x-mod.jar", "visuality-0.7.1+1.20.jar", "weaponmaster-client-only-fabric-1.20.2-3.0.5.jar"], 'select')
+    } else {
+        modSelect(["bobby-5.0.2.jar", "capes-1.5.3+1.20.2-fabric.jar", "chunksfadein-v1.0.0-1.20.2.jar", "continuity-3.0.0-beta.4+1.20.2.jar", "DistantHorizons-2.0.1-a-1.20.2.jar", "DynamicSoundFilters-1.4.0+1.20.2.jar", "eating-animation-1.20+1.9.5.jar", "entity_model_features_fabric_1.20.2-1.2.jar", "entity_texture_features_fabric_1.20.2-5.0.jar", "fallingleaves-1.15.4+1.20.1.jar", "iris-mc1.20.2-1.6.14.jar", "lambdynamiclights-2.3.3+1.20.2.jar", "Mambience-5.3.1+1.20.2.jar", "notenoughanimations-fabric-1.6.4-mc1.20.2.jar", "physics-mod-3.0.11-mc-1.20.2-fabric.jar", "PresenceFootsteps-1.10.1.jar", "spawnanimations-v1.9.2-mc1.17x-1.20x-mod.jar", "visuality-0.7.1+1.20.jar", "waveycapes-fabric-1.4.2-mc1.20.2.jar", "weaponmaster-client-only-fabric-1.20.2-3.0.5.jar"], selectType);
     }
 }
 
 // Wynncraft
-function allWynncraftMods1202() {
-    modCheckbox[0] = document.querySelector('input[data-mod="wynntils-0.0.4-beta.105-fabric+MC-1.20.2.jar"]');
-    modCheckbox[1] = document.querySelector('input[data-mod="VoicesOfWynn-MC1.20.2-v1.6.jar"]');
-    for (let i = 0; i < 2; i++) {
-        if (modCheckbox[i]) modCheckbox[i].checked = true;
-    }
-}
-function deselectWynncraftMods1202() {
-    modCheckbox[0] = document.querySelector('input[data-mod="wynntils-0.0.4-beta.105-fabric+MC-1.20.2.jar"]');
-    modCheckbox[1] = document.querySelector('input[data-mod="VoicesOfWynn-MC1.20.2-v1.6.jar"]');
-    for (let i = 0; i < 2; i++) {
-        if (modCheckbox[i]) modCheckbox[i].checked = false;
-    }
+function wynncraftMods1202(selectType) {
+    modSelect(["wynntils-0.0.4-beta.105-fabric+MC-1.20.2.jar", "VoicesOfWynn-MC1.20.2-v1.6.jar"], selectType);
 }
 
 // Library
-function allLibraryMods1202() {
-    modCheckbox[0] = document.querySelector('input[data-mod="cloth-config-12.0.109-fabric.jar"]');
-    modCheckbox[1] = document.querySelector('input[data-mod="fabric-api-0.90.7+1.20.2.jar"]');
-    modCheckbox[2] = document.querySelector('input[data-mod="fabric-language-kotlin-1.10.14+kotlin.1.9.20.jar"]');
-    modCheckbox[3] = document.querySelector('input[data-mod="libjf-3.13.1.jar"]');
-    modCheckbox[4] = document.querySelector('input[data-mod="malilib-fabric-1.20.2-0.17.0.jar"]');
-    for (let i = 0; i < 5; i++) {
-        if (modCheckbox[i]) modCheckbox[i].checked = true;
-    }
+function libraryMods1202(selectType) {
+    modSelect(["cloth-config-12.0.109-fabric.jar", "fabric-api-0.90.7+1.20.2.jar", "fabric-language-kotlin-1.10.14+kotlin.1.9.20.jar", "libjf-3.13.1.jar", "malilib-fabric-1.20.2-0.17.0.jar"], selectType);
 }
-function deselectLibraryMods1202() {
-    modCheckbox[0] = document.querySelector('input[data-mod="cloth-config-12.0.109-fabric.jar"]');
-    modCheckbox[1] = document.querySelector('input[data-mod="fabric-api-0.90.7+1.20.2.jar"]');
-    modCheckbox[2] = document.querySelector('input[data-mod="fabric-language-kotlin-1.10.14+kotlin.1.9.20.jar"]');
-    modCheckbox[3] = document.querySelector('input[data-mod="libjf-3.13.1.jar"]');
-    modCheckbox[4] = document.querySelector('input[data-mod="malilib-fabric-1.20.2-0.17.0.jar"]');
-    for (let i = 0; i < 5; i++) {
-        if (modCheckbox[i]) modCheckbox[i].checked = false;
-    }
-}
-
