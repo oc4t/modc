@@ -14,7 +14,7 @@ function allPerfMods1202() {
     modCheckbox[8] = document.querySelector('input[data-mod="mods/1.20.2/krypton-0.2.4.jar"]');
     modCheckbox[9] = document.querySelector('input[data-mod="mods/1.20.2/Ksyxis-1.1.jar"]');
     modCheckbox[10] = document.querySelector('input[data-mod="mods/1.20.2/lithium-fabric-mc1.20.2-0.12.0.jar"]');
-    modCheckbox[11] = document.querySelector('input[data-mod="mods/1.20.2/methane-3.0.0-BETA.jar"]');
+    modCheckbox[11] = document.querySelector('input[data-mod="mods/1.20.2/methane-3.0.0.jar"]');
     modCheckbox[12] = document.querySelector('input[data-mod="mods/1.20.2/noxesium-1.0.5.jar"]');
     modCheckbox[13] = document.querySelector('input[data-mod="mods/1.20.2/servercore-fabric-1.3.9+1.20.2.jar"]');
     modCheckbox[14] = document.querySelector('input[data-mod="mods/1.20.2/sodium-fabric-mc1.20.2-0.5.3.jar"]');
@@ -35,7 +35,7 @@ function deselectPerfMods1202() {
     modCheckbox[8] = document.querySelector('input[data-mod="mods/1.20.2/krypton-0.2.4.jar"]');
     modCheckbox[9] = document.querySelector('input[data-mod="mods/1.20.2/Ksyxis-1.1.jar"]');
     modCheckbox[10] = document.querySelector('input[data-mod="mods/1.20.2/lithium-fabric-mc1.20.2-0.12.0.jar"]');
-    modCheckbox[11] = document.querySelector('input[data-mod="mods/1.20.2/methane-3.0.0-BETA.jar"]');
+    modCheckbox[11] = document.querySelector('input[data-mod="mods/1.20.2/methane-3.0.0.jar"]');
     modCheckbox[12] = document.querySelector('input[data-mod="mods/1.20.2/noxesium-1.0.5.jar"]');
     modCheckbox[13] = document.querySelector('input[data-mod="mods/1.20.2/servercore-fabric-1.3.9+1.20.2.jar"]');
     modCheckbox[14] = document.querySelector('input[data-mod="mods/1.20.2/sodium-fabric-mc1.20.2-0.5.3.jar"]');
@@ -89,7 +89,7 @@ function allQOLMods1202() {
     modCheckbox[0] = document.querySelector('input[data-mod="mods/1.20.2/appleskin-fabric-mc1.20.2-2.5.1.jar"]');
     modCheckbox[1] = document.querySelector('input[data-mod="mods/1.20.2/BetterF3-8.0.2-Fabric-1.20.2.jar"]');
     modCheckbox[2] = document.querySelector('input[data-mod="mods/1.20.2/ClearDespawn-fabric-1.20.1-1.1.13.jar"]');
-    modCheckbox[3] = document.querySelector('input[data-mod="mods/1.20.2/essential_1-2-3_fabric_1-20-2.jar"]');
+    modCheckbox[3] = document.querySelector('input[data-mod="mods/1.20.2/Essential-fabric_1-20-2.jar"]');
     modCheckbox[4] = document.querySelector('input[data-mod="mods/1.20.2/forcecloseloadingscreen-2.2.0.jar"]');
     modCheckbox[5] = document.querySelector('input[data-mod="mods/1.20.2/reeses_sodium_options-1.7.0+mc1.20.2-build.97.jar"]');
     modCheckbox[6] = document.querySelector('input[data-mod="mods/1.20.2/shulkerboxtooltip-fabric-4.0.7+1.20.2.jar"]');
@@ -104,7 +104,7 @@ function deselectQOLMods1202() {
     modCheckbox[0] = document.querySelector('input[data-mod="mods/1.20.2/appleskin-fabric-mc1.20.2-2.5.1.jar"]');
     modCheckbox[1] = document.querySelector('input[data-mod="mods/1.20.2/BetterF3-8.0.2-Fabric-1.20.2.jar"]');
     modCheckbox[2] = document.querySelector('input[data-mod="mods/1.20.2/ClearDespawn-fabric-1.20.1-1.1.13.jar"]');
-    modCheckbox[3] = document.querySelector('input[data-mod="mods/1.20.2/essential_1-2-3_fabric_1-20-2.jar"]');
+    modCheckbox[3] = document.querySelector('input[data-mod="mods/1.20.2/Essential-fabric_1-20-2.jar"]');
     modCheckbox[4] = document.querySelector('input[data-mod="mods/1.20.2/forcecloseloadingscreen-2.2.0.jar"]');
     modCheckbox[5] = document.querySelector('input[data-mod="mods/1.20.2/reeses_sodium_options-1.7.0+mc1.20.2-build.97.jar"]');
     modCheckbox[6] = document.querySelector('input[data-mod="mods/1.20.2/shulkerboxtooltip-fabric-4.0.7+1.20.2.jar"]');
@@ -117,7 +117,7 @@ function deselectQOLMods1202() {
 }
 function recommendedQOLMods1202() {
     modCheckbox[0] = document.querySelector('input[data-mod="mods/1.20.2/BetterF3-8.0.1-Fabric-1.20.2.jar"]');
-    modCheckbox[1] = document.querySelector('input[data-mod="mods/1.20.2/essential_1-2-3_fabric_1-20-2.jar"]');
+    modCheckbox[1] = document.querySelector('input[data-mod="mods/1.20.2/Essential-fabric_1-20-2.jar"]');
     modCheckbox[2] = document.querySelector('input[data-mod="mods/1.20.2/reeses_sodium_options-1.7.0+mc1.20.2-build.97.jar"]');
     modCheckbox[3] = document.querySelector('input[data-mod="mods/1.20.2/simple-armor-hud-1.20.2-1.4.0.jar"]');
     modCheckbox[4] = document.querySelector('input[data-mod="mods/1.20.2/yosbr-0.1.2.jar"]');
@@ -174,13 +174,13 @@ function allAestheticMods1202() {
     modCheckbox[1] = document.querySelector('input[data-mod="mods/1.20.2/capes-1.5.3+1.20.2-fabric.jar"]');
     modCheckbox[2] = document.querySelector('input[data-mod="mods/1.20.2/chunksfadein-v1.0.0-1.20.2.jar"]');
     modCheckbox[3] = document.querySelector('input[data-mod="mods/1.20.2/continuity-3.0.0-beta.4+1.20.2.jar"]');
-    modCheckbox[4] = document.querySelector('input[data-mod="mods/1.20.2/DistantHorizons-fabric-2.0.0-a-dev-1.20.2.jar"]');
+    modCheckbox[4] = document.querySelector('input[data-mod="mods/1.20.2/DistantHorizons-2.0.0-a-1.20.2.jar"]');
     modCheckbox[5] = document.querySelector('input[data-mod="mods/1.20.2/eating-animation-1.20+1.9.5-CMDfix.jar"]');
     modCheckbox[6] = document.querySelector('input[data-mod="mods/1.20.2/entity_model_features_fabric_1.20.2-1.1.0.jar"]');
     modCheckbox[7] = document.querySelector('input[data-mod="mods/1.20.2/entity_texture_features_fabric_1.20.2-4.6.1.jar"]');
     modCheckbox[8] = document.querySelector('input[data-mod="mods/1.20.2/fallingleaves-1.15.4+1.20.1.jar"]');
     modCheckbox[9] = document.querySelector('input[data-mod="mods/1.20.2/iris-mc1.20.2-1.6.10.jar"]');
-    modCheckbox[10] = document.querySelector('input[data-mod="mods/1.20.2/lambdynamiclights-2.3.2+1.20.1.jar"]');
+    modCheckbox[10] = document.querySelector('input[data-mod="mods/1.20.2/lambdynamiclights-2.3.3+1.20.2.jar"]');
     modCheckbox[11] = document.querySelector('input[data-mod="mods/1.20.2/notenoughanimations-fabric-1.6.4-mc1.20.2.jar"]');
     modCheckbox[12] = document.querySelector('input[data-mod="mods/1.20.2/physics-mod-3.0.11-mc-1.20.2-fabric.jar"]');
     modCheckbox[13] = document.querySelector('input[data-mod="mods/1.20.2/PresenceFootsteps-1.10.0.jar"]');
@@ -197,13 +197,13 @@ function deselectAestheticMods1202() {
     modCheckbox[1] = document.querySelector('input[data-mod="mods/1.20.2/capes-1.5.3+1.20.2-fabric.jar"]');
     modCheckbox[2] = document.querySelector('input[data-mod="mods/1.20.2/chunksfadein-v1.0.0-1.20.2.jar"]');
     modCheckbox[3] = document.querySelector('input[data-mod="mods/1.20.2/continuity-3.0.0-beta.4+1.20.2.jar"]');
-    modCheckbox[4] = document.querySelector('input[data-mod="mods/1.20.2/DistantHorizons-fabric-2.0.0-a-dev-1.20.2.jar"]');
+    modCheckbox[4] = document.querySelector('input[data-mod="mods/1.20.2/DistantHorizons-2.0.0-a-1.20.2.jar"]');
     modCheckbox[5] = document.querySelector('input[data-mod="mods/1.20.2/eating-animation-1.20+1.9.5-CMDfix.jar"]');
     modCheckbox[6] = document.querySelector('input[data-mod="mods/1.20.2/entity_model_features_fabric_1.20.2-1.1.0.jar"]');
     modCheckbox[7] = document.querySelector('input[data-mod="mods/1.20.2/entity_texture_features_fabric_1.20.2-4.6.1.jar"]');
     modCheckbox[8] = document.querySelector('input[data-mod="mods/1.20.2/fallingleaves-1.15.4+1.20.1.jar"]');
     modCheckbox[9] = document.querySelector('input[data-mod="mods/1.20.2/iris-mc1.20.2-1.6.10.jar"]');
-    modCheckbox[10] = document.querySelector('input[data-mod="mods/1.20.2/lambdynamiclights-2.3.2+1.20.1.jar"]');
+    modCheckbox[10] = document.querySelector('input[data-mod="mods/1.20.2/lambdynamiclights-2.3.3+1.20.2.jar"]');
     modCheckbox[11] = document.querySelector('input[data-mod="mods/1.20.2/notenoughanimations-fabric-1.6.4-mc1.20.2.jar"]');
     modCheckbox[12] = document.querySelector('input[data-mod="mods/1.20.2/physics-mod-3.0.11-mc-1.20.2-fabric.jar"]');
     modCheckbox[13] = document.querySelector('input[data-mod="mods/1.20.2/PresenceFootsteps-1.10.0.jar"]');
@@ -223,7 +223,7 @@ function recommendedAestheticMods1202() {
     modCheckbox[4] = document.querySelector('input[data-mod="mods/1.20.2/entity_model_features_fabric_1.20.2-1.1.0.jar"]');
     modCheckbox[5] = document.querySelector('input[data-mod="mods/1.20.2/entity_texture_features_fabric_1.20.2-4.6.1.jar"]');
     modCheckbox[6] = document.querySelector('input[data-mod="mods/1.20.2/iris-mc1.20.2-1.6.10.jar"]');
-    modCheckbox[7] = document.querySelector('input[data-mod="mods/1.20.2/lambdynamiclights-2.3.2+1.20.1.jar"]');
+    modCheckbox[7] = document.querySelector('input[data-mod="mods/1.20.2/lambdynamiclights-2.3.3+1.20.2.jar"]');
     modCheckbox[8] = document.querySelector('input[data-mod="mods/1.20.2/physics-mod-3.0.11-mc-1.20.2-fabric.jar"]');
     modCheckbox[9] = document.querySelector('input[data-mod="mods/1.20.2/spawnanimations-v1.9.2-mc1.17x-1.20x-mod.jar"]');
     modCheckbox[10] = document.querySelector('input[data-mod="mods/1.20.2/visuality-0.7.1+1.20.jar"]');
@@ -253,7 +253,7 @@ function deselectWynncraftMods1202() {
 function allLibraryMods1202() {
     modCheckbox[0] = document.querySelector('input[data-mod="mods/1.20.2/cloth-config-12.0.109-fabric.jar"]');
     modCheckbox[1] = document.querySelector('input[data-mod="mods/1.20.2/fabric-api-0.90.7+1.20.2.jar"]');
-    modCheckbox[2] = document.querySelector('input[data-mod="mods/1.20.2/fabric-language-kotlin-1.10.13+kotlin.1.9.20.jar"]');
+    modCheckbox[2] = document.querySelector('input[data-mod="mods/1.20.2/fabric-language-kotlin-1.10.14+kotlin.1.9.20.jar"]');
     modCheckbox[3] = document.querySelector('input[data-mod="mods/1.20.2/libjf-3.13.1.jar"]');
     modCheckbox[4] = document.querySelector('input[data-mod="mods/1.20.2/malilib-fabric-1.20.2-0.17.0.jar"]');
     for (let i = 0; i < 5; i++) {
@@ -263,7 +263,7 @@ function allLibraryMods1202() {
 function deselectLibraryMods1202() {
     modCheckbox[0] = document.querySelector('input[data-mod="mods/1.20.2/cloth-config-12.0.109-fabric.jar"]');
     modCheckbox[1] = document.querySelector('input[data-mod="mods/1.20.2/fabric-api-0.90.7+1.20.2.jar"]');
-    modCheckbox[2] = document.querySelector('input[data-mod="mods/1.20.2/fabric-language-kotlin-1.10.13+kotlin.1.9.20.jar"]');
+    modCheckbox[2] = document.querySelector('input[data-mod="mods/1.20.2/fabric-language-kotlin-1.10.14+kotlin.1.9.20.jar"]');
     modCheckbox[3] = document.querySelector('input[data-mod="mods/1.20.2/libjf-3.13.1.jar"]');
     modCheckbox[4] = document.querySelector('input[data-mod="mods/1.20.2/malilib-fabric-1.20.2-0.17.0.jar"]');
     for (let i = 0; i < 5; i++) {
