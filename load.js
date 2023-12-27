@@ -1,4 +1,4 @@
-var bodyHeight = document.body.clientHeight;
+var bodyHeight;
 function load() {
     document.getElementById('load').style.marginTop = '0';
     setTimeout(function(){
