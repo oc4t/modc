@@ -60,10 +60,10 @@ function aestheticMods1202(selectType) {
 
 // Wynncraft
 function wynncraftMods1202(selectType) {
-    modSelect(["wynntils-0.0.4-beta.105-fabric+MC-1.20.2.jar", "VoicesOfWynn-MC1.20.2-v1.6.jar"], selectType);
+    modSelect(["wynntils", "vow"], selectType);
 }
 
 // Library
 function libraryMods1202(selectType) {
-    modSelect(["cloth-config-12.0.109-fabric.jar", "fabric-api-0.90.7+1.20.2.jar", "fabric-language-kotlin-1.10.14+kotlin.1.9.20.jar", "libjf-3.13.1.jar", "malilib-fabric-1.20.2-0.17.0.jar"], selectType);
+    modSelect(["cloth-config", "fabric-api", "fabric-language-kotlin", "libjf", "malilib-fabric-1.20.2-0.17.0.jar"], selectType);
 }
