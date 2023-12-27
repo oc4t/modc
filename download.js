@@ -2,7 +2,7 @@ function downloadMods(version) {
     const selectedMods1202 = Array.from(document.querySelectorAll('.mod1202:checked'))
         .map(checkbox => {
             const modData = checkbox.getAttribute('mod-data');
-            const downloadType = checkbox.getAttribute('link'); // "modrinth", "git", or "wynn"
+            const downloadType = checkbox.getAttribute('link');
             return { modData, downloadType };
         });
     if (selectedMods1202.length === 0) {
