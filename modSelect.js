@@ -60,7 +60,7 @@ function aestheticMods1202(selectType) {
 
 // Wynncraft
 function wynncraftMods1202(selectType) {
-    modSelect(["wynntils", "vow"], selectType);
+    modSelect(["wynntils"], selectType);
 }
 
 // Library
