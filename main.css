@@ -19,36 +19,12 @@
 .white {
     color: rgb(246, 242, 234);
 }
-.greenb {
-    background-color: rgb(120, 200, 12) !important;
-}
-.greenb:hover {
-    background-color: rgb(80, 150, 8) !important;
-}
-.purpleb {
-    background-color: rgb(160, 90, 200) !important;
-}
-.purpleb:hover {
-    background-color: rgb(120, 60, 150) !important;
-}
-.orangeb {
-    background-color: rgb(200, 150, 50) !important;
-}
-.orangeb:hover {
-    background-color: rgb(150, 120, 30) !important;
-}
-.redb {
-    background-color: rgb(200, 50, 50) !important;
-}
-.redb:hover {
-    background-color: rgb(150, 30, 30) !important;
-}
 
 /* main page */
 body {
     transition: margin-top 0.5s;
     margin-top: 1500px;
-    overflow: hidden;
+    overflow:-moz-hidden-unscrollable;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -89,8 +65,7 @@ body {
 }
 .temp {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: row;
     width: 113px;
 }
 .temp-txt {
@@ -135,20 +110,16 @@ body {
 }
 /* mods */
 .mod-head {
-    margin-top: 100px;
     color: white;
     font-size: 36px;
     width: 62%;
 }
 .versions {
-    display: flex;
-    flex-direction: column;
     width: 60%;
     background-color: rgb(27, 30, 30);
-    padding: 20px;
+    padding: 50px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 100px;
 }
 .mod-flex {
     display: flex;
@@ -160,60 +131,13 @@ body {
     color: rgb(150, 160, 160);
     margin-bottom: 30px;
 }
-.mod-txt {
-    font-size: 25px;
-    color: white;
-}
-.arrow {
-    width: 20px;
-    height: 20px;
-    margin-top: 10px;
-    margin-left: 6px;
-    margin-bottom: 10px;
-    rotate: 270deg;
-    transition: transform 0.1s;
-}
-.mod-list {
-    display: none;
-    flex-direction: column;
-    min-width: 30.0%;
-    width: auto;
-    background-color: rgb(28, 31, 31);
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    font-size: 16px;
-}
-.mod-drop {
-    display: none;
-    overflow: auto;
-    z-index: 1;
-    flex-direction: column;
-    min-width: 30.0%;
-    width: auto;
-    background-color: rgb(29, 32, 32);
-    padding: 20px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-.show {
-    display: block;
-}
-.mod-container {
-    display: flex;
-    flex-direction: row;
-    height: 20px;
-    min-width: 30.0%;
-    width: auto;
-    margin-bottom: 5px;
-    align-items: flex-start;
-}
-.mod-item {
-    width: 20px;
-    margin-top: 5px;
-}
+.mod-info-txt input {
+    background-color: rgb(25, 27, 27);
+    width: 300px;
+    padding: 3px;
+    border-radius: 3px;
+    border: 2px rgb(15, 17, 17) solid ;
+} 
 .link {
     color: white;
     transition: color 0.3s;
@@ -223,25 +147,6 @@ body {
 .link:hover {
     color: rgb(175, 180, 180);
     transition: color 0.3s;
-}
-.mod-info {
-    color: rgb(150, 160, 160);
-    margin-left: 5px;
-}
-.select {
-    color: white;
-    padding: 8px 12px;
-    margin-right: 20px;
-    margin-top: 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    background-color: rgb(76, 175, 175);
-    transition: background-color 0.3s;
-}
-.select:hover {
-    background-color: rgb(50, 125, 125);
-    transition: background-color 0.3s;
 }
 .download-button {
     background-color: rgb(76, 175, 175);
@@ -256,4 +161,18 @@ body {
 .download-button:hover {
     background-color: rgb(50, 125, 125);
     transition: background-color 0.3s;
+}
+.progress-bar-container {
+    width: 100%;
+    height: 20px;
+    background-color: #f0f0f0;
+    margin-top: 20px;
+    border-radius: 4px;
+}
+.progress-bar {
+    height: 100%;
+    background-color: #4caf50;
+    width: 0;
+    border-radius: 4px;
+    transition: width 0.5s ease;
 }
