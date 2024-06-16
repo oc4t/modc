@@ -133,7 +133,8 @@ body {
 }
 .mod-info-txt input {
     background-color: rgb(25, 27, 27);
-    width: 300px;
+    width: 1140px;
+    height: 20px;
     padding: 3px;
     border-radius: 3px;
     border: 2px rgb(15, 17, 17) solid ;
