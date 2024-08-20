@@ -44,45 +44,7 @@ body {
 .logo-txt {
     font-size: 42px;
 }
-.menu {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 400px;
-}
-.menu-item {
-    color: white;
-    transition: color 0.3s;
-    text-decoration-color: rgb(0, 0, 0, 0);
-    margin: 20px;
-    font-size: 20px;
-}
-.menu-item:hover {
-    color: rgb(175, 180, 180);
-    transition: color 0.3s;
-}
-.temp {
-    display: flex;
-    flex-direction: row;
-    width: 113px;
-}
-.footer {
-    margin-top: auto;
-    width: 60%;
-    height: 100px;
-    padding-top: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: white;
-    font-size: 12px;
-}
-.footer-item {
-    width: 40px;
-    height: 40px;
-}
-/* mods */
-.mod-head {
+.mod {
     color: white;
     font-size: 36px;
     width: 62%;
@@ -94,17 +56,13 @@ body {
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-.mod-flex {
-    display: flex;
-    flex-direction: row;
-}
-.mod-info-txt {
+.mod-txt {
     width: 61.5%;
     font-size: 16px;
     color: rgb(150, 160, 160);
     margin-bottom: 30px;
 }
-.mod-info-txt input {
+.mod-txt input {
     background-color: rgb(25, 27, 27);
     width: 100%;
     height: 20px;
