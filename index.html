@@ -9,8 +9,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.5/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
     <script src="download.js"></script>
+    <script src="modversions.js"></script>
 </head>
-<body>
+<body onload="fetchModVersions()">
     <div class="header">
         <div class="logo">
             <h1 class="logo-txt white">Mod</h1><h1 class="logo-txt blue">C</h1>
@@ -19,8 +20,8 @@
     <div class="versions">
         <p class="mod">Modrinth modpack downloader</p>
         <p class="mod-txt">This site lets you download the newest versions of mods from Modrinth. Just find the modslug for the mods you want in your modpack. The modslug is at the end of the mod's Modrinth page URL. For example, for Sodium, the modslug is "sodium": https://modrinth.com/mod/sodium. Enter the modslugs into the "Mods" text field example: sodium, lithium. You can add the modslugs to the link like this: https://oc4t.github.io/modc/mods.html?mods=sodium,lithium.</p>
-        <select name="Version" id="Version">
-            <option value="1.21">1.21.1</option>
+        <select name="Version" id="version" onchange="updateLink(); fetchModVersions()">
+            <option value="1.21.1">1.21.1</option>
             <option value="1.21">1.21</option>
             <option value="1.20.6">1.20.6</option>
             <option value="1.20.5">1.20.5</option>
@@ -49,19 +50,19 @@
             <option value="1.15">1.15</option>
             <option value="1.14.4">1.14.4</option>
         </select>
-        <select name="Loader" id="Loader">
+        <select name="Loader" id="loader" onchange="updateLink(); fetchModVersions()">
             <option value="fabric">Fabric</option>
             <option value="forge">Forge</option>
             <option value="neoforge">NeoForge</option>
             <option value="quilt">Quilt</option>
-        </select>
-        <label for="mods" class="mod-txt">Mods:
-            <input onkeyup="updateLink(this.value)" id="mods" type="text" placeholder="sodium, lithium">
-        </label>
+        </select><br>
+        <label for="mods" class="mod-txt">Mods:</label>
+        <input onchange="updateLink(); fetchModVersions()" id="mods" type="text" placeholder="sodium, lithium"><br>
         <button class="download-button" onclick="downloadMods()">Download Mods</button>
         <div class="progress-bar-container">
             <div class="progress-bar" id="progress-bar"></div>
         </div>
     </div>
+    <div id="mod-versions"></div>
 </body>
 </html>
