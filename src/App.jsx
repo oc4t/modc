@@ -51,10 +51,19 @@ const ModC = () => {
     const searchParams = new URLSearchParams(window.location.search);
     searchParams.set('version', version);
     searchParams.set('loader', loader);
-    searchParams.set('mods', mods ? encodeMods(mods, selectedVersions) : '');
-    searchParams.set('resourcepacks', resourcepacks ? encodeMods(resourcepacks, selectedResourcepackVersions) : '');
+    if (mods && mods.trim()) {
+      searchParams.set('mods', encodeMods(mods, selectedVersions));
+    } else {
+      searchParams.delete('mods');
+    }
+    if (resourcepacks && resourcepacks.trim()) {
+      searchParams.set('resourcepacks', encodeMods(resourcepacks, selectedResourcepackVersions));
+    } else {
+      searchParams.delete('resourcepacks');
+    }
     window.history.replaceState(null, '', `${window.location.pathname}?${searchParams.toString()}`);
   };
+  
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
