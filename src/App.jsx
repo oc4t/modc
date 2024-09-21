@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import {
   TextareaAutosize,
@@ -22,7 +22,6 @@ const ModC = () => {
   const [resourcepacks, setResourcepacks] = useState("");
   const [modDetails, setModDetails] = useState([]);
   const [resourcepacksDetails, setResourcepackDetails] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [modError, setModError] = useState(null);
   const [selectedVersions, setSelectedVersions] = useState({});
@@ -95,30 +94,30 @@ const ModC = () => {
   useEffect(() => {
     const fetchDetails = async (type, apiUrl, setDetails, setSelectedVersions, setError) => {
       if (!type) return;
-      setLoading(true);
       setError(null);
+      setModError(null); // Reset mod error on new fetch
       const slugs = type.split(',').map(slug => slug.trim());
       const slugString = JSON.stringify(slugs);
-
+  
       try {
         const response = await fetch(`https://api.modrinth.com/v2/projects?ids=${encodeURIComponent(slugString)}`);
         if (!response.ok) throw new Error(`Failed to fetch ${type} details`);
         const data = await response.json();
-
+  
         const updatedDetails = [];
         const updatedVersions = { ...selectedVersions };
-
+  
         for (const item of data) {
           try {
             const versionResponse = await fetch(apiUrl(item.slug));
             if (!versionResponse.ok) throw new Error(`Failed to fetch versions for ${item.slug}`);
             const versionData = await versionResponse.json();
-
+  
             if (versionData.length === 0) {
-              setError(`No available versions found for ${type.slice(0, -1)}: ${item.slug}`);
+              setError(prevError => `${prevError ? prevError + ', ' : ''} ${item.slug} doesn't have a version for ${version}`);
               continue;
             }
-
+  
             updatedDetails.push({
               slug: item.slug,
               icon_url: item.icon_url,
@@ -128,32 +127,37 @@ const ModC = () => {
                 download_url: files[0]?.url
               }))
             });
-
+  
             if (!selectedVersions[item.slug] && versionData.length > 0) {
               updatedVersions[item.slug] = versionData[0].id;
             }
           } catch (error) {
             console.error(`Error fetching ${type.slice(0, -1)} versions:`, error);
-            setError(`Error fetching versions for ${type.slice(0, -1)}: ${item.slug}`);
           }
         }
-
+  
         setDetails(updatedDetails);
         setSelectedVersions(updatedVersions);
       } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
+        setError(`Error fetching details for ${type}: ${error.message}`);
       }
     };
-
+  
     fetchDetails(mods, slug => `https://api.modrinth.com/v2/project/${slug}/version?loaders=["${loader}"]&game_versions=["${version}"]`, setModDetails, setSelectedVersions, setModError);
     fetchDetails(resourcepacks, slug => `https://api.modrinth.com/v2/project/${slug}/version`, setResourcepackDetails, setSelectedResourcepackVersions, setModError);
-  }, [mods, version, loader, resourcepacks]);
+  }, [mods, version, loader, resourcepacks]);  
 
   const handleChange = (type, value) => {
-    if (type === 'version') setVersion(value);
-    if (type === 'loader') setLoader(value);
+    if (type === 'version') {
+      setVersion(value);
+      setError(null); // Reset errors
+      setModError(null); // Reset mod errors
+    }
+    if (type === 'loader') {
+      setLoader(value);
+      setError(null); // Reset errors
+      setModError(null); // Reset mod errors
+    }
     setSelectedVersions({});
     setSelectedResourcepackVersions({});
     updateUrlParams();
@@ -161,11 +165,15 @@ const ModC = () => {
 
   const handleModsChange = (e) => {
     setMods(e.target.value);
+    setError(null); // Reset errors
+    setModError(null); // Reset mod errors
     updateUrlParams();
   };
 
   const handleResourcepackChange = (e) => {
     setResourcepacks(e.target.value);
+    setError(null); // Reset errors
+    setModError(null); // Reset mod errors
     updateUrlParams();
   };
 
@@ -185,20 +193,21 @@ const ModC = () => {
     const updateFn = type === 'mods' ? setMods : setResourcepacks;
     const versionsUpdateFn = type === 'mods' ? setSelectedVersions : setSelectedResourcepackVersions;
     const typeString = type === 'mods' ? mods : resourcepacks;
-    
+  
     const updatedType = typeString.split(',').filter(item => item.trim() !== slug).join(',');
     updateFn(updatedType);
-
-    const { [slug]: _, ...updatedVersions } = type === 'mods' ? selectedVersions : selectedResourcepackVersions;
+  
+    const updatedVersions = { ...type === 'mods' ? selectedVersions : selectedResourcepackVersions };
+    delete updatedVersions[slug];
     versionsUpdateFn(updatedVersions);
-
+  
     if (!updatedType.trim()) {
       setModDetails([]);
       setResourcepackDetails([]);
     }
-
+  
     updateUrlParams();
-  };
+  };  
 
   return (
     <Container sx={{ height: '100vh', padding: '25px' }}>

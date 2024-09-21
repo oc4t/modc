@@ -1,5 +1,5 @@
-import React from 'react';
-import { Box, Typography, Select, MenuItem, InputLabel, Button } from '@mui/material';
+import PropTypes from 'prop-types';
+import { Box, Button, Typography, InputLabel, Select, MenuItem } from '@mui/material';
 
 export const ModVersions = ({ modDetails, selectedVersions, handleVersionSelect, handleRemoveMod }) => {
   return (
@@ -23,7 +23,7 @@ export const ModVersions = ({ modDetails, selectedVersions, handleVersionSelect,
             src={mod.icon_url}
             alt={mod.slug}
             style={{ maxWidth: '120px', width: '6vw', borderRadius: '16px' }}
-            onError={(e) => e.target.style.display = 'none'}
+            onError={(e) => (e.target.style.display = 'none')}
           />
           <InputLabel id={`mod-version-label-${mod.slug}`}>Version</InputLabel>
           <Select
@@ -52,4 +52,11 @@ export const ModVersions = ({ modDetails, selectedVersions, handleVersionSelect,
       ))}
     </Box>
   );
+};
+
+ModVersions.propTypes = {
+  modDetails: PropTypes.array.isRequired,
+  selectedVersions: PropTypes.object.isRequired,
+  handleVersionSelect: PropTypes.func.isRequired,
+  handleRemoveMod: PropTypes.func.isRequired,
 };
