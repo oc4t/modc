@@ -1,10 +1,12 @@
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'; 
 import { Box, Button, Typography, InputLabel, Select, MenuItem } from '@mui/material';
 
-export const ModVersions = ({ modDetails, selectedVersions, handleVersionSelect, handleRemoveMod }) => {
+export const ItemVersions = ({ itemDetails, selectedVersions, handleVersionSelect, handleRemoveMod }) => {
+  const sortedModDetails = [...itemDetails].sort((a, b) => a.slug.localeCompare(b.slug));
+
   return (
     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
-      {modDetails.map((mod) => (
+      {sortedModDetails.map((mod) => (
         <Box
           key={mod.slug}
           sx={{
@@ -19,12 +21,14 @@ export const ModVersions = ({ modDetails, selectedVersions, handleVersionSelect,
           <Typography variant="h6" sx={{ color: 'white', fontSize: '14px' }}>
             {mod.slug}
           </Typography>
-          <img
-            src={mod.icon_url}
-            alt={mod.slug}
-            style={{ maxWidth: '120px', width: '6vw', borderRadius: '16px' }}
-            onError={(e) => (e.target.style.display = 'none')}
-          />
+          <a href={`https://modrinth.com/${mod.type}/${mod.slug}`} target="_blank" rel="noopener noreferrer">
+            <img
+              src={mod.icon_url}
+              alt={mod.slug}
+              style={{ maxWidth: '120px', width: '6vw', borderRadius: '16px' }}
+              onError={(e) => (e.target.style.backgroundColor = 'red')}
+            />
+          </a>
           <InputLabel id={`mod-version-label-${mod.slug}`}>Version</InputLabel>
           <Select
             labelId={`mod-version-label-${mod.slug}`}
@@ -54,8 +58,8 @@ export const ModVersions = ({ modDetails, selectedVersions, handleVersionSelect,
   );
 };
 
-ModVersions.propTypes = {
-  modDetails: PropTypes.array.isRequired,
+ItemVersions.propTypes = {
+  itemDetails: PropTypes.array.isRequired,
   selectedVersions: PropTypes.object.isRequired,
   handleVersionSelect: PropTypes.func.isRequired,
   handleRemoveMod: PropTypes.func.isRequired,

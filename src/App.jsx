@@ -13,7 +13,7 @@ import {
   LinearProgress
 } from '@mui/material';
 import { downloadMods } from './Download';
-import { ModVersions } from './Versions';
+import { ItemVersions } from './Versions';
 
 const ModC = () => {
   const [version, setVersion] = useState("1.21.1");
@@ -23,225 +23,216 @@ const ModC = () => {
   const [modDetails, setModDetails] = useState([]);
   const [resourcepacksDetails, setResourcepackDetails] = useState([]);
   const [error, setError] = useState(null);
-  const [modError, setModError] = useState(null);
   const [selectedVersions, setSelectedVersions] = useState({});
   const [selectedResourcepackVersions, setSelectedResourcepackVersions] = useState({});
   const [downloading, setDownloading] = useState(false);
   const [progress, setProgress] = useState(-1);
 
-  const encodeMods = (mods, selectedVersions) => {
-    return mods.split(',').map(mod => mod.trim()).map(modSlug => {
-      return selectedVersions[modSlug] ? `${encodeURIComponent(modSlug)}:${encodeURIComponent(selectedVersions[modSlug])}` : encodeURIComponent(modSlug);
-    }).join(',');
+  const [initialLoadComplete, setInitialLoadComplete] = useState(false);
+
+  const handleStateReset = () => {
+    setSelectedVersions({});
+    setSelectedResourcepackVersions({});
+    setError(null);
   };
-  
-  const decodeMods = (encodedString) => {
-    const modEntries = encodedString.split(',').map(entry => entry.split(':'));
+
+  const encodeItems = (items, selectedVersions) =>
+    items.split(',').map(item => {
+      const slug = item.trim();
+      return selectedVersions[slug] 
+        ? `${encodeURIComponent(slug)}:${encodeURIComponent(selectedVersions[slug])}` 
+        : encodeURIComponent(slug);
+    }).join(',');
+
+  const decodeItems = (encodedString) => {
+    const itemEntries = encodedString.split(',').map(entry => entry.split(':'));
     return {
-      mods: modEntries.map(([modSlug]) => decodeURIComponent(modSlug)).join(','),
-      versions: modEntries.reduce((acc, [modSlug, versionId]) => {
-        if (versionId) acc[decodeURIComponent(modSlug)] = decodeURIComponent(versionId);
+      items: itemEntries.map(([slug]) => decodeURIComponent(slug)).join(','),
+      versions: itemEntries.reduce((acc, [slug, version]) => {
+        if (version) acc[decodeURIComponent(slug)] = decodeURIComponent(version);
         return acc;
       }, {})
     };
-  };  
+  };
 
   const updateUrlParams = () => {
     const searchParams = new URLSearchParams(window.location.search);
     searchParams.set('version', version);
     searchParams.set('loader', loader);
-    if (mods && mods.trim()) {
-      searchParams.set('mods', encodeMods(mods, selectedVersions));
-    } else {
-      searchParams.delete('mods');
-    }
-    if (resourcepacks && resourcepacks.trim()) {
-      searchParams.set('resourcepacks', encodeMods(resourcepacks, selectedResourcepackVersions));
-    } else {
-      searchParams.delete('resourcepacks');
-    }
-    window.history.replaceState(null, '', `${window.location.pathname}?${searchParams.toString()}`);
+
+    mods.trim()
+      ? searchParams.set('mods', encodeItems(mods, selectedVersions))
+      : searchParams.delete('mods');
+
+    resourcepacks.trim()
+      ? searchParams.set('resourcepacks', encodeItems(resourcepacks, selectedResourcepackVersions))
+      : searchParams.delete('resourcepacks');
+
+    window.history.replaceState(null, '', `${window.location.pathname}?${searchParams}`);
   };
-  
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
-    const initialVersion = searchParams.get('version') || "1.21.1";
-    const initialLoader = searchParams.get('loader') || "fabric";
-    const combinedModsAndVersions = searchParams.get('mods') || "";
-    const combinedResourcepacksAndVersions = searchParams.get('resourcepacks') || "";
+    setVersion(searchParams.get('version') || "1.21.1");
+    setLoader(searchParams.get('loader') || "fabric");
 
-    setVersion(initialVersion);
-    setLoader(initialLoader);
-
-    if (combinedModsAndVersions) {
-      const { mods, versions } = decodeMods(combinedModsAndVersions);
-      setMods(mods);
+    if (searchParams.get('mods')) {
+      const { items, versions } = decodeItems(searchParams.get('mods'));
+      setMods(items);
       setSelectedVersions(versions);
     }
 
-    if (combinedResourcepacksAndVersions) {
-      const { mods: resourcepacks, versions: resourceVersions } = decodeMods(combinedResourcepacksAndVersions);
-      setResourcepacks(resourcepacks);
-      setSelectedResourcepackVersions(resourceVersions);
+    if (searchParams.get('resourcepacks')) {
+      const { items, versions } = decodeItems(searchParams.get('resourcepacks'));
+      setResourcepacks(items);
+      setSelectedResourcepackVersions(versions);
     }
+
+    setInitialLoadComplete(true);
   }, []);
 
   useEffect(() => {
-    updateUrlParams();
-  }, [version, loader, mods, resourcepacks, selectedVersions, selectedResourcepackVersions]);
+    if (initialLoadComplete) {
+      fetchDetails();
+    }
+  }, [initialLoadComplete]);
 
-  useEffect(() => {
-    const fetchDetails = async (type, apiUrl, setDetails, setSelectedVersions, setError) => {
-      if (!type) return;
+  useEffect(updateUrlParams, [version, loader, mods, resourcepacks, selectedVersions, selectedResourcepackVersions]);
+
+  const fetchDetails = async () => {
+    const fetchItemsDetails = async (items, apiUrl, setDetails, setSelectedVersions) => {
+      if (!items) return;
       setError(null);
-      setModError(null); // Reset mod error on new fetch
-      const slugs = type.split(',').map(slug => slug.trim());
+
+      const slugs = items.split(',').map(slug => slug.trim());
       const slugString = JSON.stringify(slugs);
-  
+
       try {
         const response = await fetch(`https://api.modrinth.com/v2/projects?ids=${encodeURIComponent(slugString)}`);
-        if (!response.ok) throw new Error(`Failed to fetch ${type} details`);
+        if (!response.ok) throw new Error(`Failed to fetch ${items} details`);
         const data = await response.json();
-  
-        const updatedDetails = [];
-        const updatedVersions = { ...selectedVersions };
-  
-        for (const item of data) {
-          try {
-            const versionResponse = await fetch(apiUrl(item.slug));
-            if (!versionResponse.ok) throw new Error(`Failed to fetch versions for ${item.slug}`);
-            const versionData = await versionResponse.json();
-  
-            if (versionData.length === 0) {
-              setError(prevError => `${prevError ? prevError + ', ' : ''} ${item.slug} doesn't have a version for ${version}`);
-              continue;
-            }
-  
-            updatedDetails.push({
-              slug: item.slug,
-              icon_url: item.icon_url,
-              versions: versionData.map(({ id, version_number, files }) => ({
-                id,
-                version_number,
-                download_url: files[0]?.url
-              }))
-            });
-  
-            if (!selectedVersions[item.slug] && versionData.length > 0) {
-              updatedVersions[item.slug] = versionData[0].id;
-            }
-          } catch (error) {
-            console.error(`Error fetching ${type.slice(0, -1)} versions:`, error);
+
+        const details = await Promise.all(data.map(async (item) => {
+          const versionResponse = await fetch(apiUrl(item.slug));
+          if (!versionResponse.ok) throw new Error(`Failed to fetch versions for ${item.slug}`);
+          const versionData = await versionResponse.json();
+          if (versionData.length === 0) {
+            setError(`${item.slug} doesn't have a version for ${version}`);
+            return null;
           }
-        }
-  
-        setDetails(updatedDetails);
+          return {
+            slug: item.slug,
+            icon_url: item.icon_url,
+            type: 'mod',
+            versions: versionData.map(v => ({
+              id: v.id,
+              version_number: v.version_number,
+              download_url: v.files[0]?.url
+            }))
+          };
+        }));
+
+        const filteredDetails = details.filter(Boolean);
+        setDetails(filteredDetails);
+
+        const updatedVersions = { ...selectedVersions };
+        filteredDetails.forEach(item => {
+          if (!selectedVersions[item.slug]) {
+            updatedVersions[item.slug] = item.versions[0].id;
+          }
+        });
         setSelectedVersions(updatedVersions);
       } catch (error) {
-        setError(`Error fetching details for ${type}: ${error.message}`);
+        setError(error.message);
       }
     };
-  
-    fetchDetails(mods, slug => `https://api.modrinth.com/v2/project/${slug}/version?loaders=["${loader}"]&game_versions=["${version}"]`, setModDetails, setSelectedVersions, setModError);
-    fetchDetails(resourcepacks, slug => `https://api.modrinth.com/v2/project/${slug}/version`, setResourcepackDetails, setSelectedResourcepackVersions, setModError);
-  }, [mods, version, loader, resourcepacks]);  
+
+    await fetchItemsDetails(mods, slug => `https://api.modrinth.com/v2/project/${slug}/version?loaders=["${loader}"]&game_versions=["${version}"]`, setModDetails, setSelectedVersions);
+    await fetchItemsDetails(resourcepacks, slug => `https://api.modrinth.com/v2/project/${slug}/version`, setResourcepackDetails, setSelectedResourcepackVersions);
+  };
+
+  // Fix: Properly update the version for each mod/resourcepack
+  const handleVersionSelect = (slug, newVersion) => {
+    setSelectedVersions(prev => ({
+      ...prev,
+      [slug]: newVersion
+    }));
+  };
+
+  const handleResourcepackVersionSelect = (slug, newVersion) => {
+    setSelectedResourcepackVersions(prev => ({
+      ...prev,
+      [slug]: newVersion
+    }));
+  };
 
   const handleChange = (type, value) => {
-    if (type === 'version') {
-      setVersion(value);
-      setError(null); // Reset errors
-      setModError(null); // Reset mod errors
-    }
-    if (type === 'loader') {
-      setLoader(value);
-      setError(null); // Reset errors
-      setModError(null); // Reset mod errors
-    }
-    setSelectedVersions({});
-    setSelectedResourcepackVersions({});
-    updateUrlParams();
+    type === 'version' ? setVersion(value) : setLoader(value);
+    handleStateReset();
   };
 
-  const handleModsChange = (e) => {
-    setMods(e.target.value);
-    setError(null); // Reset errors
-    setModError(null); // Reset mod errors
-    updateUrlParams();
+  const handleItemChange = (setter) => (e) => {
+    setter(e.target.value);
+    handleStateReset();
   };
 
-  const handleResourcepackChange = (e) => {
-    setResourcepacks(e.target.value);
-    setError(null); // Reset errors
-    setModError(null); // Reset mod errors
-    updateUrlParams();
-  };
+  const handleRemove = (type, slug, setter, versionsSetter) => {
+    const updatedItems = (type || "").split(',').filter(item => item.trim() !== slug).join(',');
+    setter(updatedItems);
 
-  const handleVersionSelect = (slug, version) => {
-    const updatedVersions = { ...selectedVersions, [slug]: version };
-    setSelectedVersions(updatedVersions);
-    updateUrlParams();
-  };
-
-  const handleResourcepackVersionSelect = (slug, version) => {
-    const updatedVersions = { ...selectedResourcepackVersions, [slug]: version };
-    setSelectedResourcepackVersions(updatedVersions);
-    updateUrlParams();
-  };
-
-  const handleRemove = (type, slug) => {
-    const updateFn = type === 'mods' ? setMods : setResourcepacks;
-    const versionsUpdateFn = type === 'mods' ? setSelectedVersions : setSelectedResourcepackVersions;
-    const typeString = type === 'mods' ? mods : resourcepacks;
-  
-    const updatedType = typeString.split(',').filter(item => item.trim() !== slug).join(',');
-    updateFn(updatedType);
-  
-    const updatedVersions = { ...type === 'mods' ? selectedVersions : selectedResourcepackVersions };
+    const updatedVersions = { ...versionsSetter };
     delete updatedVersions[slug];
-    versionsUpdateFn(updatedVersions);
-  
-    if (!updatedType.trim()) {
-      setModDetails([]);
-      setResourcepackDetails([]);
-    }
-  
-    updateUrlParams();
-  };  
+    versionsSetter(updatedVersions);
+  };
 
   return (
     <Container sx={{ height: '100vh', padding: '25px' }}>
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: '20px', alignItems: 'center' }}>
         <Typography variant="h2">Modrinth Modpack Downloader</Typography>
-        <Typography sx={{ textAlign: "center" }} variant='p'>
-          This site allows you to easily create modpacks, update them to newer versions, and share them with anyone without using any programs.
+        <Typography sx={{ textAlign: "center" }}>
+          Easily create, update, and share modpacks without extra programs.
         </Typography>
+
         <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: '20px', width: '60%' }}>
           <FormControl sx={{ flex: 1 }} variant="outlined">
             <InputLabel id="version-label">Version</InputLabel>
-            <Select labelId="version-label" id="version" value={version} label="Version" onChange={(e) => handleChange('version', e.target.value)}>
-              {["1.21.1", "1.21", "1.20.4", "1.20.3", "1.20.2", "1.20.1", "1.20", "1.19.4", "1.19.3", "1.19.2", "1.19.1", "1.19", "1.18.2", "1.18.1", "1.18", "1.17.1", "1.17", "1.16.5", "1.16.4", "1.16.3", "1.16.2", "1.16.1", "1.16"].map(v => <MenuItem key={v} value={v}>{v}</MenuItem>)}
+            <Select
+              labelId="version-label"
+              id="version"
+              value={version}
+              label="Version"
+              onChange={(e) => handleChange('version', e.target.value)}
+            >
+              {["1.21.1", "1.21", "1.20.4", "1.20.3", "1.20.2", "1.20.1"].map(v => <MenuItem key={v} value={v}>{v}</MenuItem>)}
             </Select>
           </FormControl>
           <FormControl sx={{ flex: 1 }} variant="outlined">
             <InputLabel id="loader-label">Loader</InputLabel>
-            <Select labelId="loader-label" id="loader" value={loader} label="Loader" onChange={(e) => handleChange('loader', e.target.value)}>
-              {["fabric", "forge", "quilt", "neoforge"].map(l => <MenuItem key={l} value={l}>{l.charAt(0).toUpperCase() + l.slice(1)}</MenuItem>)}
+            <Select
+              labelId="loader-label"
+              id="loader"
+              value={loader}
+              label="Loader"
+              onChange={(e) => handleChange('loader', e.target.value)}
+            >
+              {["fabric", "forge", "quilt"].map(l => <MenuItem key={l} value={l}>{l}</MenuItem>)}
             </Select>
           </FormControl>
         </Box>
+
         <TextareaAutosize
           placeholder='Enter mods (comma separated)'
           value={mods}
-          onChange={handleModsChange}
+          onChange={handleItemChange(setMods)}
           style={{ width: '58%', padding: '10px', borderRadius: '4px', fontSize: '16px', backgroundColor: '#494949', color: '#fff' }}
         />
         <TextareaAutosize
           placeholder='Enter resourcepacks (comma separated)'
           value={resourcepacks}
-          onChange={handleResourcepackChange}
+          onChange={handleItemChange(setResourcepacks)}
           style={{ width: '58%', padding: '10px', borderRadius: '4px', fontSize: '16px', backgroundColor: '#494949', color: '#fff' }}
         />
+
         <Button
           variant='contained'
           sx={{ mt: 2, width: '100%', maxWidth: '600px' }}
@@ -250,27 +241,37 @@ const ModC = () => {
         >
           {downloading ? 'Downloading...' : 'Download'}
         </Button>
+
         <LinearProgress
           variant="determinate"
           value={progress}
           sx={{ width: '100%', maxWidth: '600px', marginTop: '10px' }}
           hidden={!downloading}
         />
+
         {error && <Typography variant="body1" color="error">{error}</Typography>}
-        {modError && <Typography variant="body1" color="error">{modError}</Typography>}
+
+        <Button
+          variant='contained'
+          sx={{ mt: 4, width: '100%', maxWidth: '600px' }}
+          onClick={fetchDetails}
+        >
+          Update
+        </Button>
+
         <Typography variant="h4" sx={{ marginTop: '30px' }}>Mods</Typography>
-        <ModVersions
-          modDetails={modDetails}
+        <ItemVersions
+          itemDetails={modDetails}
           selectedVersions={selectedVersions}
           handleVersionSelect={handleVersionSelect}
-          handleRemoveMod={(slug) => handleRemove('mods', slug)}
+          handleRemoveMod={(slug) => handleRemove(mods, slug, setMods, setSelectedVersions)}
         />
-        <Typography variant="h4" sx={{ marginTop: '30px' }}>Resource Packs</Typography>
-        <ModVersions
-          modDetails={resourcepacksDetails}
+        <Typography variant="h4" sx={{ marginTop: '30px' }}>Resourcepacks</Typography>
+        <ItemVersions
+          itemDetails={resourcepacksDetails}
           selectedVersions={selectedResourcepackVersions}
           handleVersionSelect={handleResourcepackVersionSelect}
-          handleRemoveMod={(slug) => handleRemove('resourcepacks', slug)}
+          handleRemoveMod={(slug) => handleRemove(resourcepacks, slug, setResourcepacks, setSelectedResourcepackVersions)}
         />
       </Box>
     </Container>

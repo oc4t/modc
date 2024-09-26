@@ -1,88 +1,90 @@
 import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
 
-export const downloadMods = (mods, selectedVersions, loader, version, resourcepacks = '', selectedResourceVersions = {}, setDownloading, setProgress, setError) => {
+export const downloadMods = (
+  mods, 
+  selectedVersions, 
+  loader, 
+  version, 
+  resourcepacks = '', 
+  selectedResourceVersions = {}, 
+  setDownloading, 
+  setProgress, 
+  setError
+) => {
   setDownloading(true);
+  setError(null); // Reset any previous errors
 
-  const modSlugs = mods ? mods.split(',').map(mod => mod.trim()) : [];
-  const resourcepackSlugs = resourcepacks ? resourcepacks.split(',').map(pack => pack.trim()) : [];
-
-  let zipMods = new JSZip();
-  let zipResourcePacks = new JSZip();
-  let completedCount = 0;
-  let totalItems = 0;
-
-  const downloadItem = (slug, versionId, type, zip) => {
-    const fetchUrl = versionId
-      ? `https://api.modrinth.com/v2/version/${versionId}`
-      : `https://api.modrinth.com/v2/project/${slug}/version?loaders=["${loader}"]&game_versions=["${version}"]`;
-
-    return fetch(fetchUrl)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`Failed to fetch Modrinth API: ${response.status} ${response.statusText}`);
-        }
-        return response.json();
-      })
-      .then(itemDetails => {
-        const itemInfo = Array.isArray(itemDetails) ? itemDetails[0] : itemDetails;
-        if (!itemInfo || !itemInfo.files || itemInfo.files.length === 0) {
-          throw new Error(`Invalid response from Modrinth API for ${type}: ${slug}`);
-        }
-
-        const itemDownloadUrl = itemInfo.files[0].url;
-        const itemName = itemInfo.files[0].filename;
-
-        return fetch(itemDownloadUrl)
-          .then(response => {
-            if (!response.ok) {
-              throw new Error(`Failed to download ${type}: ${itemName}`);
-            }
-            return response.blob();
-          })
-          .then(blob => zip.file(itemName, blob))
-          .then(() => {
-            completedCount++;
-            setProgress((completedCount / totalItems) * 100);
-          });
-      })
-      .catch(error => {
-        console.error(error);
-        setError(`Error downloading ${type}: ${slug}`);
-      });
+  const zip = { mods: new JSZip(), resourcepacks: new JSZip() };
+  
+  // Step 1: Ensure mods and resourcepacks don't contain empty slugs
+  const items = {
+    mods: mods ? mods.split(',').map(mod => mod.trim()).filter(Boolean) : [],
+    resourcepacks: resourcepacks ? resourcepacks.split(',').map(pack => pack.trim()).filter(Boolean) : []
   };
 
-  const modPromises = modSlugs.map(modSlug => {
-    const versionId = selectedVersions[modSlug];
-    return downloadItem(modSlug, versionId, 'mod', zipMods);
-  });
+  const totalItems = items.mods.length + items.resourcepacks.length;
+  let completedCount = 0;
 
-  const resourcePackPromises = resourcepackSlugs.map(packSlug => {
-    const versionId = selectedResourceVersions[packSlug];
-    return downloadItem(packSlug, versionId, 'resource pack', zipResourcePacks);
-  });
+  const updateProgress = () => {
+    completedCount++;
+    setProgress((completedCount / totalItems) * 100);
+  };
 
-  if (modSlugs.length > 0) {
-    totalItems += modSlugs.length;
-  }
-  if (resourcepackSlugs.length > 0) {
-    totalItems += resourcepackSlugs.length;
-  }
+  const downloadItem = async (slug, versionId, type) => {
+    try {
+      // Check if the slug is empty and skip if so
+      if (!slug) throw new Error(`Invalid ${type}: Empty slug`);
 
-  const modZipPromise = modSlugs.length > 0
-    ? Promise.all(modPromises.map(p => p.catch(() => null))).then(() => zipMods.generateAsync({ type: 'blob' }))
-    : Promise.resolve(null);
+      // Step 2: Get version details
+      const fetchUrl = versionId
+        ? `https://api.modrinth.com/v2/version/${versionId}`
+        : `https://api.modrinth.com/v2/project/${slug}/version?loaders=["${loader}"]&game_versions=["${version}"]`;
 
-  const resourcePackZipPromise = resourcepackSlugs.length > 0
-    ? Promise.all(resourcePackPromises.map(p => p.catch(() => null))).then(() => zipResourcePacks.generateAsync({ type: 'blob' }))
-    : Promise.resolve(null);
+      const response = await fetch(fetchUrl);
+      if (!response.ok) throw new Error(`Failed to fetch ${type} for ${slug}: ${response.statusText}`);
 
-  Promise.all([modZipPromise, resourcePackZipPromise])
-    .then(([modContent, resourcePackContent]) => {
-      if (modContent) saveAs(modContent, 'mods.zip');
-      if (resourcePackContent) saveAs(resourcePackContent, 'resourcepacks.zip');
+      const itemDetails = await response.json();
+      const itemInfo = Array.isArray(itemDetails) ? itemDetails[0] : itemDetails;
+      const { files } = itemInfo || {};
+
+      if (!files || !files.length) throw new Error(`No files found for ${slug}`);
+
+      // Step 3: Download the file
+      const { url, filename } = files[0];
+      const fileResponse = await fetch(url);
+      if (!fileResponse.ok) throw new Error(`Failed to download ${type}: ${filename}`);
+
+      const blob = await fileResponse.blob();
+      zip[type].file(filename, blob);
+
+      // Update progress after each successful download
+      updateProgress();
+    } catch (error) {
+      console.error(`Error downloading ${type} for ${slug}:`, error);
+      setError(prevError => (prevError ? `${prevError}\n` : '') + `Error downloading ${type}: ${slug}, ${error.message}`);
+    }
+  };
+
+  const createDownloadPromises = (type, slugs, versions) =>
+    slugs.map(slug => downloadItem(slug, versions[slug], type));
+
+  const modPromises = createDownloadPromises('mods', items.mods, selectedVersions);
+  const resourcePackPromises = createDownloadPromises('resourcepacks', items.resourcepacks, selectedResourceVersions);
+
+  Promise.all([
+    Promise.all(modPromises).then(() => zip.mods.generateAsync({ type: 'blob' })),
+    Promise.all(resourcePackPromises).then(() => zip.resourcepacks.generateAsync({ type: 'blob' }))
+  ])
+    .then(([modZip, resourcePackZip]) => {
+      // Step 4: Trigger download
+      if (modZip) saveAs(modZip, 'mods.zip');
+      if (resourcePackZip) saveAs(resourcePackZip, 'resourcepacks.zip');
     })
-    .catch(error => console.error('Error generating zip:', error))
+    .catch((error) => {
+      console.error('Error generating zip:', error);
+      setError(`Error generating zip: ${error.message}`);
+    })
     .finally(() => {
       setProgress(0);
       setDownloading(false);
