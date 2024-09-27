@@ -203,7 +203,7 @@ const ModC = () => {
               label="Version"
               onChange={(e) => handleChange('version', e.target.value)}
             >
-              {["1.21.1", "1.21", "1.20.4", "1.20.3", "1.20.2", "1.20.1"].map(v => <MenuItem key={v} value={v}>{v}</MenuItem>)}
+              {["1.21.1", "1.21", "1.20.4", "1.20.3", "1.20.2", "1.20.1", "1.20","1.19.4", "1.19.3", "1.19.2", "1.19.1", "1.19", "1.18.2", "1.18.1", "1.18","1.17.1", "1.17", "1.16.5", "1.16.4", "1.16.3", "1.16.2", "1.16.1", "1.16", "1.15.2", "1.15.1", "1.15", "1.14.4", "1.12.2"].map(v => <MenuItem key={v} value={v}>{v}</MenuItem>)}
             </Select>
           </FormControl>
           <FormControl sx={{ flex: 1 }} variant="outlined">
