@@ -18,8 +18,8 @@ import { ItemVersions } from './Versions';
 const ModC = () => {
   const [version, setVersion] = useState("1.21.1");
   const [loader, setLoader] = useState("fabric");
-  const [mods, setMods] = useState("");
-  const [resourcepacks, setResourcepacks] = useState("");
+  const [mods, setMods] = useState([]);
+  const [resourcepacks, setResourcepacks] = useState([]);
   const [modDetails, setModDetails] = useState([]);
   const [resourcepacksDetails, setResourcepackDetails] = useState([]);
   const [error, setError] = useState(null);
@@ -37,17 +37,17 @@ const ModC = () => {
   };
 
   const encodeItems = (items, selectedVersions) =>
-    items.split(',').map(item => {
+    items.map(item => {
       const slug = item.trim();
-      return selectedVersions[slug] 
-        ? `${encodeURIComponent(slug)}:${encodeURIComponent(selectedVersions[slug])}` 
+      return selectedVersions[slug]
+        ? `${encodeURIComponent(slug)}:${encodeURIComponent(selectedVersions[slug])}`
         : encodeURIComponent(slug);
     }).join(',');
 
   const decodeItems = (encodedString) => {
     const itemEntries = encodedString.split(',').map(entry => entry.split(':'));
     return {
-      items: itemEntries.map(([slug]) => decodeURIComponent(slug)).join(','),
+      items: itemEntries.map(([slug]) => decodeURIComponent(slug)),
       versions: itemEntries.reduce((acc, [slug, version]) => {
         if (version) acc[decodeURIComponent(slug)] = decodeURIComponent(version);
         return acc;
@@ -60,11 +60,11 @@ const ModC = () => {
     searchParams.set('version', version);
     searchParams.set('loader', loader);
 
-    mods.trim()
+    mods.length > 0
       ? searchParams.set('mods', encodeItems(mods, selectedVersions))
       : searchParams.delete('mods');
 
-    resourcepacks.trim()
+    resourcepacks.length > 0
       ? searchParams.set('resourcepacks', encodeItems(resourcepacks, selectedResourcepackVersions))
       : searchParams.delete('resourcepacks');
 
@@ -101,15 +101,15 @@ const ModC = () => {
 
   const fetchDetails = async () => {
     const fetchItemsDetails = async (items, apiUrl, setDetails, setSelectedVersions) => {
-      if (!items) return;
+      if (!items.length) return;
       setError(null);
 
-      const slugs = items.split(',').map(slug => slug.trim());
+      const slugs = items.map(slug => slug.trim());
       const slugString = JSON.stringify(slugs);
 
       try {
         const response = await fetch(`https://api.modrinth.com/v2/projects?ids=${encodeURIComponent(slugString)}`);
-        if (!response.ok) throw new Error(`Failed to fetch ${items} details`);
+        if (!response.ok) throw new Error(`Failed to fetch details for ${items}`);
         const data = await response.json();
 
         const details = await Promise.all(data.map(async (item) => {
@@ -151,7 +151,6 @@ const ModC = () => {
     await fetchItemsDetails(resourcepacks, slug => `https://api.modrinth.com/v2/project/${slug}/version`, setResourcepackDetails, setSelectedResourcepackVersions);
   };
 
-  // Fix: Properly update the version for each mod/resourcepack
   const handleVersionSelect = (slug, newVersion) => {
     setSelectedVersions(prev => ({
       ...prev,
@@ -172,18 +171,34 @@ const ModC = () => {
   };
 
   const handleItemChange = (setter) => (e) => {
-    setter(e.target.value);
+    setter(e.target.value.split(',').map(item => item.trim()));
     handleStateReset();
   };
 
-  const handleRemove = (type, slug, setter, versionsSetter) => {
-    const updatedItems = (type || "").split(',').filter(item => item.trim() !== slug).join(',');
-    setter(updatedItems);
-
-    const updatedVersions = { ...versionsSetter };
-    delete updatedVersions[slug];
-    versionsSetter(updatedVersions);
+  const handleRemove = (slug, type) => {
+    if (type === 'mods') {
+      const updatedMods = mods.filter(item => item !== slug);
+      const updatedModDetails = modDetails.filter(detail => detail.slug !== slug);
+      
+      setMods(updatedMods);
+      setModDetails(updatedModDetails);
+  
+      const updatedSelectedVersions = { ...selectedVersions };
+      delete updatedSelectedVersions[slug];
+      setSelectedVersions(updatedSelectedVersions);
+    } else if (type === 'resourcepacks') {
+      const updatedResourcepacks = resourcepacks.filter(item => item !== slug);
+      const updatedResourcepackDetails = resourcepacksDetails.filter(detail => detail.slug !== slug);
+      
+      setResourcepacks(updatedResourcepacks);
+      setResourcepackDetails(updatedResourcepackDetails);
+  
+      const updatedSelectedResourcepackVersions = { ...selectedResourcepackVersions };
+      delete updatedSelectedResourcepackVersions[slug];
+      setSelectedResourcepackVersions(updatedSelectedResourcepackVersions);
+    }
   };
+  
 
   return (
     <Container sx={{ height: '100vh', padding: '25px' }}>
@@ -215,20 +230,20 @@ const ModC = () => {
               label="Loader"
               onChange={(e) => handleChange('loader', e.target.value)}
             >
-              {["fabric", "forge", "quilt"].map(l => <MenuItem key={l} value={l}>{l}</MenuItem>)}
+              {["fabric", "forge", "quilt", "neoforge"].map(l => <MenuItem key={l} value={l}>{l}</MenuItem>)}
             </Select>
           </FormControl>
         </Box>
 
         <TextareaAutosize
           placeholder='Enter mods (comma separated)'
-          value={mods}
+          value={mods.join(', ')}
           onChange={handleItemChange(setMods)}
           style={{ width: '58%', padding: '10px', borderRadius: '4px', fontSize: '16px', backgroundColor: '#494949', color: '#fff' }}
         />
         <TextareaAutosize
           placeholder='Enter resourcepacks (comma separated)'
-          value={resourcepacks}
+          value={resourcepacks.join(', ')}
           onChange={handleItemChange(setResourcepacks)}
           style={{ width: '58%', padding: '10px', borderRadius: '4px', fontSize: '16px', backgroundColor: '#494949', color: '#fff' }}
         />
@@ -236,7 +251,7 @@ const ModC = () => {
         <Button
           variant='contained'
           sx={{ mt: 2, width: '100%', maxWidth: '600px' }}
-          onClick={() => downloadMods(mods, selectedVersions, loader, version, resourcepacks, selectedResourcepackVersions, setDownloading, setProgress, setError)}
+          onClick={() => downloadMods(mods.join(','), selectedVersions, loader, version, resourcepacks.join(','), selectedResourcepackVersions, setDownloading, setProgress, setError)}
           disabled={downloading}
         >
           {downloading ? 'Downloading...' : 'Download'}
@@ -264,14 +279,13 @@ const ModC = () => {
           itemDetails={modDetails}
           selectedVersions={selectedVersions}
           handleVersionSelect={handleVersionSelect}
-          handleRemoveMod={(slug) => handleRemove(mods, slug, setMods, setSelectedVersions)}
+          handleRemoveMod={(slug) => handleRemove(slug, 'mods')}
         />
-        <Typography variant="h4" sx={{ marginTop: '30px' }}>Resourcepacks</Typography>
         <ItemVersions
           itemDetails={resourcepacksDetails}
           selectedVersions={selectedResourcepackVersions}
           handleVersionSelect={handleResourcepackVersionSelect}
-          handleRemoveMod={(slug) => handleRemove(resourcepacks, slug, setResourcepacks, setSelectedResourcepackVersions)}
+          handleRemoveMod={(slug) => handleRemove(slug, 'resourcepacks')}
         />
       </Box>
     </Container>
