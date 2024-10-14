@@ -13,7 +13,7 @@ const ModC = () => {
   const [resourcepacks, setResourcepacks] = useState([]);
   const [modDetails, setModDetails] = useState([]);
   const [resourcepacksDetails, setResourcepackDetails] = useState([]);
-  const [error, setError] = useState(null);
+  const [errors, setErrors] = useState([]);
   const [modVersions, setModVersions] = useState({});
   const [resourcepackVersions, setResourcepackVersions] = useState({});
   const [downloading, setDownloading] = useState(false);
@@ -66,18 +66,10 @@ const ModC = () => {
     const searchParams = new URLSearchParams(window.location.search);
     searchParams.set('version', version);
     searchParams.set('loader', loader);
-    if (mods.length) {
-      searchParams.set('mods', encodeItems(mods, modVersions));
-    } else {
-      searchParams.delete('mods');
-    }
-  
-    if (resourcepacks.length) {
-      searchParams.set('resourcepacks', encodeItems(resourcepacks, resourcepackVersions));
-    } else {
-      searchParams.delete('resourcepacks'); 
-    }
-  
+
+    mods.length ? searchParams.set('mods', encodeItems(mods, modVersions)) : searchParams.delete('mods');
+    resourcepacks.length ? searchParams.set('resourcepacks', encodeItems(resourcepacks, resourcepackVersions)) : searchParams.delete('resourcepacks'); 
+
     window.history.replaceState(null, '', `${window.location.pathname}?${searchParams}`);
     setLoaded(true)
   }, [mods, resourcepacks, modVersions, resourcepackVersions, version, loader, encodeItems]);
@@ -90,15 +82,14 @@ const ModC = () => {
     if (loaded) {
       setModVersions({});
       setResourcepackVersions({});
-      setError(null);
+      setErrors([]);
     }
   }, [version, loader]);
 
   const fetchDetails = useCallback(async () => {
-    const fetchItemDetails = async (items, apiUrl, setDetails, setSelectedVersions) => {
+    setErrors([]);
+    const fetchItemDetails = async (items, apiUrl, setDetails, setSelectedVersions, type) => {
       if (!items.length) return;
-
-      setError(null);
 
       const slugs = items.map(slug => slug.trim());
       const slugString = JSON.stringify(slugs);
@@ -113,13 +104,14 @@ const ModC = () => {
           if (!versionResponse.ok) throw new Error(`Failed to fetch versions for ${item.slug}`);
           const versionData = await versionResponse.json();
           if (versionData.length === 0) {
-            setError(`${item.slug} doesn't have a version for ${version}`);
+            setErrors(prevErrors => [...prevErrors, { message: `${item.slug} doesn't have a version for ${version}`, type, slug: item.slug }]);
             return null;
           }
           return {
             slug: item.slug,
             icon_url: item.icon_url,
-            type: 'mod',
+            type,
+            description: item.description,
             versions: versionData.map(v => ({
               id: v.id,
               version_number: v.version_number,
@@ -133,22 +125,20 @@ const ModC = () => {
 
         const updatedVersions = { ...modVersions };
         filteredDetails.forEach(item => {
-          if (!modVersions[item.slug]) {
-            updatedVersions[item.slug] = item.versions[0].id;
-          }
+          if (!modVersions[item.slug]) updatedVersions[item.slug] = item.versions[0].id;
         });
         setSelectedVersions(updatedVersions);
       } catch (error) {
-        setError(error.message);
+        setErrors(prevErrors => [...prevErrors, { message: error.message, type, slug: error.slug }]);
       }
     };
 
-    await fetchItemDetails(mods, slug => `https://api.modrinth.com/v2/project/${slug}/version?loaders=["${loader}"]&game_versions=["${version}"]`, setModDetails, setModVersions);
-    await fetchItemDetails(resourcepacks, slug => `https://api.modrinth.com/v2/project/${slug}/version`, setResourcepackDetails, setResourcepackVersions);
+    await fetchItemDetails(mods, slug => `https://api.modrinth.com/v2/project/${slug}/version?loaders=["${loader}"]&game_versions=["${version}"]`, setModDetails, setModVersions, 'mod');
+    await fetchItemDetails(resourcepacks, slug => `https://api.modrinth.com/v2/project/${slug}/version`, setResourcepackDetails, setResourcepackVersions, 'resourcepack');
   }, [mods, loader, version, modVersions, resourcepacks]);
 
   const handleRemove = (setter, detailSetter, versionSetter, slug) => {
-    setter(prev => prev.filter(item => item !== slug) );
+    setter(prev => prev.filter(item => item !== slug));
     detailSetter(prev => prev.filter(detail => detail.slug !== slug));
     versionSetter(prev => {
       const updated = { ...prev };
@@ -206,7 +196,7 @@ const ModC = () => {
           <Button
             variant='contained'
             sx={{ mt: 2, width: '100%', maxWidth: '600px' }}
-            onClick={() => downloadMods(mods.join(','), modVersions, loader, version, resourcepacks.join(','), resourcepackVersions, setDownloading, setProgress, setError)}
+            onClick={() => downloadMods(mods.join(','), modVersions, loader, version, resourcepacks.join(','), resourcepackVersions, setDownloading, setProgress, setErrors)}
             disabled={downloading}
           >
             {downloading ? 'Downloading...' : 'Download'}
@@ -218,7 +208,28 @@ const ModC = () => {
           sx={{ width: '100%', maxWidth: '600px', marginTop: '10px' }}
           hidden={!downloading}
         />
-        {error && <Typography variant="body1" color="error">{error}</Typography>}
+        {errors.length > 0 && (
+          <Box sx={{ width: '100%', maxWidth: '600px', mt: 2 }}>
+            {errors.map((error, index) => (
+              <Box key={index} sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
+                <Typography variant="body1" color="error">
+                  {error.message} ({error.type})
+                </Typography>
+                <Button
+                  variant="contained"
+                  color="error"
+                  size="small"
+                  onClick={() => {
+                    error.type === 'mod' ? handleRemove(setMods, setModDetails, setModVersions, error.slug) : handleRemove(setResourcepacks, setResourcepackDetails);
+                    setErrors(prevErrors => prevErrors.filter(itemError => itemError.slug !== error.slug))}
+                  }
+                >
+                  Remove
+                </Button>
+              </Box>
+            ))}
+          </Box>
+        )}
         <Tooltip title="Update mod/resourcepack details">
           <Button
             variant='contained'

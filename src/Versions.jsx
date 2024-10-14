@@ -1,11 +1,33 @@
 /* eslint-disable react/prop-types */
+import { useState } from 'react';
 import { Box, Button, Typography, InputLabel, Select, MenuItem } from '@mui/material';
 
-export const ItemVersions = ({itemDetails = [], selectedVersions = {}, handleVersionSelect = () => {}, handleRemoveMod: handleRemoveItem = () => {}}) => {
+function ShowDescription({ description }) {
+  const [showDescription, setShowDescription] = useState("none");
+
+  return (
+    <>
+      {
+        showDescription === "none" ? (
+          <Typography sx={{marginTop: "10px", cursor: "pointer"}} onClick={() => setShowDescription("unset")}>Show details.</Typography>
+        ) : (
+          <>
+            <Typography sx={{marginTop: "10px", marginBottom: "10px", cursor: "pointer"}} onClick={() => setShowDescription("none")}>Hide details.</Typography>
+            <Typography sx={{color: "#ababab", fontSize: "13px"}}>{description}</Typography>
+          </>
+        )
+      }
+    </>
+  );
+}
+
+export const ItemVersions = ({itemDetails = [], selectedVersions = {}, handleVersionSelect = () => {}, handleRemove = () => {}}) => {
   const sortedItemDetails = [...itemDetails].sort((a, b) => a.slug.localeCompare(b.slug));
   return (
     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
-      {sortedItemDetails.map((item) => (
+      {sortedItemDetails.map((item) => {
+        console.log(item.slug);
+        return (
         <Box
           key={item.slug}
           sx={{
@@ -14,7 +36,7 @@ export const ItemVersions = ({itemDetails = [], selectedVersions = {}, handleVer
             padding: '8px 10px',
             boxShadow: '0px 0px 4px 4px rgba(0, 0, 0, 0.3)',
             textAlign: 'center',
-            maxWidth: '6.6vw',
+            maxWidth: '6.6vw'
           }}
         >
           <Typography variant="h6" sx={{ color: 'white', fontSize: '14px' }}>
@@ -42,17 +64,17 @@ export const ItemVersions = ({itemDetails = [], selectedVersions = {}, handleVer
               </MenuItem>
             ))}
           </Select>
-
+          <ShowDescription description={item.description}></ShowDescription>
           <Button
             variant="outlined"
             color="error"
             sx={{ mt: 1, height: 27, width: 70 }}
-            onClick={() => handleRemoveItem(item.slug)}
+            onClick={() => handleRemove(item.slug)}
           >
             Remove
           </Button>
         </Box>
-      ))}
+      )})}
     </Box>
   );
 };
