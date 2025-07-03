@@ -71287,7 +71287,7 @@ __webpack_require__.r(__webpack_exports__);
 /* provided dependency */ var __react_refresh_utils__ = __webpack_require__(/*! ./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js */ "./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js");
 __webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "./node_modules/react-refresh/runtime.js");
 
-const minecraftVersions = ["1.21.6", "1.21.5", "1.21.4", "1.21.3", "1.21.2", "1.21.1", "1.21", "1.20.4", "1.20.3", "1.20.2", "1.20.1", "1.20", "1.19.4", "1.19.3", "1.19.2", "1.19.1", "1.19", "1.18.2", "1.18.1", "1.18", "1.17.1", "1.17", "1.16.5", "1.16.4", "1.16.3", "1.16.2", "1.16.1", "1.16", "1.15.2", "1.15.1", "1.15", "1.14.4", "1.12.2", "1.8.9"];
+const minecraftVersions = ["1.21.7", "1.21.6", "1.21.5", "1.21.4", "1.21.3", "1.21.2", "1.21.1", "1.21", "1.20.4", "1.20.3", "1.20.2", "1.20.1", "1.20", "1.19.4", "1.19.3", "1.19.2", "1.19.1", "1.19", "1.18.2", "1.18.1", "1.18", "1.17.1", "1.17", "1.16.5", "1.16.4", "1.16.3", "1.16.2", "1.16.1", "1.16", "1.15.2", "1.15.1", "1.15", "1.14.4", "1.12.2", "1.8.9"];
 const modLoaders = ["fabric", "forge", "quilt", "neoforge"];
 const modCategories = ["Adventure", "Cursed", "Decoration", "Economy", "Equipment", "Food", "Game-Mechanics", "Library", "Magic", "Management", "Minigame", "Mobs", "Optimization", "Social", "Storage", "Technology", "Transportation", "Utility", "Worldgen"];
 const resourcepackCategories = ["Combat", "Cursed", "Decoration", "Modded", "Realistic", "Simplistic", "Themed", "Tweaks", "Utility", "Vanilla-like"];
@@ -71396,7 +71396,7 @@ const DependencyComponent = ({
       }, void 0, false, {
         fileName: _jsxFileName,
         lineNumber: 30,
-        columnNumber: 141
+        columnNumber: 161
       }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)(_items_ItemCard__WEBPACK_IMPORTED_MODULE_1__.ItemCard, {
         width: "22%",
         selectList: false,
@@ -71413,7 +71413,7 @@ const DependencyComponent = ({
         }, void 0, false, {
           fileName: _jsxFileName,
           lineNumber: 30,
-          columnNumber: 228
+          columnNumber: 248
         }, undefined),
         showInfo: showItemInfo,
         item: {
@@ -71426,9 +71426,9 @@ const DependencyComponent = ({
       }, void 0, false, {
         fileName: _jsxFileName,
         lineNumber: 30,
-        columnNumber: 179
+        columnNumber: 199
       }, undefined)]
-    }, void 0, true, {
+    }, dependency.id, true, {
       fileName: _jsxFileName,
       lineNumber: 30,
       columnNumber: 46
@@ -72214,9 +72214,9 @@ const ItemInfo = ({
               }, void 0, false, {
                 fileName: _jsxFileName,
                 lineNumber: 104,
-                columnNumber: 116
+                columnNumber: 133
               }, undefined)
-            }, void 0, false, {
+            }, item.title, false, {
               fileName: _jsxFileName,
               lineNumber: 104,
               columnNumber: 41
@@ -74804,7 +74804,7 @@ if (typeof Promise !== 'undefined' && $ReactRefreshCurrentExports$ instanceof Pr
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("4b99f80a0f2a9ad64ddd")
+/******/ 		__webpack_require__.h = () => ("c36574e9b3cdf21c150b")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
