@@ -73033,7 +73033,7 @@ const OverflowBox = ({
           width: 'fit-content',
           padding: '2px 0'
         }
-      }, void 0, false, {
+      }, category, false, {
         fileName: _jsxFileName,
         lineNumber: 13,
         columnNumber: 35
@@ -73969,12 +73969,12 @@ const SearchComponent = ({
           }, void 0, false, {
             fileName: _jsxFileName,
             lineNumber: 68,
-            columnNumber: 43
+            columnNumber: 65
           }, undefined),
           showInfo: showItemInfo,
           item: item,
           selectList: false
-        }, void 0, false, {
+        }, item.project_id, false, {
           fileName: _jsxFileName,
           lineNumber: 68,
           columnNumber: 25
@@ -73985,7 +73985,7 @@ const SearchComponent = ({
         }, void 0, false, {
           fileName: _jsxFileName,
           lineNumber: 68,
-          columnNumber: 358
+          columnNumber: 380
         }, undefined)
       }, void 0, false, {
         fileName: _jsxFileName,
@@ -74368,7 +74368,7 @@ const VersionComponent = ({
           version: (0,_methods_GetSetParam__WEBPACK_IMPORTED_MODULE_2__.GetParam)('version'),
           loader: (0,_methods_GetSetParam__WEBPACK_IMPORTED_MODULE_2__.GetParam)('loader'),
           item: item
-        }, void 0, false, {
+        }, item.id, false, {
           fileName: _jsxFileName,
           lineNumber: 40,
           columnNumber: 59
@@ -74804,7 +74804,7 @@ if (typeof Promise !== 'undefined' && $ReactRefreshCurrentExports$ instanceof Pr
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("43146db3e544bc7c406e")
+/******/ 		__webpack_require__.h = () => ("4b99f80a0f2a9ad64ddd")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
