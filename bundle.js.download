@@ -22259,6 +22259,746 @@ const TextareaAutosize = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.forward
 
 /***/ }),
 
+/***/ "./node_modules/@mui/material/ToggleButton/ToggleButton.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/@mui/material/ToggleButton/ToggleButton.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_16__);
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.mjs");
+/* harmony import */ var _mui_utils_resolveProps__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @mui/utils/resolveProps */ "./node_modules/@mui/utils/esm/resolveProps/resolveProps.js");
+/* harmony import */ var _mui_utils_composeClasses__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mui/utils/composeClasses */ "./node_modules/@mui/utils/esm/composeClasses/composeClasses.js");
+/* harmony import */ var _mui_system_colorManipulator__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @mui/system/colorManipulator */ "./node_modules/@mui/system/esm/colorManipulator/colorManipulator.js");
+/* harmony import */ var _ButtonBase_index_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../ButtonBase/index.js */ "./node_modules/@mui/material/ButtonBase/ButtonBase.js");
+/* harmony import */ var _utils_capitalize_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/capitalize.js */ "./node_modules/@mui/material/utils/capitalize.js");
+/* harmony import */ var _zero_styled_index_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../zero-styled/index.js */ "./node_modules/@mui/material/styles/styled.js");
+/* harmony import */ var _utils_memoTheme_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../utils/memoTheme.js */ "./node_modules/@mui/material/utils/memoTheme.js");
+/* harmony import */ var _utils_createSimplePaletteValueFilter_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../utils/createSimplePaletteValueFilter.js */ "./node_modules/@mui/material/utils/createSimplePaletteValueFilter.js");
+/* harmony import */ var _DefaultPropsProvider_index_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../DefaultPropsProvider/index.js */ "./node_modules/@mui/material/DefaultPropsProvider/DefaultPropsProvider.js");
+/* harmony import */ var _toggleButtonClasses_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./toggleButtonClasses.js */ "./node_modules/@mui/material/ToggleButton/toggleButtonClasses.js");
+/* harmony import */ var _ToggleButtonGroup_ToggleButtonGroupContext_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../ToggleButtonGroup/ToggleButtonGroupContext.js */ "./node_modules/@mui/material/ToggleButtonGroup/ToggleButtonGroupContext.js");
+/* harmony import */ var _ToggleButtonGroup_ToggleButtonGroupButtonContext_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../ToggleButtonGroup/ToggleButtonGroupButtonContext.js */ "./node_modules/@mui/material/ToggleButtonGroup/ToggleButtonGroupButtonContext.js");
+/* harmony import */ var _ToggleButtonGroup_isValueSelected_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../ToggleButtonGroup/isValueSelected.js */ "./node_modules/@mui/material/ToggleButtonGroup/isValueSelected.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+'use client';
+
+// @inheritedComponent ButtonBase
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const useUtilityClasses = ownerState => {
+  const {
+    classes,
+    fullWidth,
+    selected,
+    disabled,
+    size,
+    color
+  } = ownerState;
+  const slots = {
+    root: ['root', selected && 'selected', disabled && 'disabled', fullWidth && 'fullWidth', `size${(0,_utils_capitalize_js__WEBPACK_IMPORTED_MODULE_3__["default"])(size)}`, color]
+  };
+  return (0,_mui_utils_composeClasses__WEBPACK_IMPORTED_MODULE_4__["default"])(slots, _toggleButtonClasses_js__WEBPACK_IMPORTED_MODULE_5__.getToggleButtonUtilityClass, classes);
+};
+const ToggleButtonRoot = (0,_zero_styled_index_js__WEBPACK_IMPORTED_MODULE_6__["default"])(_ButtonBase_index_js__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  name: 'MuiToggleButton',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const {
+      ownerState
+    } = props;
+    return [styles.root, styles[`size${(0,_utils_capitalize_js__WEBPACK_IMPORTED_MODULE_3__["default"])(ownerState.size)}`]];
+  }
+})((0,_utils_memoTheme_js__WEBPACK_IMPORTED_MODULE_8__["default"])(({
+  theme
+}) => ({
+  ...theme.typography.button,
+  borderRadius: (theme.vars || theme).shape.borderRadius,
+  padding: 11,
+  border: `1px solid ${(theme.vars || theme).palette.divider}`,
+  color: (theme.vars || theme).palette.action.active,
+  [`&.${_toggleButtonClasses_js__WEBPACK_IMPORTED_MODULE_5__["default"].disabled}`]: {
+    color: (theme.vars || theme).palette.action.disabled,
+    border: `1px solid ${(theme.vars || theme).palette.action.disabledBackground}`
+  },
+  '&:hover': {
+    textDecoration: 'none',
+    // Reset on mouse devices
+    backgroundColor: theme.vars ? `rgba(${theme.vars.palette.text.primaryChannel} / ${theme.vars.palette.action.hoverOpacity})` : (0,_mui_system_colorManipulator__WEBPACK_IMPORTED_MODULE_9__.alpha)(theme.palette.text.primary, theme.palette.action.hoverOpacity),
+    '@media (hover: none)': {
+      backgroundColor: 'transparent'
+    }
+  },
+  variants: [{
+    props: {
+      color: 'standard'
+    },
+    style: {
+      [`&.${_toggleButtonClasses_js__WEBPACK_IMPORTED_MODULE_5__["default"].selected}`]: {
+        color: (theme.vars || theme).palette.text.primary,
+        backgroundColor: theme.vars ? `rgba(${theme.vars.palette.text.primaryChannel} / ${theme.vars.palette.action.selectedOpacity})` : (0,_mui_system_colorManipulator__WEBPACK_IMPORTED_MODULE_9__.alpha)(theme.palette.text.primary, theme.palette.action.selectedOpacity),
+        '&:hover': {
+          backgroundColor: theme.vars ? `rgba(${theme.vars.palette.text.primaryChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))` : (0,_mui_system_colorManipulator__WEBPACK_IMPORTED_MODULE_9__.alpha)(theme.palette.text.primary, theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity),
+          // Reset on touch devices, it doesn't add specificity
+          '@media (hover: none)': {
+            backgroundColor: theme.vars ? `rgba(${theme.vars.palette.text.primaryChannel} / ${theme.vars.palette.action.selectedOpacity})` : (0,_mui_system_colorManipulator__WEBPACK_IMPORTED_MODULE_9__.alpha)(theme.palette.text.primary, theme.palette.action.selectedOpacity)
+          }
+        }
+      }
+    }
+  }, ...Object.entries(theme.palette).filter((0,_utils_createSimplePaletteValueFilter_js__WEBPACK_IMPORTED_MODULE_10__["default"])()).map(([color]) => ({
+    props: {
+      color
+    },
+    style: {
+      [`&.${_toggleButtonClasses_js__WEBPACK_IMPORTED_MODULE_5__["default"].selected}`]: {
+        color: (theme.vars || theme).palette[color].main,
+        backgroundColor: theme.vars ? `rgba(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.selectedOpacity})` : (0,_mui_system_colorManipulator__WEBPACK_IMPORTED_MODULE_9__.alpha)(theme.palette[color].main, theme.palette.action.selectedOpacity),
+        '&:hover': {
+          backgroundColor: theme.vars ? `rgba(${theme.vars.palette[color].mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))` : (0,_mui_system_colorManipulator__WEBPACK_IMPORTED_MODULE_9__.alpha)(theme.palette[color].main, theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity),
+          // Reset on touch devices, it doesn't add specificity
+          '@media (hover: none)': {
+            backgroundColor: theme.vars ? `rgba(${theme.vars.palette[color].mainChannel} / ${theme.vars.palette.action.selectedOpacity})` : (0,_mui_system_colorManipulator__WEBPACK_IMPORTED_MODULE_9__.alpha)(theme.palette[color].main, theme.palette.action.selectedOpacity)
+          }
+        }
+      }
+    }
+  })), {
+    props: {
+      fullWidth: true
+    },
+    style: {
+      width: '100%'
+    }
+  }, {
+    props: {
+      size: 'small'
+    },
+    style: {
+      padding: 7,
+      fontSize: theme.typography.pxToRem(13)
+    }
+  }, {
+    props: {
+      size: 'large'
+    },
+    style: {
+      padding: 15,
+      fontSize: theme.typography.pxToRem(15)
+    }
+  }]
+})));
+const ToggleButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(function ToggleButton(inProps, ref) {
+  // props priority: `inProps` > `contextProps` > `themeDefaultProps`
+  const {
+    value: contextValue,
+    ...contextProps
+  } = react__WEBPACK_IMPORTED_MODULE_0__.useContext(_ToggleButtonGroup_ToggleButtonGroupContext_js__WEBPACK_IMPORTED_MODULE_11__["default"]);
+  const toggleButtonGroupButtonContextPositionClassName = react__WEBPACK_IMPORTED_MODULE_0__.useContext(_ToggleButtonGroup_ToggleButtonGroupButtonContext_js__WEBPACK_IMPORTED_MODULE_12__["default"]);
+  const resolvedProps = (0,_mui_utils_resolveProps__WEBPACK_IMPORTED_MODULE_13__["default"])({
+    ...contextProps,
+    selected: (0,_ToggleButtonGroup_isValueSelected_js__WEBPACK_IMPORTED_MODULE_14__["default"])(inProps.value, contextValue)
+  }, inProps);
+  const props = (0,_DefaultPropsProvider_index_js__WEBPACK_IMPORTED_MODULE_15__.useDefaultProps)({
+    props: resolvedProps,
+    name: 'MuiToggleButton'
+  });
+  const {
+    children,
+    className,
+    color = 'standard',
+    disabled = false,
+    disableFocusRipple = false,
+    fullWidth = false,
+    onChange,
+    onClick,
+    selected,
+    size = 'medium',
+    value,
+    ...other
+  } = props;
+  const ownerState = {
+    ...props,
+    color,
+    disabled,
+    disableFocusRipple,
+    fullWidth,
+    size
+  };
+  const classes = useUtilityClasses(ownerState);
+  const handleChange = event => {
+    if (onClick) {
+      onClick(event, value);
+      if (event.defaultPrevented) {
+        return;
+      }
+    }
+    if (onChange) {
+      onChange(event, value);
+    }
+  };
+  const positionClassName = toggleButtonGroupButtonContextPositionClassName || '';
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(ToggleButtonRoot, {
+    className: (0,clsx__WEBPACK_IMPORTED_MODULE_1__["default"])(contextProps.className, classes.root, className, positionClassName),
+    disabled: disabled,
+    focusRipple: !disableFocusRipple,
+    ref: ref,
+    onClick: handleChange,
+    onChange: onChange,
+    value: value,
+    ownerState: ownerState,
+    "aria-pressed": selected,
+    ...other,
+    children: children
+  });
+});
+ true ? ToggleButton.propTypes /* remove-proptypes */ = {
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
+  /**
+   * The content of the component.
+   */
+  children: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().node),
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().object),
+  /**
+   * @ignore
+   */
+  className: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().string),
+  /**
+   * The color of the button when it is in an active state.
+   * It supports both default and custom theme colors, which can be added as shown in the
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
+   * @default 'standard'
+   */
+  color: prop_types__WEBPACK_IMPORTED_MODULE_16___default().oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_16___default().oneOf(['standard', 'primary', 'secondary', 'error', 'info', 'success', 'warning']), (prop_types__WEBPACK_IMPORTED_MODULE_16___default().string)]),
+  /**
+   * If `true`, the component is disabled.
+   * @default false
+   */
+  disabled: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().bool),
+  /**
+   * If `true`, the  keyboard focus ripple is disabled.
+   * @default false
+   */
+  disableFocusRipple: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().bool),
+  /**
+   * If `true`, the ripple effect is disabled.
+   *
+   * ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure
+   * to highlight the element by applying separate styles with the `.Mui-focusVisible` class.
+   * @default false
+   */
+  disableRipple: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().bool),
+  /**
+   * If `true`, the button will take up the full width of its container.
+   * @default false
+   */
+  fullWidth: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().bool),
+  /**
+   * Callback fired when the state changes.
+   *
+   * @param {React.MouseEvent<HTMLElement>} event The event source of the callback.
+   * @param {any} value of the selected button.
+   */
+  onChange: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().func),
+  /**
+   * Callback fired when the button is clicked.
+   *
+   * @param {React.MouseEvent<HTMLElement>} event The event source of the callback.
+   * @param {any} value of the selected button.
+   */
+  onClick: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().func),
+  /**
+   * If `true`, the button is rendered in an active state.
+   */
+  selected: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().bool),
+  /**
+   * The size of the component.
+   * The prop defaults to the value inherited from the parent ToggleButtonGroup component.
+   * @default 'medium'
+   */
+  size: prop_types__WEBPACK_IMPORTED_MODULE_16___default().oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_16___default().oneOf(['small', 'medium', 'large']), (prop_types__WEBPACK_IMPORTED_MODULE_16___default().string)]),
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: prop_types__WEBPACK_IMPORTED_MODULE_16___default().oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_16___default().arrayOf(prop_types__WEBPACK_IMPORTED_MODULE_16___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_16___default().func), (prop_types__WEBPACK_IMPORTED_MODULE_16___default().object), (prop_types__WEBPACK_IMPORTED_MODULE_16___default().bool)])), (prop_types__WEBPACK_IMPORTED_MODULE_16___default().func), (prop_types__WEBPACK_IMPORTED_MODULE_16___default().object)]),
+  /**
+   * The value to associate with the button when selected in a
+   * ToggleButtonGroup.
+   */
+  value: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().any).isRequired
+} : 0;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ToggleButton);
+
+/***/ }),
+
+/***/ "./node_modules/@mui/material/ToggleButton/toggleButtonClasses.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/@mui/material/ToggleButton/toggleButtonClasses.js ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   getToggleButtonUtilityClass: () => (/* binding */ getToggleButtonUtilityClass)
+/* harmony export */ });
+/* harmony import */ var _mui_utils_generateUtilityClasses__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @mui/utils/generateUtilityClasses */ "./node_modules/@mui/utils/esm/generateUtilityClasses/generateUtilityClasses.js");
+/* harmony import */ var _mui_utils_generateUtilityClass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @mui/utils/generateUtilityClass */ "./node_modules/@mui/utils/esm/generateUtilityClass/generateUtilityClass.js");
+
+
+function getToggleButtonUtilityClass(slot) {
+  return (0,_mui_utils_generateUtilityClass__WEBPACK_IMPORTED_MODULE_0__["default"])('MuiToggleButton', slot);
+}
+const toggleButtonClasses = (0,_mui_utils_generateUtilityClasses__WEBPACK_IMPORTED_MODULE_1__["default"])('MuiToggleButton', ['root', 'disabled', 'selected', 'standard', 'primary', 'secondary', 'sizeSmall', 'sizeMedium', 'sizeLarge', 'fullWidth']);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (toggleButtonClasses);
+
+/***/ }),
+
+/***/ "./node_modules/@mui/material/ToggleButtonGroup/ToggleButtonGroup.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/@mui/material/ToggleButtonGroup/ToggleButtonGroup.js ***!
+  \***************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_is__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-is */ "./node_modules/@mui/material/node_modules/react-is/cjs/react-is.development.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.mjs");
+/* harmony import */ var _mui_utils_composeClasses__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mui/utils/composeClasses */ "./node_modules/@mui/utils/esm/composeClasses/composeClasses.js");
+/* harmony import */ var _mui_utils_getValidReactChildren__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @mui/utils/getValidReactChildren */ "./node_modules/@mui/utils/esm/getValidReactChildren/getValidReactChildren.js");
+/* harmony import */ var _zero_styled_index_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../zero-styled/index.js */ "./node_modules/@mui/material/styles/styled.js");
+/* harmony import */ var _utils_memoTheme_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../utils/memoTheme.js */ "./node_modules/@mui/material/utils/memoTheme.js");
+/* harmony import */ var _DefaultPropsProvider_index_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../DefaultPropsProvider/index.js */ "./node_modules/@mui/material/DefaultPropsProvider/DefaultPropsProvider.js");
+/* harmony import */ var _utils_capitalize_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/capitalize.js */ "./node_modules/@mui/material/utils/capitalize.js");
+/* harmony import */ var _toggleButtonGroupClasses_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./toggleButtonGroupClasses.js */ "./node_modules/@mui/material/ToggleButtonGroup/toggleButtonGroupClasses.js");
+/* harmony import */ var _ToggleButtonGroupContext_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./ToggleButtonGroupContext.js */ "./node_modules/@mui/material/ToggleButtonGroup/ToggleButtonGroupContext.js");
+/* harmony import */ var _ToggleButtonGroupButtonContext_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./ToggleButtonGroupButtonContext.js */ "./node_modules/@mui/material/ToggleButtonGroup/ToggleButtonGroupButtonContext.js");
+/* harmony import */ var _ToggleButton_toggleButtonClasses_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../ToggleButton/toggleButtonClasses.js */ "./node_modules/@mui/material/ToggleButton/toggleButtonClasses.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+'use client';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const useUtilityClasses = ownerState => {
+  const {
+    classes,
+    orientation,
+    fullWidth,
+    disabled
+  } = ownerState;
+  const slots = {
+    root: ['root', orientation, fullWidth && 'fullWidth'],
+    grouped: ['grouped', `grouped${(0,_utils_capitalize_js__WEBPACK_IMPORTED_MODULE_3__["default"])(orientation)}`, disabled && 'disabled'],
+    firstButton: ['firstButton'],
+    lastButton: ['lastButton'],
+    middleButton: ['middleButton']
+  };
+  return (0,_mui_utils_composeClasses__WEBPACK_IMPORTED_MODULE_4__["default"])(slots, _toggleButtonGroupClasses_js__WEBPACK_IMPORTED_MODULE_5__.getToggleButtonGroupUtilityClass, classes);
+};
+const ToggleButtonGroupRoot = (0,_zero_styled_index_js__WEBPACK_IMPORTED_MODULE_6__["default"])('div', {
+  name: 'MuiToggleButtonGroup',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const {
+      ownerState
+    } = props;
+    return [{
+      [`& .${_toggleButtonGroupClasses_js__WEBPACK_IMPORTED_MODULE_5__["default"].grouped}`]: styles.grouped
+    }, {
+      [`& .${_toggleButtonGroupClasses_js__WEBPACK_IMPORTED_MODULE_5__["default"].grouped}`]: styles[`grouped${(0,_utils_capitalize_js__WEBPACK_IMPORTED_MODULE_3__["default"])(ownerState.orientation)}`]
+    }, {
+      [`& .${_toggleButtonGroupClasses_js__WEBPACK_IMPORTED_MODULE_5__["default"].firstButton}`]: styles.firstButton
+    }, {
+      [`& .${_toggleButtonGroupClasses_js__WEBPACK_IMPORTED_MODULE_5__["default"].lastButton}`]: styles.lastButton
+    }, {
+      [`& .${_toggleButtonGroupClasses_js__WEBPACK_IMPORTED_MODULE_5__["default"].middleButton}`]: styles.middleButton
+    }, styles.root, ownerState.orientation === 'vertical' && styles.vertical, ownerState.fullWidth && styles.fullWidth];
+  }
+})((0,_utils_memoTheme_js__WEBPACK_IMPORTED_MODULE_7__["default"])(({
+  theme
+}) => ({
+  display: 'inline-flex',
+  borderRadius: (theme.vars || theme).shape.borderRadius,
+  variants: [{
+    props: {
+      orientation: 'vertical'
+    },
+    style: {
+      flexDirection: 'column',
+      [`& .${_toggleButtonGroupClasses_js__WEBPACK_IMPORTED_MODULE_5__["default"].grouped}`]: {
+        [`&.${_toggleButtonGroupClasses_js__WEBPACK_IMPORTED_MODULE_5__["default"].selected} + .${_toggleButtonGroupClasses_js__WEBPACK_IMPORTED_MODULE_5__["default"].grouped}.${_toggleButtonGroupClasses_js__WEBPACK_IMPORTED_MODULE_5__["default"].selected}`]: {
+          borderTop: 0,
+          marginTop: 0
+        }
+      },
+      [`& .${_toggleButtonGroupClasses_js__WEBPACK_IMPORTED_MODULE_5__["default"].firstButton},& .${_toggleButtonGroupClasses_js__WEBPACK_IMPORTED_MODULE_5__["default"].middleButton}`]: {
+        borderBottomLeftRadius: 0,
+        borderBottomRightRadius: 0
+      },
+      [`& .${_toggleButtonGroupClasses_js__WEBPACK_IMPORTED_MODULE_5__["default"].lastButton},& .${_toggleButtonGroupClasses_js__WEBPACK_IMPORTED_MODULE_5__["default"].middleButton}`]: {
+        marginTop: -1,
+        borderTop: '1px solid transparent',
+        borderTopLeftRadius: 0,
+        borderTopRightRadius: 0
+      },
+      [`& .${_toggleButtonGroupClasses_js__WEBPACK_IMPORTED_MODULE_5__["default"].lastButton}.${_ToggleButton_toggleButtonClasses_js__WEBPACK_IMPORTED_MODULE_8__["default"].disabled},& .${_toggleButtonGroupClasses_js__WEBPACK_IMPORTED_MODULE_5__["default"].middleButton}.${_ToggleButton_toggleButtonClasses_js__WEBPACK_IMPORTED_MODULE_8__["default"].disabled}`]: {
+        borderTop: '1px solid transparent'
+      }
+    }
+  }, {
+    props: {
+      fullWidth: true
+    },
+    style: {
+      width: '100%'
+    }
+  }, {
+    props: {
+      orientation: 'horizontal'
+    },
+    style: {
+      [`& .${_toggleButtonGroupClasses_js__WEBPACK_IMPORTED_MODULE_5__["default"].grouped}`]: {
+        [`&.${_toggleButtonGroupClasses_js__WEBPACK_IMPORTED_MODULE_5__["default"].selected} + .${_toggleButtonGroupClasses_js__WEBPACK_IMPORTED_MODULE_5__["default"].grouped}.${_toggleButtonGroupClasses_js__WEBPACK_IMPORTED_MODULE_5__["default"].selected}`]: {
+          borderLeft: 0,
+          marginLeft: 0
+        }
+      },
+      [`& .${_toggleButtonGroupClasses_js__WEBPACK_IMPORTED_MODULE_5__["default"].firstButton},& .${_toggleButtonGroupClasses_js__WEBPACK_IMPORTED_MODULE_5__["default"].middleButton}`]: {
+        borderTopRightRadius: 0,
+        borderBottomRightRadius: 0
+      },
+      [`& .${_toggleButtonGroupClasses_js__WEBPACK_IMPORTED_MODULE_5__["default"].lastButton},& .${_toggleButtonGroupClasses_js__WEBPACK_IMPORTED_MODULE_5__["default"].middleButton}`]: {
+        marginLeft: -1,
+        borderLeft: '1px solid transparent',
+        borderTopLeftRadius: 0,
+        borderBottomLeftRadius: 0
+      },
+      [`& .${_toggleButtonGroupClasses_js__WEBPACK_IMPORTED_MODULE_5__["default"].lastButton}.${_ToggleButton_toggleButtonClasses_js__WEBPACK_IMPORTED_MODULE_8__["default"].disabled},& .${_toggleButtonGroupClasses_js__WEBPACK_IMPORTED_MODULE_5__["default"].middleButton}.${_ToggleButton_toggleButtonClasses_js__WEBPACK_IMPORTED_MODULE_8__["default"].disabled}`]: {
+        borderLeft: '1px solid transparent'
+      }
+    }
+  }]
+})));
+const ToggleButtonGroup = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(function ToggleButtonGroup(inProps, ref) {
+  const props = (0,_DefaultPropsProvider_index_js__WEBPACK_IMPORTED_MODULE_9__.useDefaultProps)({
+    props: inProps,
+    name: 'MuiToggleButtonGroup'
+  });
+  const {
+    children,
+    className,
+    color = 'standard',
+    disabled = false,
+    exclusive = false,
+    fullWidth = false,
+    onChange,
+    orientation = 'horizontal',
+    size = 'medium',
+    value,
+    ...other
+  } = props;
+  const ownerState = {
+    ...props,
+    disabled,
+    fullWidth,
+    orientation,
+    size
+  };
+  const classes = useUtilityClasses(ownerState);
+  const handleChange = react__WEBPACK_IMPORTED_MODULE_0__.useCallback((event, buttonValue) => {
+    if (!onChange) {
+      return;
+    }
+    const index = value && value.indexOf(buttonValue);
+    let newValue;
+    if (value && index >= 0) {
+      newValue = value.slice();
+      newValue.splice(index, 1);
+    } else {
+      newValue = value ? value.concat(buttonValue) : [buttonValue];
+    }
+    onChange(event, newValue);
+  }, [onChange, value]);
+  const handleExclusiveChange = react__WEBPACK_IMPORTED_MODULE_0__.useCallback((event, buttonValue) => {
+    if (!onChange) {
+      return;
+    }
+    onChange(event, value === buttonValue ? null : buttonValue);
+  }, [onChange, value]);
+  const context = react__WEBPACK_IMPORTED_MODULE_0__.useMemo(() => ({
+    className: classes.grouped,
+    onChange: exclusive ? handleExclusiveChange : handleChange,
+    value,
+    size,
+    fullWidth,
+    color,
+    disabled
+  }), [classes.grouped, exclusive, handleExclusiveChange, handleChange, value, size, fullWidth, color, disabled]);
+  const validChildren = (0,_mui_utils_getValidReactChildren__WEBPACK_IMPORTED_MODULE_10__["default"])(children);
+  const childrenCount = validChildren.length;
+  const getButtonPositionClassName = index => {
+    const isFirstButton = index === 0;
+    const isLastButton = index === childrenCount - 1;
+    if (isFirstButton && isLastButton) {
+      return '';
+    }
+    if (isFirstButton) {
+      return classes.firstButton;
+    }
+    if (isLastButton) {
+      return classes.lastButton;
+    }
+    return classes.middleButton;
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(ToggleButtonGroupRoot, {
+    role: "group",
+    className: (0,clsx__WEBPACK_IMPORTED_MODULE_1__["default"])(classes.root, className),
+    ref: ref,
+    ownerState: ownerState,
+    ...other,
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ToggleButtonGroupContext_js__WEBPACK_IMPORTED_MODULE_11__["default"].Provider, {
+      value: context,
+      children: validChildren.map((child, index) => {
+        if (true) {
+          if ((0,react_is__WEBPACK_IMPORTED_MODULE_12__.isFragment)(child)) {
+            console.error(["MUI: The ToggleButtonGroup component doesn't accept a Fragment as a child.", 'Consider providing an array instead.'].join('\n'));
+          }
+        }
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ToggleButtonGroupButtonContext_js__WEBPACK_IMPORTED_MODULE_13__["default"].Provider, {
+          value: getButtonPositionClassName(index),
+          children: child
+        }, index);
+      })
+    })
+  });
+});
+ true ? ToggleButtonGroup.propTypes /* remove-proptypes */ = {
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
+  /**
+   * The content of the component.
+   */
+  children: (prop_types__WEBPACK_IMPORTED_MODULE_14___default().node),
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: (prop_types__WEBPACK_IMPORTED_MODULE_14___default().object),
+  /**
+   * @ignore
+   */
+  className: (prop_types__WEBPACK_IMPORTED_MODULE_14___default().string),
+  /**
+   * The color of the button when it is selected.
+   * It supports both default and custom theme colors, which can be added as shown in the
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
+   * @default 'standard'
+   */
+  color: prop_types__WEBPACK_IMPORTED_MODULE_14___default().oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_14___default().oneOf(['standard', 'primary', 'secondary', 'error', 'info', 'success', 'warning']), (prop_types__WEBPACK_IMPORTED_MODULE_14___default().string)]),
+  /**
+   * If `true`, the component is disabled. This implies that all ToggleButton children will be disabled.
+   * @default false
+   */
+  disabled: (prop_types__WEBPACK_IMPORTED_MODULE_14___default().bool),
+  /**
+   * If `true`, only allow one of the child ToggleButton values to be selected.
+   * @default false
+   */
+  exclusive: (prop_types__WEBPACK_IMPORTED_MODULE_14___default().bool),
+  /**
+   * If `true`, the button group will take up the full width of its container.
+   * @default false
+   */
+  fullWidth: (prop_types__WEBPACK_IMPORTED_MODULE_14___default().bool),
+  /**
+   * Callback fired when the value changes.
+   *
+   * @param {React.MouseEvent<HTMLElement>} event The event source of the callback.
+   * @param {any} value of the selected buttons. When `exclusive` is true
+   * this is a single value; when false an array of selected values. If no value
+   * is selected and `exclusive` is true the value is null; when false an empty array.
+   */
+  onChange: (prop_types__WEBPACK_IMPORTED_MODULE_14___default().func),
+  /**
+   * The component orientation (layout flow direction).
+   * @default 'horizontal'
+   */
+  orientation: prop_types__WEBPACK_IMPORTED_MODULE_14___default().oneOf(['horizontal', 'vertical']),
+  /**
+   * The size of the component.
+   * @default 'medium'
+   */
+  size: prop_types__WEBPACK_IMPORTED_MODULE_14___default().oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_14___default().oneOf(['small', 'medium', 'large']), (prop_types__WEBPACK_IMPORTED_MODULE_14___default().string)]),
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: prop_types__WEBPACK_IMPORTED_MODULE_14___default().oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_14___default().arrayOf(prop_types__WEBPACK_IMPORTED_MODULE_14___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_14___default().func), (prop_types__WEBPACK_IMPORTED_MODULE_14___default().object), (prop_types__WEBPACK_IMPORTED_MODULE_14___default().bool)])), (prop_types__WEBPACK_IMPORTED_MODULE_14___default().func), (prop_types__WEBPACK_IMPORTED_MODULE_14___default().object)]),
+  /**
+   * The currently selected value within the group or an array of selected
+   * values when `exclusive` is false.
+   *
+   * The value must have reference equality with the option in order to be selected.
+   */
+  value: (prop_types__WEBPACK_IMPORTED_MODULE_14___default().any)
+} : 0;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ToggleButtonGroup);
+
+/***/ }),
+
+/***/ "./node_modules/@mui/material/ToggleButtonGroup/ToggleButtonGroupButtonContext.js":
+/*!****************************************************************************************!*\
+  !*** ./node_modules/@mui/material/ToggleButtonGroup/ToggleButtonGroupButtonContext.js ***!
+  \****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+'use client';
+
+
+/**
+ * @ignore - internal component.
+ */
+const ToggleButtonGroupButtonContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createContext(undefined);
+if (true) {
+  ToggleButtonGroupButtonContext.displayName = 'ToggleButtonGroupButtonContext';
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ToggleButtonGroupButtonContext);
+
+/***/ }),
+
+/***/ "./node_modules/@mui/material/ToggleButtonGroup/ToggleButtonGroupContext.js":
+/*!**********************************************************************************!*\
+  !*** ./node_modules/@mui/material/ToggleButtonGroup/ToggleButtonGroupContext.js ***!
+  \**********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+'use client';
+
+
+/**
+ * @ignore - internal component.
+ */
+const ToggleButtonGroupContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createContext({});
+if (true) {
+  ToggleButtonGroupContext.displayName = 'ToggleButtonGroupContext';
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ToggleButtonGroupContext);
+
+/***/ }),
+
+/***/ "./node_modules/@mui/material/ToggleButtonGroup/isValueSelected.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/@mui/material/ToggleButtonGroup/isValueSelected.js ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ isValueSelected)
+/* harmony export */ });
+// Determine if the toggle button value matches, or is contained in, the
+// candidate group value.
+function isValueSelected(value, candidate) {
+  if (candidate === undefined || value === undefined) {
+    return false;
+  }
+  if (Array.isArray(candidate)) {
+    return candidate.includes(value);
+  }
+  return value === candidate;
+}
+
+/***/ }),
+
+/***/ "./node_modules/@mui/material/ToggleButtonGroup/toggleButtonGroupClasses.js":
+/*!**********************************************************************************!*\
+  !*** ./node_modules/@mui/material/ToggleButtonGroup/toggleButtonGroupClasses.js ***!
+  \**********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   getToggleButtonGroupUtilityClass: () => (/* binding */ getToggleButtonGroupUtilityClass)
+/* harmony export */ });
+/* harmony import */ var _mui_utils_generateUtilityClasses__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @mui/utils/generateUtilityClasses */ "./node_modules/@mui/utils/esm/generateUtilityClasses/generateUtilityClasses.js");
+/* harmony import */ var _mui_utils_generateUtilityClass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @mui/utils/generateUtilityClass */ "./node_modules/@mui/utils/esm/generateUtilityClass/generateUtilityClass.js");
+
+
+function getToggleButtonGroupUtilityClass(slot) {
+  return (0,_mui_utils_generateUtilityClass__WEBPACK_IMPORTED_MODULE_0__["default"])('MuiToggleButtonGroup', slot);
+}
+const toggleButtonGroupClasses = (0,_mui_utils_generateUtilityClasses__WEBPACK_IMPORTED_MODULE_1__["default"])('MuiToggleButtonGroup', ['root', 'selected', 'horizontal', 'vertical', 'disabled', 'grouped', 'groupedHorizontal', 'groupedVertical', 'fullWidth', 'firstButton', 'lastButton', 'middleButton']);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (toggleButtonGroupClasses);
+
+/***/ }),
+
 /***/ "./node_modules/@mui/material/Tooltip/Tooltip.js":
 /*!*******************************************************!*\
   !*** ./node_modules/@mui/material/Tooltip/Tooltip.js ***!
@@ -33202,6 +33942,33 @@ function getScrollbarSize(win = window) {
   // https://developer.mozilla.org/en-US/docs/Web/API/Window/innerWidth#usage_notes
   const documentWidth = win.document.documentElement.clientWidth;
   return win.innerWidth - documentWidth;
+}
+
+/***/ }),
+
+/***/ "./node_modules/@mui/utils/esm/getValidReactChildren/getValidReactChildren.js":
+/*!************************************************************************************!*\
+  !*** ./node_modules/@mui/utils/esm/getValidReactChildren/getValidReactChildren.js ***!
+  \************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ getValidReactChildren)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+/**
+ * Gets only the valid children of a component,
+ * and ignores any nullish or falsy child.
+ *
+ * @param children the children
+ */
+function getValidReactChildren(children) {
+  return react__WEBPACK_IMPORTED_MODULE_0__.Children.toArray(children).filter(child => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.isValidElement(child));
 }
 
 /***/ }),
@@ -71135,15 +71902,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Container/Container.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Box/Box.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Button/Button.js");
-/* harmony import */ var _components_modc_Container__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/modc/Container */ "./src/components/modc/Container.tsx");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Container/Container.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Box/Box.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Button/Button.js");
+/* harmony import */ var _components_modc__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/modc */ "./src/components/modc.tsx");
 /* harmony import */ var _components_search_Container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/search/Container */ "./src/components/search/Container.tsx");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _components_methods_GetSetParam__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/methods/GetSetParam */ "./src/components/methods/GetSetParam.tsx");
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-dev-runtime */ "./node_modules/react/jsx-dev-runtime.js");
+/* harmony import */ var _components_methods_useParamState__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/methods/useParamState */ "./src/components/methods/useParamState.tsx");
+/* harmony import */ var _components_methods_HandleItems__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/methods/HandleItems */ "./src/components/methods/HandleItems.tsx");
+/* harmony import */ var _Constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Constants */ "./src/Constants.tsx");
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-dev-runtime */ "./node_modules/react/jsx-dev-runtime.js");
 /* provided dependency */ var __react_refresh_utils__ = __webpack_require__(/*! ./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js */ "./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js");
 __webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "./node_modules/react-refresh/runtime.js");
 
@@ -71155,13 +71922,39 @@ var _jsxFileName = "C:\\Users\\Thomas\\Downloads\\modc - f\\src\\App.tsx",
 
 
 
+
 const App = () => {
   _s();
-  const [page, setPage] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)((0,_components_methods_GetSetParam__WEBPACK_IMPORTED_MODULE_3__.GetParam)("page") || "modc");
-  (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(() => {
-    (0,_components_methods_GetSetParam__WEBPACK_IMPORTED_MODULE_3__.SetParam)("page", page);
-  }, [page]);
-  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  const [tab, setTab] = (0,_components_methods_useParamState__WEBPACK_IMPORTED_MODULE_2__.useParamState)("tab", {
+    defaultValue: "modc"
+  });
+  const [mods, setMods] = (0,_components_methods_useParamState__WEBPACK_IMPORTED_MODULE_2__.useParamState)("mods", {
+    defaultValue: [],
+    encode: _components_methods_HandleItems__WEBPACK_IMPORTED_MODULE_3__.encodeItems,
+    decode: _components_methods_HandleItems__WEBPACK_IMPORTED_MODULE_3__.decodeItems
+  });
+  const [resourcepacks, setResourcepacks] = (0,_components_methods_useParamState__WEBPACK_IMPORTED_MODULE_2__.useParamState)("resourcepacks", {
+    defaultValue: [],
+    encode: _components_methods_HandleItems__WEBPACK_IMPORTED_MODULE_3__.encodeItems,
+    decode: _components_methods_HandleItems__WEBPACK_IMPORTED_MODULE_3__.decodeItems
+  });
+  const [shaders, setShaders] = (0,_components_methods_useParamState__WEBPACK_IMPORTED_MODULE_2__.useParamState)("shaders", {
+    defaultValue: [],
+    encode: _components_methods_HandleItems__WEBPACK_IMPORTED_MODULE_3__.encodeItems,
+    decode: _components_methods_HandleItems__WEBPACK_IMPORTED_MODULE_3__.decodeItems
+  });
+  const [datapacks, setDatapacks] = (0,_components_methods_useParamState__WEBPACK_IMPORTED_MODULE_2__.useParamState)("datapacks", {
+    defaultValue: [],
+    encode: _components_methods_HandleItems__WEBPACK_IMPORTED_MODULE_3__.encodeItems,
+    decode: _components_methods_HandleItems__WEBPACK_IMPORTED_MODULE_3__.decodeItems
+  });
+  const [version, setVersion] = (0,_components_methods_useParamState__WEBPACK_IMPORTED_MODULE_2__.useParamState)("version", {
+    defaultValue: _Constants__WEBPACK_IMPORTED_MODULE_4__.minecraftVersions[0]
+  });
+  const [loader, setLoader] = (0,_components_methods_useParamState__WEBPACK_IMPORTED_MODULE_2__.useParamState)("loader", {
+    defaultValue: _Constants__WEBPACK_IMPORTED_MODULE_4__.modLoaders[0]
+  });
+  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_6__["default"], {
     sx: {
       maxHeight: '100vh',
       display: 'flex',
@@ -71169,60 +71962,82 @@ const App = () => {
       alignItems: 'center',
       paddingTop: 2
     },
-    children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_7__["default"], {
       sx: {
         display: 'flex',
         gap: 2
       },
-      children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_7__["default"], {
-        variant: page === "modc" ? "outlined" : "contained",
-        onClick: () => setPage("modc"),
+      children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_8__["default"], {
+        variant: tab === "modc" ? "outlined" : "contained",
+        onClick: () => setTab("modc"),
         children: "ModC"
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 17,
+        lineNumber: 20,
         columnNumber: 9
-      }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_7__["default"], {
-        variant: page === "search" ? "outlined" : "contained",
-        onClick: () => setPage("search"),
+      }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_8__["default"], {
+        variant: tab === "search" ? "outlined" : "contained",
+        onClick: () => setTab("search"),
         children: "Search"
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 18,
+        lineNumber: 21,
         columnNumber: 9
       }, undefined)]
     }, void 0, true, {
       fileName: _jsxFileName,
-      lineNumber: 16,
+      lineNumber: 19,
       columnNumber: 7
-    }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_7__["default"], {
       sx: {
         flex: 1,
         width: '100%',
         display: 'flex',
         justifyContent: 'center'
       },
-      children: page === "search" ? /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxDEV)(_components_search_Container__WEBPACK_IMPORTED_MODULE_1__["default"], {}, void 0, false, {
+      children: tab === "search" ? /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_components_search_Container__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        mods: mods,
+        modSetter: setMods,
+        resourcepacks: resourcepacks,
+        resourcepackSetter: setResourcepacks,
+        shaders: shaders,
+        shaderSetter: setShaders
+      }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 21,
-        columnNumber: 30
-      }, undefined) : /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxDEV)(_components_modc_Container__WEBPACK_IMPORTED_MODULE_0__["default"], {}, void 0, false, {
+        lineNumber: 24,
+        columnNumber: 29
+      }, undefined) : /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_components_modc__WEBPACK_IMPORTED_MODULE_0__["default"], {
+        mods: mods,
+        modSetter: setMods,
+        resourcepacks: resourcepacks,
+        resourcepackSetter: setResourcepacks,
+        shaders: shaders,
+        shaderSetter: setShaders,
+        datapacks: datapacks,
+        datapackSetter: setDatapacks,
+        version: version,
+        versionSetter: setVersion,
+        loader: loader,
+        loaderSetter: setLoader
+      }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 21,
-        columnNumber: 52
+        lineNumber: 24,
+        columnNumber: 195
       }, undefined)
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 20,
+      lineNumber: 23,
       columnNumber: 7
     }, undefined)]
   }, void 0, true, {
     fileName: _jsxFileName,
-    lineNumber: 15,
+    lineNumber: 18,
     columnNumber: 5
   }, undefined);
 };
-_s(App, "NUYdM1x+EbI63LbWTRcgeQIRP3w=");
+_s(App, "gTpdjqx4Sk7eLfnHbT7PVgnlfTE=", false, function () {
+  return [_components_methods_useParamState__WEBPACK_IMPORTED_MODULE_2__.useParamState, _components_methods_useParamState__WEBPACK_IMPORTED_MODULE_2__.useParamState, _components_methods_useParamState__WEBPACK_IMPORTED_MODULE_2__.useParamState, _components_methods_useParamState__WEBPACK_IMPORTED_MODULE_2__.useParamState, _components_methods_useParamState__WEBPACK_IMPORTED_MODULE_2__.useParamState, _components_methods_useParamState__WEBPACK_IMPORTED_MODULE_2__.useParamState, _components_methods_useParamState__WEBPACK_IMPORTED_MODULE_2__.useParamState];
+});
 _c = App;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
 var _c;
@@ -71287,7 +72102,7 @@ __webpack_require__.r(__webpack_exports__);
 /* provided dependency */ var __react_refresh_utils__ = __webpack_require__(/*! ./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js */ "./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js");
 __webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "./node_modules/react-refresh/runtime.js");
 
-const minecraftVersions = ["1.21.7", "1.21.6", "1.21.5", "1.21.4", "1.21.3", "1.21.2", "1.21.1", "1.21", "1.20.4", "1.20.3", "1.20.2", "1.20.1", "1.20", "1.19.4", "1.19.3", "1.19.2", "1.19.1", "1.19", "1.18.2", "1.18.1", "1.18", "1.17.1", "1.17", "1.16.5", "1.16.4", "1.16.3", "1.16.2", "1.16.1", "1.16", "1.15.2", "1.15.1", "1.15", "1.14.4", "1.12.2", "1.8.9"];
+const minecraftVersions = ["1.21.8", "1.21.7", "1.21.6", "1.21.5", "1.21.4", "1.21.3", "1.21.2", "1.21.1", "1.21", "1.20.4", "1.20.3", "1.20.2", "1.20.1", "1.20", "1.19.4", "1.19.3", "1.19.2", "1.19.1", "1.19", "1.18.2", "1.18.1", "1.18", "1.17.1", "1.17", "1.16.5", "1.16.4", "1.16.3", "1.16.2", "1.16.1", "1.16", "1.15.2", "1.15.1", "1.15", "1.14.4", "1.12.2", "1.8.9"];
 const modLoaders = ["fabric", "forge", "quilt", "neoforge"];
 const modCategories = ["Adventure", "Cursed", "Decoration", "Economy", "Equipment", "Food", "Game-Mechanics", "Library", "Magic", "Management", "Minigame", "Mobs", "Optimization", "Social", "Storage", "Technology", "Transportation", "Utility", "Worldgen"];
 const resourcepackCategories = ["Combat", "Cursed", "Decoration", "Modded", "Realistic", "Simplistic", "Themed", "Tweaks", "Utility", "Vanilla-like"];
@@ -71331,6 +72146,17 @@ if (typeof Promise !== 'undefined' && $ReactRefreshCurrentExports$ instanceof Pr
 } else {
 	$ReactRefreshModuleRuntime$($ReactRefreshCurrentExports$);
 }
+
+/***/ }),
+
+/***/ "./src/assets/itembackup.png":
+/*!***********************************!*\
+  !*** ./src/assets/itembackup.png ***!
+  \***********************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "data:image/png;base64,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";
 
 /***/ }),
 
@@ -71606,8 +72432,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Paper/Paper.js");
 /* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Tooltip/Tooltip.js");
 /* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Typography/Typography.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _assets_itembackup_png__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../assets/itembackup.png */ "./src/assets/itembackup.png");
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-dev-runtime */ "./node_modules/react/jsx-dev-runtime.js");
 /* provided dependency */ var __react_refresh_utils__ = __webpack_require__(/*! ./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js */ "./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js");
 __webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "./node_modules/react-refresh/runtime.js");
@@ -71627,6 +72452,7 @@ const ItemCard = ({
   width
 }) => {
   _s();
+  var _item$icon_url;
   const theme = (0,_mui_material__WEBPACK_IMPORTED_MODULE_2__["default"])();
   return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_3__["default"], {
     elevation: 3,
@@ -71667,25 +72493,16 @@ const ItemCard = ({
       followCursor: true,
       onClick: () => window.open(`https://modrinth.com/${item.project_type}/${item.project_id}`, '_blank'),
       title: `https://modrinth.com/${item.project_type}/${item.project_id}`,
-      children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxDEV)("a", {
-        href: `https://modrinth.com/${item.project_type}/${item.project_id}`,
-        target: "_blank",
-        rel: "noopener noreferrer",
-        children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxDEV)("img", {
-          src: item.icon_url,
-          style: {
-            width: '100%',
-            borderRadius: '16px'
-          }
-        }, void 0, false, {
-          fileName: _jsxFileName,
-          lineNumber: 21,
-          columnNumber: 9
-        }, undefined)
+      children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxDEV)("img", {
+        src: (_item$icon_url = item.icon_url) !== null && _item$icon_url !== void 0 ? _item$icon_url : _assets_itembackup_png__WEBPACK_IMPORTED_MODULE_0__,
+        style: {
+          width: '100%',
+          borderRadius: '16px'
+        }
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 20,
-        columnNumber: 209
+        lineNumber: 21,
+        columnNumber: 9
       }, undefined)
     }, void 0, false, {
       fileName: _jsxFileName,
@@ -71835,6 +72652,9 @@ const ItemInfo = ({
   return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)(_mui_material_Backdrop__WEBPACK_IMPORTED_MODULE_9__["default"], {
     open: open,
     onClick: onClose,
+    sx: {
+      zIndex: 5
+    },
     children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)(_mui_material_Card__WEBPACK_IMPORTED_MODULE_10__["default"], {
       sx: {
         padding: 2,
@@ -72200,11 +73020,11 @@ const ItemInfo = ({
             children: data.gallery.map(item => /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_14__["default"], {
               sx: {
                 display: 'flex',
+                flexDirection: 'column',
                 alignItems: 'center',
-                height: 250,
                 width: 250
               },
-              children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)(_mui_material_CardMedia__WEBPACK_IMPORTED_MODULE_16__["default"], {
+              children: [item.title, /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)(_mui_material_CardMedia__WEBPACK_IMPORTED_MODULE_16__["default"], {
                 component: "img",
                 image: item.url,
                 sx: {
@@ -72214,9 +73034,9 @@ const ItemInfo = ({
               }, void 0, false, {
                 fileName: _jsxFileName,
                 lineNumber: 104,
-                columnNumber: 133
-              }, undefined)
-            }, item.title, false, {
+                columnNumber: 157
+              }, undefined)]
+            }, item.title, true, {
               fileName: _jsxFileName,
               lineNumber: 104,
               columnNumber: 41
@@ -72552,10 +73372,14 @@ function GetParam(param) {
 }
 _c = GetParam;
 function SetParam(param, value) {
-  const urlParams = new URLSearchParams(window.location.search);
-  value.toString().length > 0 && value.toString() !== "[]" ? urlParams.set(param, value.toString()) : urlParams.delete(param);
-  const newUrl = `${window.location.pathname}?${decodeURIComponent(urlParams.toString())}`;
-  window.history.replaceState(null, '', newUrl);
+  const url = new URLSearchParams(window.location.search);
+  if (value === null || value === "" || value.toString() === "[]") {
+    url.delete(param);
+  } else {
+    url.set(param, value.toString());
+  }
+  const newUrl = `${window.location.pathname}?${decodeURIComponent(url.toString())}`;
+  window.history.replaceState({}, "", newUrl);
 }
 _c2 = SetParam;
 var _c, _c2;
@@ -73297,237 +74121,52 @@ if (typeof Promise !== 'undefined' && $ReactRefreshCurrentExports$ instanceof Pr
 
 /***/ }),
 
-/***/ "./src/components/modc/Component.tsx":
-/*!*******************************************!*\
-  !*** ./src/components/modc/Component.tsx ***!
-  \*******************************************/
+/***/ "./src/components/methods/useParamState.tsx":
+/*!**************************************************!*\
+  !*** ./src/components/methods/useParamState.tsx ***!
+  \**************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   useParamState: () => (/* binding */ useParamState)
 /* harmony export */ });
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Box/Box.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Typography/Typography.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Tooltip/Tooltip.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Button/Button.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/LinearProgress/LinearProgress.js");
-/* harmony import */ var _Constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Constants */ "./src/Constants.tsx");
-/* harmony import */ var _methods_Versions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../methods/Versions */ "./src/components/methods/Versions.tsx");
-/* harmony import */ var _methods_InputFields__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../methods/InputFields */ "./src/components/methods/InputFields.tsx");
-/* harmony import */ var _versions_Container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../versions/Container */ "./src/components/versions/Container.tsx");
-/* harmony import */ var _methods_Download__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../methods/Download */ "./src/components/methods/Download.tsx");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _methods_SnackbarProvider__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../methods/SnackbarProvider */ "./src/components/methods/SnackbarProvider.tsx");
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-dev-runtime */ "./node_modules/react/jsx-dev-runtime.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _GetSetParam__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./GetSetParam */ "./src/components/methods/GetSetParam.tsx");
 /* provided dependency */ var __react_refresh_utils__ = __webpack_require__(/*! ./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js */ "./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js");
 __webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "./node_modules/react-refresh/runtime.js");
 
-var _jsxFileName = "C:\\Users\\Thomas\\Downloads\\modc - f\\src\\components\\modc\\Component.tsx",
-  _s = __webpack_require__.$Refresh$.signature();
+var _s = __webpack_require__.$Refresh$.signature();
 
 
-
-
-
-
-
-
-
-const ModCComponent = ({
-  version,
-  loader,
-  mods,
-  shaders,
-  datapacks,
-  resourcepacks,
-  versionSetter,
-  loaderSetter,
-  modSetter,
-  shaderSetter,
-  datapackSetter,
-  resourcepackSetter
-}) => {
+function useParamState(key, options = {}) {
   _s();
-  const [downloading, setDownloading] = (0,react__WEBPACK_IMPORTED_MODULE_5__.useState)(false);
-  const [progress, setProgress] = (0,react__WEBPACK_IMPORTED_MODULE_5__.useState)(-1);
-  const [errors, setErrors] = (0,react__WEBPACK_IMPORTED_MODULE_5__.useState)([]);
-  const DownloadAll = async () => {
-    if (mods.length > 0) await (0,_methods_Download__WEBPACK_IMPORTED_MODULE_4__.downloadItems)('mods', loader, version, setDownloading, setProgress, _methods_SnackbarProvider__WEBPACK_IMPORTED_MODULE_6__.showSnackbar);
-    if (resourcepacks.length > 0) await (0,_methods_Download__WEBPACK_IMPORTED_MODULE_4__.downloadItems)('resourcepacks', '', version, setDownloading, setProgress, _methods_SnackbarProvider__WEBPACK_IMPORTED_MODULE_6__.showSnackbar);
-    if (shaders.length > 0) await (0,_methods_Download__WEBPACK_IMPORTED_MODULE_4__.downloadItems)('shaders', '', version, setDownloading, setProgress, _methods_SnackbarProvider__WEBPACK_IMPORTED_MODULE_6__.showSnackbar);
-    if (datapacks.length > 0) await (0,_methods_Download__WEBPACK_IMPORTED_MODULE_4__.downloadItems)('datapacks', '', version, setDownloading, setProgress, _methods_SnackbarProvider__WEBPACK_IMPORTED_MODULE_6__.showSnackbar);
+  const {
+    encode = String,
+    decode = val => val,
+    defaultValue
+  } = options;
+  const getInitialValue = () => {
+    const raw = (0,_GetSetParam__WEBPACK_IMPORTED_MODULE_1__.GetParam)(key);
+    return raw && raw !== null ? decode(raw) : defaultValue;
   };
-  const addError = (id, type, slug, error) => setErrors([...errors, [id, type, slug, error]]);
-  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    sx: {
-      display: 'flex',
-      flexDirection: 'column',
-      gap: '20px',
-      alignItems: 'center',
-      width: '100vw',
-      mt: '10px'
-    },
-    children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_9__["default"], {
-      variant: "h2",
-      sx: {
-        textAlign: "center",
-        width: '600px',
-        maxWidth: '90vw'
-      },
-      children: "Modpack Downloader"
-    }, void 0, false, {
-      fileName: _jsxFileName,
-      lineNumber: 41,
-      columnNumber: 7
-    }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_9__["default"], {
-      sx: {
-        textAlign: "center",
-        width: '600px',
-        maxWidth: '90vw',
-        color: 'text.secondary'
-      },
-      children: "Easily create, update, and share modpacks without installing any programs."
-    }, void 0, false, {
-      fileName: _jsxFileName,
-      lineNumber: 42,
-      columnNumber: 7
-    }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_8__["default"], {
-      sx: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        gap: '20px',
-        width: '700px',
-        maxWidth: '90vw'
-      },
-      children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(_methods_InputFields__WEBPACK_IMPORTED_MODULE_2__.SelectList, {
-        title: "Version",
-        tooltip: "Minecraft version",
-        value: version,
-        values: _Constants__WEBPACK_IMPORTED_MODULE_0__.minecraftVersions,
-        setter: versionSetter,
-        id: "minecraft-version",
-        onChange: () => {
-          (0,_methods_Versions__WEBPACK_IMPORTED_MODULE_1__.ClearVersions)("resourcepacks", resourcepackSetter);
-          (0,_methods_Versions__WEBPACK_IMPORTED_MODULE_1__.ClearVersions)("mods", modSetter);
-          (0,_methods_Versions__WEBPACK_IMPORTED_MODULE_1__.ClearVersions)("shaders", shaderSetter);
-        }
-      }, void 0, false, {
-        fileName: _jsxFileName,
-        lineNumber: 44,
-        columnNumber: 9
-      }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(_methods_InputFields__WEBPACK_IMPORTED_MODULE_2__.SelectList, {
-        title: "Loader",
-        tooltip: "Minecraft mod loader",
-        value: loader,
-        values: _Constants__WEBPACK_IMPORTED_MODULE_0__.modLoaders,
-        setter: loaderSetter,
-        id: "minecraft-loader",
-        onChange: () => (0,_methods_Versions__WEBPACK_IMPORTED_MODULE_1__.ClearVersions)("mods", modSetter)
-      }, void 0, false, {
-        fileName: _jsxFileName,
-        lineNumber: 45,
-        columnNumber: 9
-      }, undefined)]
-    }, void 0, true, {
-      fileName: _jsxFileName,
-      lineNumber: 43,
-      columnNumber: 7
-    }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_10__["default"], {
-      title: "Download all mods and resourcepacks of the selected version",
-      children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_11__["default"], {
-        variant: "contained",
-        sx: {
-          mt: 2,
-          width: '600px',
-          maxWidth: '90vw'
-        },
-        onClick: () => DownloadAll(),
-        disabled: errors.length > 0 || downloading,
-        children: [downloading ? 'Downloading...' : 'Download', " "]
-      }, void 0, true, {
-        fileName: _jsxFileName,
-        lineNumber: 48,
-        columnNumber: 9
-      }, undefined)
-    }, void 0, false, {
-      fileName: _jsxFileName,
-      lineNumber: 47,
-      columnNumber: 7
-    }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_12__["default"], {
-      variant: "determinate",
-      value: progress,
-      sx: {
-        width: '600px',
-        maxWidth: '90vw',
-        marginTop: '10px'
-      }
-    }, void 0, false, {
-      fileName: _jsxFileName,
-      lineNumber: 50,
-      columnNumber: 7
-    }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(_versions_Container__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      title: "Mods",
-      errors: errors,
-      type: "mod",
-      items: mods,
-      AddError: addError,
-      setErrors: setErrors,
-      setter: modSetter
-    }, void 0, false, {
-      fileName: _jsxFileName,
-      lineNumber: 51,
-      columnNumber: 7
-    }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(_versions_Container__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      title: "Resourcepacks",
-      errors: errors,
-      type: "resourcepack",
-      AddError: addError,
-      setErrors: setErrors,
-      items: resourcepacks,
-      setter: resourcepackSetter
-    }, void 0, false, {
-      fileName: _jsxFileName,
-      lineNumber: 52,
-      columnNumber: 7
-    }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(_versions_Container__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      title: "Shaders",
-      errors: errors,
-      type: "shader",
-      AddError: addError,
-      setErrors: setErrors,
-      items: shaders,
-      setter: shaderSetter
-    }, void 0, false, {
-      fileName: _jsxFileName,
-      lineNumber: 53,
-      columnNumber: 7
-    }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(_versions_Container__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      title: "Datapacks",
-      errors: errors,
-      type: "datapack",
-      AddError: addError,
-      setErrors: setErrors,
-      items: datapacks,
-      setter: datapackSetter
-    }, void 0, false, {
-      fileName: _jsxFileName,
-      lineNumber: 54,
-      columnNumber: 7
-    }, undefined)]
-  }, void 0, true, {
-    fileName: _jsxFileName,
-    lineNumber: 40,
-    columnNumber: 5
-  }, undefined);
-};
-_s(ModCComponent, "nFxYKd1r1Y4V7RXD2G1x+QSegFU=");
-_c = ModCComponent;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ModCComponent);
-var _c;
-__webpack_require__.$Refresh$.register(_c, "ModCComponent");
+  const [value, setValue] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(getInitialValue);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    const encoded = encode(value);
+    if (encoded === "" || encoded == null) {
+      (0,_GetSetParam__WEBPACK_IMPORTED_MODULE_1__.SetParam)(key, null);
+    } else {
+      (0,_GetSetParam__WEBPACK_IMPORTED_MODULE_1__.SetParam)(key, encoded);
+    }
+  }, [key, value, encode]);
+  const setUrlState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(newVal => {
+    setValue(newVal);
+  }, []);
+  return [value, setUrlState];
+}
+_s(useParamState, "cfCHOrKBy6GsGO4ca8erplR7BOU=");
 
 const $ReactRefreshModuleId$ = __webpack_require__.$Refresh$.moduleId;
 const $ReactRefreshCurrentExports$ = __react_refresh_utils__.getModuleExports(
@@ -73562,10 +74201,10 @@ if (typeof Promise !== 'undefined' && $ReactRefreshCurrentExports$ instanceof Pr
 
 /***/ }),
 
-/***/ "./src/components/modc/Container.tsx":
-/*!*******************************************!*\
-  !*** ./src/components/modc/Container.tsx ***!
-  \*******************************************/
+/***/ "./src/components/modc.tsx":
+/*!*********************************!*\
+  !*** ./src/components/modc.tsx ***!
+  \*********************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -73573,17 +74212,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Constants */ "./src/Constants.tsx");
-/* harmony import */ var _methods_GetSetParam__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../methods/GetSetParam */ "./src/components/methods/GetSetParam.tsx");
-/* harmony import */ var _Component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Component */ "./src/components/modc/Component.tsx");
-/* harmony import */ var _methods_HandleItems__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../methods/HandleItems */ "./src/components/methods/HandleItems.tsx");
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-dev-runtime */ "./node_modules/react/jsx-dev-runtime.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Box/Box.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Typography/Typography.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Tooltip/Tooltip.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Button/Button.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/LinearProgress/LinearProgress.js");
+/* harmony import */ var _Constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../Constants */ "./src/Constants.tsx");
+/* harmony import */ var _methods_Versions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./methods/Versions */ "./src/components/methods/Versions.tsx");
+/* harmony import */ var _methods_InputFields__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./methods/InputFields */ "./src/components/methods/InputFields.tsx");
+/* harmony import */ var _versions_Container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./versions/Container */ "./src/components/versions/Container.tsx");
+/* harmony import */ var _methods_Download__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./methods/Download */ "./src/components/methods/Download.tsx");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _methods_SnackbarProvider__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./methods/SnackbarProvider */ "./src/components/methods/SnackbarProvider.tsx");
+/* harmony import */ var _smoothSwitchBar__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./smoothSwitchBar */ "./src/components/smoothSwitchBar.tsx");
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react/jsx-dev-runtime */ "./node_modules/react/jsx-dev-runtime.js");
 /* provided dependency */ var __react_refresh_utils__ = __webpack_require__(/*! ./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js */ "./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js");
 __webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "./node_modules/react-refresh/runtime.js");
 
-var _jsxFileName = "C:\\Users\\Thomas\\Downloads\\modc - f\\src\\components\\modc\\Container.tsx",
+var _jsxFileName = "C:\\Users\\Thomas\\Downloads\\modc - f\\src\\components\\modc.tsx",
   _s = __webpack_require__.$Refresh$.signature();
 
 
@@ -73591,42 +74238,216 @@ var _jsxFileName = "C:\\Users\\Thomas\\Downloads\\modc - f\\src\\components\\mod
 
 
 
-const ModC = () => {
+
+
+
+
+const ModC = ({
+  version,
+  loader,
+  mods,
+  shaders,
+  datapacks,
+  resourcepacks,
+  versionSetter,
+  loaderSetter,
+  modSetter,
+  shaderSetter,
+  datapackSetter,
+  resourcepackSetter
+}) => {
   _s();
-  const [version, setVersion] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)((0,_methods_GetSetParam__WEBPACK_IMPORTED_MODULE_2__.GetParam)('version') || _Constants__WEBPACK_IMPORTED_MODULE_1__.minecraftVersions[0]);
-  const [loader, setLoader] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)((0,_methods_GetSetParam__WEBPACK_IMPORTED_MODULE_2__.GetParam)('loader') || _Constants__WEBPACK_IMPORTED_MODULE_1__.modLoaders[0]);
-  const [mods, setMods] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)((0,_methods_HandleItems__WEBPACK_IMPORTED_MODULE_4__.decodeItems)((0,_methods_GetSetParam__WEBPACK_IMPORTED_MODULE_2__.GetParam)("mods")) || []);
-  const [shaders, setShaders] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)((0,_methods_HandleItems__WEBPACK_IMPORTED_MODULE_4__.decodeItems)((0,_methods_GetSetParam__WEBPACK_IMPORTED_MODULE_2__.GetParam)("shaders")) || []);
-  const [datapacks, setDatapacks] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)((0,_methods_HandleItems__WEBPACK_IMPORTED_MODULE_4__.decodeItems)((0,_methods_GetSetParam__WEBPACK_IMPORTED_MODULE_2__.GetParam)('datapacks')) || []);
-  const [resourcepacks, setResourcepacks] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)((0,_methods_HandleItems__WEBPACK_IMPORTED_MODULE_4__.decodeItems)((0,_methods_GetSetParam__WEBPACK_IMPORTED_MODULE_2__.GetParam)('resourcepacks')) || []);
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    (0,_methods_GetSetParam__WEBPACK_IMPORTED_MODULE_2__.SetParam)('version', version);
-    (0,_methods_GetSetParam__WEBPACK_IMPORTED_MODULE_2__.SetParam)('loader', loader);
-    (0,_methods_GetSetParam__WEBPACK_IMPORTED_MODULE_2__.SetParam)('mods', (0,_methods_HandleItems__WEBPACK_IMPORTED_MODULE_4__.encodeItems)(mods));
-    (0,_methods_GetSetParam__WEBPACK_IMPORTED_MODULE_2__.SetParam)('shaders', (0,_methods_HandleItems__WEBPACK_IMPORTED_MODULE_4__.encodeItems)(shaders));
-    (0,_methods_GetSetParam__WEBPACK_IMPORTED_MODULE_2__.SetParam)('datapacks', (0,_methods_HandleItems__WEBPACK_IMPORTED_MODULE_4__.encodeItems)(datapacks));
-    (0,_methods_GetSetParam__WEBPACK_IMPORTED_MODULE_2__.SetParam)('resourcepacks', (0,_methods_HandleItems__WEBPACK_IMPORTED_MODULE_4__.encodeItems)(resourcepacks));
-  }, [version, loader, mods, resourcepacks, shaders, datapacks]);
-  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_Component__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    version: version,
-    loader: loader,
-    mods: mods,
-    shaders: shaders,
-    datapacks: datapacks,
-    resourcepacks: resourcepacks,
-    versionSetter: setVersion,
-    loaderSetter: setLoader,
-    modSetter: setMods,
-    shaderSetter: setShaders,
-    datapackSetter: setDatapacks,
-    resourcepackSetter: setResourcepacks
-  }, void 0, false, {
+  const [downloading, setDownloading] = (0,react__WEBPACK_IMPORTED_MODULE_5__.useState)(false);
+  const [progress, setProgress] = (0,react__WEBPACK_IMPORTED_MODULE_5__.useState)(-1);
+  const [errors, setErrors] = (0,react__WEBPACK_IMPORTED_MODULE_5__.useState)([]);
+  const [selected, setSelected] = (0,react__WEBPACK_IMPORTED_MODULE_5__.useState)("mod");
+  const DownloadAll = async () => {
+    if (mods.length > 0) await (0,_methods_Download__WEBPACK_IMPORTED_MODULE_4__.downloadItems)('mods', loader, version, setDownloading, setProgress, _methods_SnackbarProvider__WEBPACK_IMPORTED_MODULE_6__.showSnackbar);
+    if (resourcepacks.length > 0) await (0,_methods_Download__WEBPACK_IMPORTED_MODULE_4__.downloadItems)('resourcepacks', '', version, setDownloading, setProgress, _methods_SnackbarProvider__WEBPACK_IMPORTED_MODULE_6__.showSnackbar);
+    if (shaders.length > 0) await (0,_methods_Download__WEBPACK_IMPORTED_MODULE_4__.downloadItems)('shaders', '', version, setDownloading, setProgress, _methods_SnackbarProvider__WEBPACK_IMPORTED_MODULE_6__.showSnackbar);
+    if (datapacks.length > 0) await (0,_methods_Download__WEBPACK_IMPORTED_MODULE_4__.downloadItems)('datapacks', '', version, setDownloading, setProgress, _methods_SnackbarProvider__WEBPACK_IMPORTED_MODULE_6__.showSnackbar);
+  };
+  const addError = (id, type, slug, error) => setErrors([...errors, [id, type, slug, error]]);
+  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    sx: {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '20px',
+      alignItems: 'center',
+      width: '100vw',
+      mt: '10px'
+    },
+    children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      variant: "h2",
+      sx: {
+        textAlign: "center",
+        width: '600px',
+        maxWidth: '90vw'
+      },
+      children: "Modpack Downloader"
+    }, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 43,
+      columnNumber: 7
+    }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      sx: {
+        textAlign: "center",
+        width: '600px',
+        maxWidth: '90vw',
+        color: 'text.secondary'
+      },
+      children: "Web based modpack manager using the Modrinth API"
+    }, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 44,
+      columnNumber: 7
+    }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_9__["default"], {
+      sx: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        gap: '20px',
+        width: '700px',
+        maxWidth: '90vw'
+      },
+      children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)(_methods_InputFields__WEBPACK_IMPORTED_MODULE_2__.SelectList, {
+        title: "Version",
+        tooltip: "Minecraft version",
+        value: version,
+        values: _Constants__WEBPACK_IMPORTED_MODULE_0__.minecraftVersions,
+        setter: versionSetter,
+        id: "minecraft-version",
+        onChange: () => {
+          (0,_methods_Versions__WEBPACK_IMPORTED_MODULE_1__.ClearVersions)("resourcepacks", resourcepackSetter);
+          (0,_methods_Versions__WEBPACK_IMPORTED_MODULE_1__.ClearVersions)("mods", modSetter);
+          (0,_methods_Versions__WEBPACK_IMPORTED_MODULE_1__.ClearVersions)("shaders", shaderSetter);
+        }
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 46,
+        columnNumber: 9
+      }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)(_methods_InputFields__WEBPACK_IMPORTED_MODULE_2__.SelectList, {
+        title: "Loader",
+        tooltip: "Minecraft mod loader",
+        value: loader,
+        values: _Constants__WEBPACK_IMPORTED_MODULE_0__.modLoaders,
+        setter: loaderSetter,
+        id: "minecraft-loader",
+        onChange: () => (0,_methods_Versions__WEBPACK_IMPORTED_MODULE_1__.ClearVersions)("mods", modSetter)
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 47,
+        columnNumber: 9
+      }, undefined)]
+    }, void 0, true, {
+      fileName: _jsxFileName,
+      lineNumber: 45,
+      columnNumber: 7
+    }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_11__["default"], {
+      title: "Download all mods and resourcepacks of the selected version",
+      children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_12__["default"], {
+        variant: "contained",
+        sx: {
+          mt: 2,
+          width: '600px',
+          maxWidth: '90vw'
+        },
+        onClick: () => DownloadAll(),
+        disabled: errors.length > 0 || downloading,
+        children: [downloading ? 'Downloading...' : 'Download', " "]
+      }, void 0, true, {
+        fileName: _jsxFileName,
+        lineNumber: 50,
+        columnNumber: 9
+      }, undefined)
+    }, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 49,
+      columnNumber: 7
+    }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_13__["default"], {
+      variant: "determinate",
+      value: progress,
+      sx: {
+        width: '600px',
+        maxWidth: '90vw',
+        marginTop: '10px'
+      }
+    }, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 52,
+      columnNumber: 7
+    }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)(_smoothSwitchBar__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      options: [{
+        value: "mod",
+        label: 'Mods'
+      }, {
+        value: "resourcepack",
+        label: 'Resourcepacks'
+      }, {
+        value: "shader",
+        label: 'Shaders'
+      }],
+      value: selected,
+      onChange: setSelected
+    }, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 53,
+      columnNumber: 7
+    }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)(_versions_Container__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      show: selected === 'mod',
+      errors: errors,
+      type: "mod",
+      items: mods,
+      AddError: addError,
+      setErrors: setErrors,
+      setter: modSetter
+    }, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 54,
+      columnNumber: 7
+    }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)(_versions_Container__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      show: selected === 'resourcepack',
+      errors: errors,
+      type: "resourcepack",
+      AddError: addError,
+      setErrors: setErrors,
+      items: resourcepacks,
+      setter: resourcepackSetter
+    }, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 55,
+      columnNumber: 7
+    }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)(_versions_Container__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      show: selected === 'shader',
+      errors: errors,
+      type: "shader",
+      AddError: addError,
+      setErrors: setErrors,
+      items: shaders,
+      setter: shaderSetter
+    }, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 56,
+      columnNumber: 7
+    }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)(_versions_Container__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      show: selected === 'datapack',
+      errors: errors,
+      type: "datapack",
+      AddError: addError,
+      setErrors: setErrors,
+      items: datapacks,
+      setter: datapackSetter
+    }, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 57,
+      columnNumber: 7
+    }, undefined)]
+  }, void 0, true, {
     fileName: _jsxFileName,
-    lineNumber: 25,
+    lineNumber: 42,
     columnNumber: 5
   }, undefined);
 };
-_s(ModC, "7h6uaOFxJpLoOK4MmxriGg5l1Ec=");
+_s(ModC, "DHonblV2yqcNcKgWk9aP/pOM1QE=");
 _c = ModC;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ModC);
 var _c;
@@ -73676,26 +74497,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/styles/useTheme.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Box/Box.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Paper/Paper.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/TextField/TextField.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Button/Button.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Typography/Typography.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/InputBase/InputBase.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/styles/useTheme.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Box/Box.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Paper/Paper.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/TextField/TextField.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Button/Button.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Typography/Typography.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/InputBase/InputBase.js");
 /* harmony import */ var _methods_InputFields__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../methods/InputFields */ "./src/components/methods/InputFields.tsx");
-/* harmony import */ var _methods_HandleItems__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../methods/HandleItems */ "./src/components/methods/HandleItems.tsx");
-/* harmony import */ var _Constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Constants */ "./src/Constants.tsx");
-/* harmony import */ var _items_ItemCard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../items/ItemCard */ "./src/components/items/ItemCard.tsx");
-/* harmony import */ var _items_ItemInfo__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../items/ItemInfo */ "./src/components/items/ItemInfo.tsx");
-/* harmony import */ var _methods_GetSetParam__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../methods/GetSetParam */ "./src/components/methods/GetSetParam.tsx");
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-dev-runtime */ "./node_modules/react/jsx-dev-runtime.js");
+/* harmony import */ var _Constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Constants */ "./src/Constants.tsx");
+/* harmony import */ var _items_ItemCard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../items/ItemCard */ "./src/components/items/ItemCard.tsx");
+/* harmony import */ var _items_ItemInfo__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../items/ItemInfo */ "./src/components/items/ItemInfo.tsx");
+/* harmony import */ var _methods_SnackbarProvider__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../methods/SnackbarProvider */ "./src/components/methods/SnackbarProvider.tsx");
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-dev-runtime */ "./node_modules/react/jsx-dev-runtime.js");
 /* provided dependency */ var __react_refresh_utils__ = __webpack_require__(/*! ./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js */ "./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js");
 __webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "./node_modules/react-refresh/runtime.js");
 
 var _jsxFileName = "C:\\Users\\Thomas\\Downloads\\modc - f\\src\\components\\search\\Component.tsx",
   _s = __webpack_require__.$Refresh$.signature();
-
 
 
 
@@ -73713,6 +74532,12 @@ const SearchComponent = ({
   categories,
   environment,
   results,
+  mods,
+  resourcepacks,
+  shaders,
+  modSetter,
+  resourcepackSetter,
+  shaderSetter,
   setVersion,
   setType,
   setLoader,
@@ -73723,12 +74548,22 @@ const SearchComponent = ({
   setEnvironment
 }) => {
   _s();
-  const theme = (0,_mui_material__WEBPACK_IMPORTED_MODULE_7__["default"])();
+  const theme = (0,_mui_material__WEBPACK_IMPORTED_MODULE_6__["default"])();
   const {
     showItemInfo,
     ItemInfoComponent
-  } = (0,_items_ItemInfo__WEBPACK_IMPORTED_MODULE_4__.useItemInfo)();
-  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  } = (0,_items_ItemInfo__WEBPACK_IMPORTED_MODULE_3__.useItemInfo)();
+  const AddItem = (newItem, label) => {
+    const items = type === 'mod' ? mods : type === 'resourcepack' ? resourcepacks : shaders;
+    const setter = type === 'mod' ? modSetter : type === 'resourcepack' ? resourcepackSetter : shaderSetter;
+    if (!newItem || items.some(item => item[0] === newItem)) {
+      (0,_methods_SnackbarProvider__WEBPACK_IMPORTED_MODULE_4__.showSnackbar)(`${type} ${label} was already added`, "warning");
+      return;
+    }
+    setter([...items, [newItem]]);
+    (0,_methods_SnackbarProvider__WEBPACK_IMPORTED_MODULE_4__.showSnackbar)(`Added ${type} ${label}`, "success");
+  };
+  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_7__["default"], {
     sx: {
       display: 'flex',
       flexDirection: 'row',
@@ -73737,7 +74572,7 @@ const SearchComponent = ({
       maxWidth: "100vw",
       padding: "15px"
     },
-    children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_8__["default"], {
       elevation: 5,
       sx: {
         display: 'flex',
@@ -73752,24 +74587,24 @@ const SearchComponent = ({
         overflowY: "overlay",
         maxHeight: "88vh"
       },
-      children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_7__["default"], {
         sx: {
           display: "flex",
           flexDirection: "column",
           gap: "10px"
         },
-        children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_methods_InputFields__WEBPACK_IMPORTED_MODULE_0__.SelectList, {
+        children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_methods_InputFields__WEBPACK_IMPORTED_MODULE_0__.SelectList, {
           title: "Version",
           tooltip: "Minecraft version",
           value: version,
-          values: _Constants__WEBPACK_IMPORTED_MODULE_2__.minecraftVersions,
+          values: _Constants__WEBPACK_IMPORTED_MODULE_1__.minecraftVersions,
           setter: setVersion,
           id: "minecraft-version"
         }, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 43,
+          lineNumber: 60,
           columnNumber: 21
-        }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_methods_InputFields__WEBPACK_IMPORTED_MODULE_0__.SelectList, {
+        }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_methods_InputFields__WEBPACK_IMPORTED_MODULE_0__.SelectList, {
           title: "Type",
           tooltip: "Project type",
           value: type,
@@ -73778,125 +74613,125 @@ const SearchComponent = ({
           id: "project-type"
         }, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 44,
+          lineNumber: 61,
           columnNumber: 21
-        }, undefined), type === 'mod' ? /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
-          children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_methods_InputFields__WEBPACK_IMPORTED_MODULE_0__.SelectList, {
+        }, undefined), type === 'mod' ? /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+          children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_methods_InputFields__WEBPACK_IMPORTED_MODULE_0__.SelectList, {
             title: "Loader",
             tooltip: "Minecraft mod loader",
             value: loader,
-            values: _Constants__WEBPACK_IMPORTED_MODULE_2__.modLoaders,
+            values: _Constants__WEBPACK_IMPORTED_MODULE_1__.modLoaders,
             setter: setLoader,
             id: "minecraft-loader"
           }, void 0, false, {
             fileName: _jsxFileName,
-            lineNumber: 46,
+            lineNumber: 63,
             columnNumber: 25
-          }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_methods_InputFields__WEBPACK_IMPORTED_MODULE_0__.MultiDropdownSelection, {
-            options: _Constants__WEBPACK_IMPORTED_MODULE_2__.modCategories,
+          }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_methods_InputFields__WEBPACK_IMPORTED_MODULE_0__.MultiDropdownSelection, {
+            options: _Constants__WEBPACK_IMPORTED_MODULE_1__.modCategories,
             label: "Categories",
             categoryLabel: "categories",
             categorySetter: setCategories,
             categories: categories
           }, void 0, false, {
             fileName: _jsxFileName,
-            lineNumber: 47,
+            lineNumber: 64,
             columnNumber: 25
-          }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_methods_InputFields__WEBPACK_IMPORTED_MODULE_0__.DropdownSelection, {
+          }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_methods_InputFields__WEBPACK_IMPORTED_MODULE_0__.DropdownSelection, {
             title: "Environment",
-            options: _Constants__WEBPACK_IMPORTED_MODULE_2__.environments,
+            options: _Constants__WEBPACK_IMPORTED_MODULE_1__.environments,
             bools: environment,
             setBools: setEnvironment
           }, void 0, false, {
             fileName: _jsxFileName,
-            lineNumber: 48,
+            lineNumber: 65,
             columnNumber: 25
           }, undefined)]
-        }, void 0, true) : type === 'resourcepack' ? /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
-          children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_methods_InputFields__WEBPACK_IMPORTED_MODULE_0__.MultiDropdownSelection, {
-            options: _Constants__WEBPACK_IMPORTED_MODULE_2__.resourcepackCategories,
+        }, void 0, true) : type === 'resourcepack' ? /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+          children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_methods_InputFields__WEBPACK_IMPORTED_MODULE_0__.MultiDropdownSelection, {
+            options: _Constants__WEBPACK_IMPORTED_MODULE_1__.resourcepackCategories,
             label: "Categories",
             categories: categories,
             categoryLabel: "categories",
             categorySetter: setCategories
           }, void 0, false, {
             fileName: _jsxFileName,
-            lineNumber: 50,
+            lineNumber: 67,
             columnNumber: 25
-          }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_methods_InputFields__WEBPACK_IMPORTED_MODULE_0__.MultiDropdownSelection, {
-            options: _Constants__WEBPACK_IMPORTED_MODULE_2__.features,
+          }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_methods_InputFields__WEBPACK_IMPORTED_MODULE_0__.MultiDropdownSelection, {
+            options: _Constants__WEBPACK_IMPORTED_MODULE_1__.features,
             label: "Features",
             categories: categories,
             categoryLabel: "categories",
             categorySetter: setCategories
           }, void 0, false, {
             fileName: _jsxFileName,
-            lineNumber: 51,
+            lineNumber: 68,
             columnNumber: 25
-          }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_methods_InputFields__WEBPACK_IMPORTED_MODULE_0__.MultiDropdownSelection, {
-            options: _Constants__WEBPACK_IMPORTED_MODULE_2__.resolutions,
+          }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_methods_InputFields__WEBPACK_IMPORTED_MODULE_0__.MultiDropdownSelection, {
+            options: _Constants__WEBPACK_IMPORTED_MODULE_1__.resolutions,
             label: "Resolutions",
             categories: categories,
             categoryLabel: "categories",
             categorySetter: setCategories
           }, void 0, false, {
             fileName: _jsxFileName,
-            lineNumber: 52,
+            lineNumber: 69,
             columnNumber: 25
           }, undefined)]
-        }, void 0, true) : /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
-          children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_methods_InputFields__WEBPACK_IMPORTED_MODULE_0__.MultiDropdownSelection, {
-            options: _Constants__WEBPACK_IMPORTED_MODULE_2__.shaderCategories,
+        }, void 0, true) : /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+          children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_methods_InputFields__WEBPACK_IMPORTED_MODULE_0__.MultiDropdownSelection, {
+            options: _Constants__WEBPACK_IMPORTED_MODULE_1__.shaderCategories,
             label: "Categories",
             categories: categories,
             categoryLabel: "categories",
             categorySetter: setCategories
           }, void 0, false, {
             fileName: _jsxFileName,
-            lineNumber: 54,
+            lineNumber: 71,
             columnNumber: 25
-          }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_methods_InputFields__WEBPACK_IMPORTED_MODULE_0__.MultiDropdownSelection, {
-            options: _Constants__WEBPACK_IMPORTED_MODULE_2__.shaderFeatures,
+          }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_methods_InputFields__WEBPACK_IMPORTED_MODULE_0__.MultiDropdownSelection, {
+            options: _Constants__WEBPACK_IMPORTED_MODULE_1__.shaderFeatures,
             label: "Features",
             categories: categories,
             categoryLabel: "categories",
             categorySetter: setCategories
           }, void 0, false, {
             fileName: _jsxFileName,
-            lineNumber: 55,
+            lineNumber: 72,
             columnNumber: 25
-          }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_methods_InputFields__WEBPACK_IMPORTED_MODULE_0__.MultiDropdownSelection, {
-            options: _Constants__WEBPACK_IMPORTED_MODULE_2__.performanceImpact,
+          }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_methods_InputFields__WEBPACK_IMPORTED_MODULE_0__.MultiDropdownSelection, {
+            options: _Constants__WEBPACK_IMPORTED_MODULE_1__.performanceImpact,
             label: "Performance impact",
             categories: categories,
             categoryLabel: "categories",
             categorySetter: setCategories
           }, void 0, false, {
             fileName: _jsxFileName,
-            lineNumber: 56,
+            lineNumber: 73,
             columnNumber: 25
-          }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_methods_InputFields__WEBPACK_IMPORTED_MODULE_0__.MultiDropdownSelection, {
-            options: _Constants__WEBPACK_IMPORTED_MODULE_2__.shaderLoader,
+          }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_methods_InputFields__WEBPACK_IMPORTED_MODULE_0__.MultiDropdownSelection, {
+            options: _Constants__WEBPACK_IMPORTED_MODULE_1__.shaderLoader,
             label: "Loader",
             categories: categories,
             categoryLabel: "categories",
             categorySetter: setCategories
           }, void 0, false, {
             fileName: _jsxFileName,
-            lineNumber: 57,
+            lineNumber: 74,
             columnNumber: 25
           }, undefined)]
         }, void 0, true)]
       }, void 0, true, {
         fileName: _jsxFileName,
-        lineNumber: 42,
+        lineNumber: 59,
         columnNumber: 17
       }, undefined)
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 41,
+      lineNumber: 58,
       columnNumber: 13
-    }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_7__["default"], {
       sx: {
         display: 'flex',
         flexDirection: 'column',
@@ -73906,14 +74741,14 @@ const SearchComponent = ({
         padding: '0 2.9vw',
         justifyContent: "start"
       },
-      children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_7__["default"], {
         sx: {
           display: 'flex',
           flexDirection: 'row',
           gap: '2%',
           width: '99%'
         },
-        children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_10__["default"], {
+        children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_9__["default"], {
           placeholder: "Search",
           value: query,
           onChange: e => setQuery(e.target.value),
@@ -73923,25 +74758,25 @@ const SearchComponent = ({
           }
         }, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 63,
+          lineNumber: 80,
           columnNumber: 21
-        }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_methods_InputFields__WEBPACK_IMPORTED_MODULE_0__.SelectList, {
+        }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_methods_InputFields__WEBPACK_IMPORTED_MODULE_0__.SelectList, {
           title: "Index",
           tooltip: "Sort by",
           value: index,
-          values: _Constants__WEBPACK_IMPORTED_MODULE_2__.indexValues,
+          values: _Constants__WEBPACK_IMPORTED_MODULE_1__.indexValues,
           setter: setIndex,
           id: "minecraft-version"
         }, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 64,
+          lineNumber: 81,
           columnNumber: 21
         }, undefined)]
       }, void 0, true, {
         fileName: _jsxFileName,
-        lineNumber: 62,
+        lineNumber: 79,
         columnNumber: 17
-      }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_7__["default"], {
         sx: {
           display: 'flex',
           flexWrap: 'wrap',
@@ -73953,8 +74788,8 @@ const SearchComponent = ({
           padding: "5px",
           width: '100%'
         },
-        children: results.hits && results.hits.length > 0 ? results.hits.map(item => /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_items_ItemCard__WEBPACK_IMPORTED_MODULE_3__.ItemCard, {
-          button: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_11__["default"], {
+        children: results.hits && results.hits.length > 0 ? results.hits.map(item => /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_items_ItemCard__WEBPACK_IMPORTED_MODULE_2__.ItemCard, {
+          button: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_10__["default"], {
             sx: {
               mt: 1,
               height: '3vh',
@@ -73963,12 +74798,12 @@ const SearchComponent = ({
             variant: theme.palette.mode === "light" ? "contained" : "outlined",
             color: "secondary",
             onClick: () => {
-              (0,_methods_HandleItems__WEBPACK_IMPORTED_MODULE_1__.AddItem)(type, item.project_id, item.slug, (0,_methods_HandleItems__WEBPACK_IMPORTED_MODULE_1__.decodeItems)((0,_methods_GetSetParam__WEBPACK_IMPORTED_MODULE_5__.GetParam)(type + "s")));
+              AddItem(item.project_id, item.slug);
             },
             children: "Add"
           }, void 0, false, {
             fileName: _jsxFileName,
-            lineNumber: 68,
+            lineNumber: 85,
             columnNumber: 65
           }, undefined),
           showInfo: showItemInfo,
@@ -73976,22 +74811,22 @@ const SearchComponent = ({
           selectList: false
         }, item.project_id, false, {
           fileName: _jsxFileName,
-          lineNumber: 68,
+          lineNumber: 85,
           columnNumber: 25
-        }, undefined)) : /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_12__["default"], {
+        }, undefined)) : /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_11__["default"], {
           variant: "body1",
           color: "textSecondary",
           children: "No results"
         }, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 68,
-          columnNumber: 380
+          lineNumber: 85,
+          columnNumber: 339
         }, undefined)
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 66,
+        lineNumber: 83,
         columnNumber: 17
-      }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_7__["default"], {
         sx: {
           display: 'flex',
           position: 'fixed',
@@ -74000,56 +74835,56 @@ const SearchComponent = ({
           gap: 1,
           bottom: 16
         },
-        children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_13__["default"], {
-          startAdornment: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_11__["default"], {
-            onClick: () => page === 1 ? setPage(Math.ceil(results.total_hits / _Constants__WEBPACK_IMPORTED_MODULE_2__.maxResults)) : setPage(page - 1),
+        children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_12__["default"], {
+          startAdornment: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_10__["default"], {
+            onClick: () => page === 1 ? setPage(Math.ceil(results.total_hits / _Constants__WEBPACK_IMPORTED_MODULE_1__.maxResults)) : setPage(page - 1),
             children: "<"
           }, void 0, false, {
             fileName: _jsxFileName,
-            lineNumber: 72,
+            lineNumber: 89,
             columnNumber: 41
           }, undefined),
-          endAdornment: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
-            children: ["-", Math.ceil(results.total_hits / _Constants__WEBPACK_IMPORTED_MODULE_2__.maxResults), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_11__["default"], {
-              onClick: () => page === Math.ceil(results.total_hits / _Constants__WEBPACK_IMPORTED_MODULE_2__.maxResults) ? setPage(1) : setPage(page + 1),
+          endAdornment: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+            children: ["-", Math.ceil(results.total_hits / _Constants__WEBPACK_IMPORTED_MODULE_1__.maxResults), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_10__["default"], {
+              onClick: () => page === Math.ceil(results.total_hits / _Constants__WEBPACK_IMPORTED_MODULE_1__.maxResults) ? setPage(1) : setPage(page + 1),
               children: ">"
             }, void 0, false, {
               fileName: _jsxFileName,
-              lineNumber: 73,
+              lineNumber: 90,
               columnNumber: 86
             }, undefined)]
           }, void 0, true),
           sx: {
-            width: `${page.toString().length * 9.8 + Math.ceil(results.total_hits / _Constants__WEBPACK_IMPORTED_MODULE_2__.maxResults).toString().length * 9.8 + 130}px`,
+            width: `${page.toString().length * 9.8 + Math.ceil(results.total_hits / _Constants__WEBPACK_IMPORTED_MODULE_1__.maxResults).toString().length * 9.8 + 130}px`,
             padding: 0
           },
           value: page,
           onChange: e => {
-            if (!/\D/.test(e.target.value)) setPage(Math.min(Math.max(Number(e.target.value), 1), Math.ceil(results.total_hits / _Constants__WEBPACK_IMPORTED_MODULE_2__.maxResults)));
+            if (!/\D/.test(e.target.value)) setPage(Math.min(Math.max(Number(e.target.value), 1), Math.ceil(results.total_hits / _Constants__WEBPACK_IMPORTED_MODULE_1__.maxResults)));
           }
         }, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 71,
+          lineNumber: 88,
           columnNumber: 21
         }, undefined)
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 70,
+        lineNumber: 87,
         columnNumber: 17
       }, undefined)]
     }, void 0, true, {
       fileName: _jsxFileName,
-      lineNumber: 61,
+      lineNumber: 78,
       columnNumber: 13
     }, undefined), ItemInfoComponent]
   }, void 0, true, {
     fileName: _jsxFileName,
-    lineNumber: 40,
+    lineNumber: 57,
     columnNumber: 9
   }, undefined);
 };
 _s(SearchComponent, "P4aln0+aZNTUpGIMsw3MIn3+9e0=", false, function () {
-  return [_mui_material__WEBPACK_IMPORTED_MODULE_7__["default"], _items_ItemInfo__WEBPACK_IMPORTED_MODULE_4__.useItemInfo];
+  return [_mui_material__WEBPACK_IMPORTED_MODULE_6__["default"], _items_ItemInfo__WEBPACK_IMPORTED_MODULE_3__.useItemInfo];
 });
 _c = SearchComponent;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SearchComponent);
@@ -74111,13 +74946,19 @@ __webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/r
 
 var _jsxFileName = "C:\\Users\\Thomas\\Downloads\\modc - f\\src\\components\\search\\Container.tsx",
   _s = __webpack_require__.$Refresh$.signature();
-/* eslint-disable react/prop-types */
 
 
 
 
 
-const SearchContainer = () => {
+const SearchContainer = ({
+  mods,
+  resourcepacks,
+  shaders,
+  modSetter,
+  resourcepackSetter,
+  shaderSetter
+}) => {
   _s();
   const [loaded, setLoaded] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const [query, setQuery] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
@@ -74169,6 +75010,12 @@ const SearchContainer = () => {
     handleSearch();
   }, [loader, version, loaded, type, query, categories, environment, page, index]);
   return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxDEV)(_Component__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    mods: mods,
+    resourcepacks: resourcepacks,
+    shaders: shaders,
+    modSetter: modSetter,
+    resourcepackSetter: resourcepackSetter,
+    shaderSetter: shaderSetter,
     type: type,
     version: version,
     loader: loader,
@@ -74188,7 +75035,7 @@ const SearchContainer = () => {
     setEnvironment: setEnvironment
   }, void 0, false, {
     fileName: _jsxFileName,
-    lineNumber: 67,
+    lineNumber: 75,
     columnNumber: 12
   }, undefined);
 };
@@ -74197,6 +75044,136 @@ _c = SearchContainer;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SearchContainer);
 var _c;
 __webpack_require__.$Refresh$.register(_c, "SearchContainer");
+
+const $ReactRefreshModuleId$ = __webpack_require__.$Refresh$.moduleId;
+const $ReactRefreshCurrentExports$ = __react_refresh_utils__.getModuleExports(
+	$ReactRefreshModuleId$
+);
+
+function $ReactRefreshModuleRuntime$(exports) {
+	if (true) {
+		let errorOverlay;
+		if (true) {
+			errorOverlay = false;
+		}
+		let testMode;
+		if (typeof __react_refresh_test__ !== 'undefined') {
+			testMode = __react_refresh_test__;
+		}
+		return __react_refresh_utils__.executeRuntime(
+			exports,
+			$ReactRefreshModuleId$,
+			module.hot,
+			errorOverlay,
+			testMode
+		);
+	}
+}
+
+if (typeof Promise !== 'undefined' && $ReactRefreshCurrentExports$ instanceof Promise) {
+	$ReactRefreshCurrentExports$.then($ReactRefreshModuleRuntime$);
+} else {
+	$ReactRefreshModuleRuntime$($ReactRefreshCurrentExports$);
+}
+
+/***/ }),
+
+/***/ "./src/components/smoothSwitchBar.tsx":
+/*!********************************************!*\
+  !*** ./src/components/smoothSwitchBar.tsx ***!
+  \********************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Paper/Paper.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/ToggleButtonGroup/ToggleButtonGroup.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Chip/Chip.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/ToggleButton/ToggleButton.js");
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-dev-runtime */ "./node_modules/react/jsx-dev-runtime.js");
+/* provided dependency */ var __react_refresh_utils__ = __webpack_require__(/*! ./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js */ "./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js");
+__webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "./node_modules/react-refresh/runtime.js");
+
+var _jsxFileName = "C:\\Users\\Thomas\\Downloads\\modc - f\\src\\components\\smoothSwitchBar.tsx";
+
+
+const SmoothSwitchBar = ({
+  options,
+  value,
+  onChange
+}) => {
+  const handleChange = (_, newValue) => {
+    if (newValue !== null) onChange(newValue);
+  };
+  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    sx: {
+      width: "100%",
+      position: "relative",
+      padding: 1,
+      borderRadius: 8
+    },
+    children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      value: value,
+      exclusive: true,
+      onChange: handleChange,
+      fullWidth: true,
+      sx: {
+        gap: 3,
+        height: 50,
+        borderRadius: 25,
+        overflow: "hidden",
+        position: "relative",
+        p: 0
+      },
+      children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        color: "primary",
+        sx: {
+          fontWeight: 400,
+          fontSize: 16,
+          zIndex: 1,
+          position: "absolute",
+          top: 0,
+          left: `${options.findIndex(o => o.value === value) * 101 / options.length}%`,
+          width: `${98 / options.length}%`,
+          height: "100%",
+          borderRadius: 25,
+          transition: "left 300ms ease"
+        },
+        label: (value + "s").toUpperCase()
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 22,
+        columnNumber: 9
+      }, undefined), options.map(option => /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        value: option.value,
+        sx: {
+          flex: 1,
+          border: "none"
+        },
+        children: option.label
+      }, option.value, false, {
+        fileName: _jsxFileName,
+        lineNumber: 25,
+        columnNumber: 35
+      }, undefined))]
+    }, void 0, true, {
+      fileName: _jsxFileName,
+      lineNumber: 21,
+      columnNumber: 7
+    }, undefined)
+  }, void 0, false, {
+    fileName: _jsxFileName,
+    lineNumber: 20,
+    columnNumber: 5
+  }, undefined);
+};
+_c = SmoothSwitchBar;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SmoothSwitchBar);
+var _c;
+__webpack_require__.$Refresh$.register(_c, "SmoothSwitchBar");
 
 const $ReactRefreshModuleId$ = __webpack_require__.$Refresh$.moduleId;
 const $ReactRefreshCurrentExports$ = __react_refresh_utils__.getModuleExports(
@@ -74245,7 +75222,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/styles/useTheme.js");
 /* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Button/Button.js");
 /* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Box/Box.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Typography/Typography.js");
 /* harmony import */ var _items_ItemCard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../items/ItemCard */ "./src/components/items/ItemCard.tsx");
 /* harmony import */ var _methods_HandleItems__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../methods/HandleItems */ "./src/components/methods/HandleItems.tsx");
 /* harmony import */ var _methods_GetSetParam__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../methods/GetSetParam */ "./src/components/methods/GetSetParam.tsx");
@@ -74266,8 +75242,8 @@ var _jsxFileName = "C:\\Users\\Thomas\\Downloads\\modc - f\\src\\components\\ver
 
 
 const VersionComponent = ({
-  title,
   items,
+  show,
   rawItems,
   setter,
   type,
@@ -74309,7 +75285,7 @@ const VersionComponent = ({
         children: "Remove"
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 31,
+        lineNumber: 32,
         columnNumber: 17
       }, undefined),
       showInfo: showItemInfo,
@@ -74322,26 +75298,18 @@ const VersionComponent = ({
       }
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 30,
+      lineNumber: 31,
       columnNumber: 16
     }, undefined);
   };
   return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_8__["default"], {
     sx: {
-      display: 'flex',
+      display: show ? 'flex' : 'none',
       flexDirection: 'column',
-      alignItems: 'center',
-      mt: 4
+      alignItems: 'center'
     },
     children: items && items.length > 0 && /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
-      children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_9__["default"], {
-        variant: "h4",
-        children: title
-      }, void 0, false, {
-        fileName: _jsxFileName,
-        lineNumber: 37,
-        columnNumber: 48
-      }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_Errors__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_Errors__WEBPACK_IMPORTED_MODULE_3__["default"], {
         type: type,
         items: rawItems,
         itemSetter: setter,
@@ -74349,7 +75317,7 @@ const VersionComponent = ({
         setErrors: setErrors
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 38,
+        lineNumber: 39,
         columnNumber: 13
       }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_8__["default"], {
         sx: {
@@ -74357,12 +75325,9 @@ const VersionComponent = ({
           flexWrap: 'wrap',
           justifyContent: 'center',
           gap: '20px',
-          maxHeight: "90vh",
-          width: '83.6vw',
-          overflowY: 'scroll',
-          boxShadow: 'inset 0px 3px 6px rgba(0, 0, 0, 0.25)',
+          width: '85vw',
           borderRadius: 2,
-          padding: '20px 0'
+          paddingBottom: 1
         },
         children: items.length > 0 && items.map(item => /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(ItemComponent, {
           version: (0,_methods_GetSetParam__WEBPACK_IMPORTED_MODULE_2__.GetParam)('version'),
@@ -74370,18 +75335,18 @@ const VersionComponent = ({
           item: item
         }, item.id, false, {
           fileName: _jsxFileName,
-          lineNumber: 40,
+          lineNumber: 41,
           columnNumber: 59
         }, undefined))
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 39,
+        lineNumber: 40,
         columnNumber: 13
       }, undefined)]
     }, void 0, true)
   }, void 0, false, {
     fileName: _jsxFileName,
-    lineNumber: 36,
+    lineNumber: 37,
     columnNumber: 9
   }, undefined);
 };
@@ -74452,7 +75417,7 @@ var _jsxFileName = "C:\\Users\\Thomas\\Downloads\\modc - f\\src\\components\\ver
 
 
 const VersionContainer = ({
-  title,
+  show,
   items,
   errors,
   setErrors,
@@ -74483,11 +75448,11 @@ const VersionContainer = ({
   }, [items]);
   return results ? /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)(_Component__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      show: show,
       setErrors: setErrors,
       errors: errors,
       rawItems: items,
       AddError: AddError,
-      title: title,
       showItemInfo: showItemInfo,
       type: type,
       setter: setter,
@@ -74609,6 +75574,26 @@ const lightTheme = (0,_mui_material__WEBPACK_IMPORTED_MODULE_5__["default"])({
         scrollbarWidth: 'thin',
         scrollbarColor: '#555 transparent'
       }
+    },
+    MuiToggleButtonGroup: {
+      styleOverrides: {
+        grouped: {
+          '&:not(:last-of-type)': {
+            borderTopLeftRadius: 25,
+            borderBottomLeftRadius: 25,
+            borderTopRightRadius: 25,
+            borderBottomRightRadius: 25,
+            margin: 0
+          },
+          '&:not(:first-of-type)': {
+            borderTopLeftRadius: 25,
+            borderBottomLeftRadius: 25,
+            borderTopRightRadius: 25,
+            borderBottomRightRadius: 25,
+            margin: 0
+          }
+        }
+      }
     }
   }
 });
@@ -74652,6 +75637,26 @@ const darkTheme = (0,_mui_material__WEBPACK_IMPORTED_MODULE_5__["default"])({
           }
         }
       }
+    },
+    MuiToggleButtonGroup: {
+      styleOverrides: {
+        grouped: {
+          '&:not(:last-of-type)': {
+            borderTopLeftRadius: 25,
+            borderBottomLeftRadius: 25,
+            borderTopRightRadius: 25,
+            borderBottomRightRadius: 25,
+            margin: 0
+          },
+          '&:not(:first-of-type)': {
+            borderTopLeftRadius: 25,
+            borderBottomLeftRadius: 25,
+            borderTopRightRadius: 25,
+            borderBottomRightRadius: 25,
+            margin: 0
+          }
+        }
+      }
     }
   }
 });
@@ -74660,32 +75665,32 @@ root.render(/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__.j
   children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxDEV)(react_cookie__WEBPACK_IMPORTED_MODULE_6__.CookiesProvider, {
     children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_7__["default"], {}, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 105,
+      lineNumber: 146,
       columnNumber: 9
     }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_8__["default"], {
       theme: window.matchMedia("(prefers-color-scheme: dark)").matches ? darkTheme : lightTheme,
       children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_7__["default"], {}, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 107,
+        lineNumber: 148,
         columnNumber: 11
       }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxDEV)(_App__WEBPACK_IMPORTED_MODULE_2__["default"], {}, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 108,
+        lineNumber: 149,
         columnNumber: 11
       }, undefined)]
     }, void 0, true, {
       fileName: _jsxFileName,
-      lineNumber: 106,
+      lineNumber: 147,
       columnNumber: 9
     }, undefined)]
   }, void 0, true, {
     fileName: _jsxFileName,
-    lineNumber: 104,
+    lineNumber: 145,
     columnNumber: 7
   }, undefined)
 }, void 0, false, {
   fileName: _jsxFileName,
-  lineNumber: 103,
+  lineNumber: 144,
   columnNumber: 5
 }, undefined));
 
@@ -74804,7 +75809,7 @@ if (typeof Promise !== 'undefined' && $ReactRefreshCurrentExports$ instanceof Pr
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("c36574e9b3cdf21c150b")
+/******/ 		__webpack_require__.h = () => ("7aa5a36adbd957892876")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
