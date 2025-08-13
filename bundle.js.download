@@ -72477,7 +72477,8 @@ const ItemCard = ({
         variant: "h6",
         noWrap: true,
         sx: {
-          padding: '4px 0 '
+          padding: '4px 0 ',
+          fontSize: 20
         },
         children: item.title
       }, void 0, false, {
@@ -73256,33 +73257,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jszip__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jszip__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var file_saver__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! file-saver */ "./node_modules/file-saver/dist/FileSaver.min.js");
 /* harmony import */ var file_saver__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(file_saver__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _HandleItems__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./HandleItems */ "./src/components/methods/HandleItems.tsx");
-/* harmony import */ var _GetSetParam__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./GetSetParam */ "./src/components/methods/GetSetParam.tsx");
-/* harmony import */ var _Delay__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Delay */ "./src/components/methods/Delay.tsx");
+/* harmony import */ var _Delay__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Delay */ "./src/components/methods/Delay.tsx");
 /* provided dependency */ var __react_refresh_utils__ = __webpack_require__(/*! ./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js */ "./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js");
 __webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "./node_modules/react-refresh/runtime.js");
 
 
 
 
-
-
-const downloadItems = async (label, loader, gameVersion, setDownloading, setProgress, showSnackbar) => {
+const downloadItems = async (loader, gameVersion, items, setDownloading, setProgress, showSnackbar) => {
   setDownloading(true);
   const zip = new (jszip__WEBPACK_IMPORTED_MODULE_0___default())();
-  const items = (0,_HandleItems__WEBPACK_IMPORTED_MODULE_2__.decodeItems)((0,_GetSetParam__WEBPACK_IMPORTED_MODULE_3__.GetParam)(label)) || [];
-  const itemCount = items.length;
+  const totalItems = items.reduce((sum, group) => sum + group.items.length, 0);
   let completedCount = 0;
-  const downloadItem = async (id, version) => {
+  const downloadItem = async (groupLabel, id, version) => {
     try {
-      const response = await fetch(`https://api.modrinth.com/v2/project/${id}/version?game_versions=["${gameVersion}"]${loader && `&loaders=["${loader}"]`}`);
+      var _zip$folder;
+      const urlParams = [`game_versions=["${gameVersion}"]`, groupLabel === "mods" ? `loaders=["${loader}"]` : null].filter(Boolean).join("&");
+      const response = await fetch(`https://api.modrinth.com/v2/project/${id}/version?${urlParams}`);
       if (!response.ok) throw new Error(`Failed to fetch ${id}: ${response.statusText}`);
       const itemDetails = await response.json();
       if (!itemDetails.length) throw new Error(`No versions found for ${id}`);
+      const chosenVersion = version ? itemDetails.find(v => v.id === version) : itemDetails[0];
+      if (!chosenVersion) throw new Error(`Version ${version} not found for ${id}`);
       const {
         files
-      } = itemDetails.find(v => v.id === version) || itemDetails[0];
-      if (!files || !files.length) throw new Error(`No files found for ${id}`);
+      } = chosenVersion;
+      if (!(files !== null && files !== void 0 && files.length)) throw new Error(`No files found for ${id}`);
       const {
         url,
         filename
@@ -73290,30 +73290,30 @@ const downloadItems = async (label, loader, gameVersion, setDownloading, setProg
       const fileResponse = await fetch(url);
       if (!fileResponse.ok) throw new Error(`Failed to download ${filename}`);
       const blob = await fileResponse.blob();
-      zip.file(filename, blob);
+      (_zip$folder = zip.folder(groupLabel)) === null || _zip$folder === void 0 ? void 0 : _zip$folder.file(filename, blob);
       completedCount++;
-      setProgress(completedCount / itemCount * 100);
+      setProgress(completedCount / totalItems * 100);
     } catch (error) {
-      console.error(`Error downloading mod ${id}:`, error);
+      console.error(`Error downloading ${id}:`, error);
     }
   };
   try {
-    showSnackbar(`Downloading ${label}`, "success");
-    await Promise.all(items.map(([id, version]) => downloadItem(id, version)));
-    await (0,_Delay__WEBPACK_IMPORTED_MODULE_4__.delay)(10);
+    await Promise.all(items.flatMap(group => group.items.map(async ([id, version]) => {
+      await downloadItem(group.label, id, version);
+      await (0,_Delay__WEBPACK_IMPORTED_MODULE_2__.delay)(10);
+    })));
     const zipfile = await zip.generateAsync({
-      type: 'blob'
+      type: "blob"
     });
-    (0,file_saver__WEBPACK_IMPORTED_MODULE_1__.saveAs)(zipfile, `${label}.zip`);
+    (0,file_saver__WEBPACK_IMPORTED_MODULE_1__.saveAs)(zipfile, 'minecraft.zip');
   } catch (error) {
-    console.error('Error generating zip:', error);
+    console.error("Error generating zip:", error);
     showSnackbar(`Error downloading: ${error}`, "error");
   } finally {
     setProgress(0);
     setDownloading(false);
     showSnackbar(`Download complete`, "success");
   }
-  await (0,_Delay__WEBPACK_IMPORTED_MODULE_4__.delay)(1000);
 };
 
 const $ReactRefreshModuleId$ = __webpack_require__.$Refresh$.moduleId;
@@ -73428,33 +73428,20 @@ if (typeof Promise !== 'undefined' && $ReactRefreshCurrentExports$ instanceof Pr
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   AddItem: () => (/* binding */ AddItem),
 /* harmony export */   RemoveItem: () => (/* binding */ RemoveItem),
 /* harmony export */   decodeItems: () => (/* binding */ decodeItems),
 /* harmony export */   encodeItems: () => (/* binding */ encodeItems)
 /* harmony export */ });
-/* harmony import */ var _GetSetParam__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./GetSetParam */ "./src/components/methods/GetSetParam.tsx");
-/* harmony import */ var _SnackbarProvider__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SnackbarProvider */ "./src/components/methods/SnackbarProvider.tsx");
+/* harmony import */ var _SnackbarProvider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SnackbarProvider */ "./src/components/methods/SnackbarProvider.tsx");
 /* provided dependency */ var __react_refresh_utils__ = __webpack_require__(/*! ./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js */ "./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js");
 __webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "./node_modules/react-refresh/runtime.js");
 
 
-
-const AddItem = (type, id, slug, items) => {
-  if (!items.some(item => item[0] === id)) {
-    const updatedItems = [...items, [id, ""]];
-    (0,_GetSetParam__WEBPACK_IMPORTED_MODULE_0__.SetParam)(type + "s", encodeItems(updatedItems));
-    (0,_SnackbarProvider__WEBPACK_IMPORTED_MODULE_1__.showSnackbar)(`Added ${type} ${slug}`, "success");
-  } else {
-    (0,_SnackbarProvider__WEBPACK_IMPORTED_MODULE_1__.showSnackbar)(`${type} ${slug} was already added`, "warning");
-  }
-};
-_c = AddItem;
 const RemoveItem = (setter, items, id, slug) => {
   setter(items.filter(item => item[0] !== id));
-  (0,_SnackbarProvider__WEBPACK_IMPORTED_MODULE_1__.showSnackbar)(`Removed ${slug}`, "success");
+  (0,_SnackbarProvider__WEBPACK_IMPORTED_MODULE_0__.showSnackbar)(`Removed ${slug}`, "success");
 };
-_c2 = RemoveItem;
+_c = RemoveItem;
 const encodeItems = items => {
   return `[${items.map(([key, value]) => value ? `${key}:${value}` : key).join(",")}]`;
 };
@@ -73465,11 +73452,10 @@ const decodeItems = encoded => {
   return encoded.slice(1, -1).split(",").map(item => {
     const parts = item.split(":");
     return parts.length === 2 ? [parts[0], parts[1]] : [parts[0]];
-  }).filter(item => item[0]);
+  }).filter(item => Boolean(item[0]));
 };
-var _c, _c2;
-__webpack_require__.$Refresh$.register(_c, "AddItem");
-__webpack_require__.$Refresh$.register(_c2, "RemoveItem");
+var _c;
+__webpack_require__.$Refresh$.register(_c, "RemoveItem");
 
 const $ReactRefreshModuleId$ = __webpack_require__.$Refresh$.moduleId;
 const $ReactRefreshCurrentExports$ = __react_refresh_utils__.getModuleExports(
@@ -74262,10 +74248,21 @@ const ModC = ({
   const [errors, setErrors] = (0,react__WEBPACK_IMPORTED_MODULE_5__.useState)([]);
   const [selected, setSelected] = (0,react__WEBPACK_IMPORTED_MODULE_5__.useState)("mod");
   const DownloadAll = async () => {
-    if (mods.length > 0) await (0,_methods_Download__WEBPACK_IMPORTED_MODULE_4__.downloadItems)('mods', loader, version, setDownloading, setProgress, _methods_SnackbarProvider__WEBPACK_IMPORTED_MODULE_6__.showSnackbar);
-    if (resourcepacks.length > 0) await (0,_methods_Download__WEBPACK_IMPORTED_MODULE_4__.downloadItems)('resourcepacks', '', version, setDownloading, setProgress, _methods_SnackbarProvider__WEBPACK_IMPORTED_MODULE_6__.showSnackbar);
-    if (shaders.length > 0) await (0,_methods_Download__WEBPACK_IMPORTED_MODULE_4__.downloadItems)('shaders', '', version, setDownloading, setProgress, _methods_SnackbarProvider__WEBPACK_IMPORTED_MODULE_6__.showSnackbar);
-    if (datapacks.length > 0) await (0,_methods_Download__WEBPACK_IMPORTED_MODULE_4__.downloadItems)('datapacks', '', version, setDownloading, setProgress, _methods_SnackbarProvider__WEBPACK_IMPORTED_MODULE_6__.showSnackbar);
+    const items = [...(mods.length ? [{
+      label: "mods",
+      items: mods
+    }] : []), ...(resourcepacks.length ? [{
+      label: "resourcepacks",
+      items: resourcepacks
+    }] : []), ...(shaders.length ? [{
+      label: "shaders",
+      items: shaders
+    }] : []), ...(datapacks.length ? [{
+      label: "datapacks",
+      items: datapacks
+    }] : [])];
+    console.log(items);
+    (0,_methods_Download__WEBPACK_IMPORTED_MODULE_4__.downloadItems)(loader, version, items, setDownloading, setProgress, _methods_SnackbarProvider__WEBPACK_IMPORTED_MODULE_6__.showSnackbar);
   };
   const addError = (id, type, slug, error) => setErrors([...errors, [id, type, slug, error]]);
   return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_9__["default"], {
@@ -74287,7 +74284,7 @@ const ModC = ({
       children: "Modpack Downloader"
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 43,
+      lineNumber: 46,
       columnNumber: 7
     }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_10__["default"], {
       sx: {
@@ -74296,10 +74293,10 @@ const ModC = ({
         maxWidth: '90vw',
         color: 'text.secondary'
       },
-      children: "Web based modpack manager using the Modrinth API"
+      children: "Web based modpack manager for minecraft using the Modrinth API"
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 44,
+      lineNumber: 47,
       columnNumber: 7
     }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_9__["default"], {
       sx: {
@@ -74323,7 +74320,7 @@ const ModC = ({
         }
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 46,
+        lineNumber: 49,
         columnNumber: 9
       }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)(_methods_InputFields__WEBPACK_IMPORTED_MODULE_2__.SelectList, {
         title: "Loader",
@@ -74335,12 +74332,12 @@ const ModC = ({
         onChange: () => (0,_methods_Versions__WEBPACK_IMPORTED_MODULE_1__.ClearVersions)("mods", modSetter)
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 47,
+        lineNumber: 50,
         columnNumber: 9
       }, undefined)]
     }, void 0, true, {
       fileName: _jsxFileName,
-      lineNumber: 45,
+      lineNumber: 48,
       columnNumber: 7
     }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_11__["default"], {
       title: "Download all mods and resourcepacks of the selected version",
@@ -74356,12 +74353,12 @@ const ModC = ({
         children: [downloading ? 'Downloading...' : 'Download', " "]
       }, void 0, true, {
         fileName: _jsxFileName,
-        lineNumber: 50,
+        lineNumber: 53,
         columnNumber: 9
       }, undefined)
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 49,
+      lineNumber: 52,
       columnNumber: 7
     }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)(_mui_material__WEBPACK_IMPORTED_MODULE_13__["default"], {
       variant: "determinate",
@@ -74373,7 +74370,7 @@ const ModC = ({
       }
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 52,
+      lineNumber: 55,
       columnNumber: 7
     }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)(_smoothSwitchBar__WEBPACK_IMPORTED_MODULE_7__["default"], {
       options: [{
@@ -74390,7 +74387,7 @@ const ModC = ({
       onChange: setSelected
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 53,
+      lineNumber: 56,
       columnNumber: 7
     }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)(_versions_Container__WEBPACK_IMPORTED_MODULE_3__["default"], {
       show: selected === 'mod',
@@ -74402,7 +74399,7 @@ const ModC = ({
       setter: modSetter
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 54,
+      lineNumber: 57,
       columnNumber: 7
     }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)(_versions_Container__WEBPACK_IMPORTED_MODULE_3__["default"], {
       show: selected === 'resourcepack',
@@ -74414,7 +74411,7 @@ const ModC = ({
       setter: resourcepackSetter
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 55,
+      lineNumber: 58,
       columnNumber: 7
     }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)(_versions_Container__WEBPACK_IMPORTED_MODULE_3__["default"], {
       show: selected === 'shader',
@@ -74426,7 +74423,7 @@ const ModC = ({
       setter: shaderSetter
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 56,
+      lineNumber: 59,
       columnNumber: 7
     }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)(_versions_Container__WEBPACK_IMPORTED_MODULE_3__["default"], {
       show: selected === 'datapack',
@@ -74438,12 +74435,12 @@ const ModC = ({
       setter: datapackSetter
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 57,
+      lineNumber: 60,
       columnNumber: 7
     }, undefined)]
   }, void 0, true, {
     fileName: _jsxFileName,
-    lineNumber: 42,
+    lineNumber: 45,
     columnNumber: 5
   }, undefined);
 };
@@ -75280,7 +75277,7 @@ const VersionComponent = ({
         variant: theme.palette.mode === "light" ? "contained" : "outlined",
         color: "error",
         onClick: () => {
-          (0,_methods_HandleItems__WEBPACK_IMPORTED_MODULE_1__.RemoveItem)(setter, (0,_methods_HandleItems__WEBPACK_IMPORTED_MODULE_1__.decodeItems)((0,_methods_GetSetParam__WEBPACK_IMPORTED_MODULE_2__.GetParam)(type + 's')), item.id, item.slug);
+          (0,_methods_HandleItems__WEBPACK_IMPORTED_MODULE_1__.RemoveItem)(setter, rawItems, item.id, item.slug);
         },
         children: "Remove"
       }, void 0, false, {
@@ -75809,7 +75806,7 @@ if (typeof Promise !== 'undefined' && $ReactRefreshCurrentExports$ instanceof Pr
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("7aa5a36adbd957892876")
+/******/ 		__webpack_require__.h = () => ("d89438acad158e66cd2f")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
