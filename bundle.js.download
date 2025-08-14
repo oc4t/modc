@@ -73271,17 +73271,20 @@ const downloadItems = async (loader, gameVersion, items, setDownloading, setProg
   let completedCount = 0;
   const downloadItem = async (groupLabel, id, version) => {
     try {
-      var _zip$folder;
+      var _itemDetails$find, _zip$folder;
       const urlParams = [`game_versions=["${gameVersion}"]`, groupLabel === "mods" ? `loaders=["${loader}"]` : null].filter(Boolean).join("&");
       const response = await fetch(`https://api.modrinth.com/v2/project/${id}/version?${urlParams}`);
       if (!response.ok) throw new Error(`Failed to fetch ${id}: ${response.statusText}`);
       const itemDetails = await response.json();
       if (!itemDetails.length) throw new Error(`No versions found for ${id}`);
-      const chosenVersion = version ? itemDetails.find(v => v.id === version) : itemDetails[0];
-      if (!chosenVersion) throw new Error(`Version ${version} not found for ${id}`);
+      const chosenVersion = version ? (_itemDetails$find = itemDetails.find(v => v.id === version || v.version_number === version)) !== null && _itemDetails$find !== void 0 ? _itemDetails$find : null : null;
+      const finalVersion = chosenVersion !== null && chosenVersion !== void 0 ? chosenVersion : itemDetails[0];
+      if (!finalVersion) {
+        throw new Error(`Version ${version !== null && version !== void 0 ? version : "latest"} not found for ${id}`);
+      }
       const {
         files
-      } = chosenVersion;
+      } = finalVersion;
       if (!(files !== null && files !== void 0 && files.length)) throw new Error(`No files found for ${id}`);
       const {
         url,
@@ -75806,7 +75809,7 @@ if (typeof Promise !== 'undefined' && $ReactRefreshCurrentExports$ instanceof Pr
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("d89438acad158e66cd2f")
+/******/ 		__webpack_require__.h = () => ("beeba7b6bddd7a607846")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
