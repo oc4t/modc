@@ -1,0 +1,11 @@
+{
+  "files": {
+    "main.js": "/modc/static/js/main.c171caf1.js",
+    "static/media/itembackup.png": "/modc/static/media/itembackup.f23a4c10a6ed5cad2118.png",
+    "index.html": "/modc/index.html",
+    "main.c171caf1.js.map": "/modc/static/js/main.c171caf1.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.c171caf1.js"
+  ]
+}
